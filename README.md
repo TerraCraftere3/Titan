@@ -1,3 +1,4 @@
 # Titan
 
-This is the GameEngine i am working on, because when i codet my last GameEngine "TriangleEngine" i was a not so god c++ programmer, so now i am starting again.
+This is the second GameEngine i am working on.
+I stopped my last GameEngine-Project because i was too bad at c++, but now i know what i did wron and wanted to start again.
