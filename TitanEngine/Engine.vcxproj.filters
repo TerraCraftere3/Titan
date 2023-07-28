@@ -22,6 +22,10 @@
     <ClInclude Include="src\Titan\Logo.h">
       <Filter>Titan</Filter>
     </ClInclude>
+    <ClInclude Include="src\Titan\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Titan\Events\Event.h" />
+    <ClInclude Include="src\Titan\Events\KeyEvent.h" />
+    <ClInclude Include="src\Titan\Events\MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Titan\Application.cpp">

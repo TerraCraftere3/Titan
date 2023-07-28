@@ -34,3 +34,18 @@ namespace Titan {
 #define TITAN_WARN(...)	         ::Titan::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define TITAN_ERROR(...)	     ::Titan::Log::GetClientLogger()->error(__VA_ARGS__)
 #define TITAN_FATAL(...)	     ::Titan::Log::GetClientLogger()->critical(__VA_ARGS__)
+
+#ifdef TI_DIST
+	//Disable Logging
+	#define TITAN_CORE_TRACE(...)
+	#define TITAN_CORE_INFO(...)
+	#define TITAN_CORE_WARN(...)
+	#define TITAN_CORE_ERROR(...)
+	#define TITAN_CORE_FATAL(...)
+
+	#define TITAN_TRACE(...)
+	#define TITAN_INFO(...)
+	#define TITAN_WARN(...)
+	#define TITAN_ERROR(...)
+	#define TITAN_FATAL(...)
+#endif

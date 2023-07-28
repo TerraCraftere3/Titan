@@ -151,6 +151,10 @@
     <ClInclude Include="src\Titan\Application.h" />
     <ClInclude Include="src\Titan\Core.h" />
     <ClInclude Include="src\Titan\EntryPoint.h" />
+    <ClInclude Include="src\Titan\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Titan\Events\Event.h" />
+    <ClInclude Include="src\Titan\Events\KeyEvent.h" />
+    <ClInclude Include="src\Titan\Events\MouseEvent.h" />
     <ClInclude Include="src\Titan\Log.h" />
     <ClInclude Include="src\Titan\Logo.h" />
   </ItemGroup>
