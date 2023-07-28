@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Titan">
+      <UniqueIdentifier>{A5982A0E-11AD-52BF-DA2E-F61E46024FF0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Titan.h" />
+    <ClInclude Include="src\Titan\Application.h">
+      <Filter>Titan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core.h">
+      <Filter>Titan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\EntryPoint.h">
+      <Filter>Titan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Log.h">
+      <Filter>Titan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Logo.h">
+      <Filter>Titan</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Titan\Application.cpp">
+      <Filter>Titan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Log.cpp">
+      <Filter>Titan</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
