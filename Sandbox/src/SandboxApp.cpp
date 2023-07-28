@@ -15,5 +15,6 @@ public:
 };
 
 Titan::Application* Titan::CreateApplication() {
+
 	return new Sandbox();
 }

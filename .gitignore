@@ -6,3 +6,4 @@ github/
 # Files
 *.user
 github.bat
+.gitignore

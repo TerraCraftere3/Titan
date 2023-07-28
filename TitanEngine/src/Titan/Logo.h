@@ -20,3 +20,11 @@ const std::string titanEngineLogo = R""""(
                                          __/ |             
                                         |___/              
 )"""";
+
+const std::string credits = R""""(
+Made by TerraSTUDIOS
+Apache License : Version 2.0, January 2004
+http://www.apache.org/licenses/
+Inspired by TheCherno, "GameEngine Series"
+Logging: https://github.com/gabime/spdlog
+)"""";

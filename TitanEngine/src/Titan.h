@@ -7,5 +7,6 @@
 
 //For use by apps
 #include "Titan/Logo.h"
+#include "Titan/Log.h"
 #include "Titan/Application.h"
 #include "Titan/EntryPoint.h"
