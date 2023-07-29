@@ -49,8 +49,7 @@ project "Engine"
 		"opengl32.lib"
 	}
 
-	staticruntime "on"
-	runtime "Release"
+	buildoptions "/MD"
 
 	filter "system:windows"
 		cppdialect "C++17"
@@ -70,8 +69,7 @@ project "Engine"
 	filter "configurations:Debug"
 		defines "TI_DEBUG"
 		symbols "On"
-		staticruntime "on"
-		runtime "Debug"
+		buildoptions "/MDd"
 
 	filter "configurations:Release"
 		defines "TI_RELEASE"
