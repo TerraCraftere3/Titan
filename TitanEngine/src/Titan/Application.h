@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Core.h"
-#include "Events/Event.h"
+
+
+#include "Titan/Events/Event.h"
+#include "Titan/Events/ApplicationEvent.h"
 
 namespace Titan {
 	class TI_API Application
