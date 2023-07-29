@@ -1,5 +1,9 @@
+#include "tipch.h"
+
 #include "Application.h"
 
+#include "Titan/Events/Event.h"
+#include "Titan/Events/ApplicationEvent.h"
 #include "Titan/Log.h"
 
 namespace Titan {

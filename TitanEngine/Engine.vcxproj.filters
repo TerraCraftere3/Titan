@@ -4,6 +4,9 @@
     <Filter Include="Titan">
       <UniqueIdentifier>{A5982A0E-11AD-52BF-DA2E-F61E46024FF0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Titan\Events">
+      <UniqueIdentifier>{E9783363-D5DB-C207-7E61-FBBD6AA38E8A}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Titan.h" />
@@ -16,16 +19,25 @@
     <ClInclude Include="src\Titan\EntryPoint.h">
       <Filter>Titan</Filter>
     </ClInclude>
+    <ClInclude Include="src\Titan\Events\ApplicationEvent.h">
+      <Filter>Titan\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Events\Event.h">
+      <Filter>Titan\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Events\KeyEvent.h">
+      <Filter>Titan\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Events\MouseEvent.h">
+      <Filter>Titan\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Titan\Log.h">
       <Filter>Titan</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Logo.h">
       <Filter>Titan</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Titan\Events\Event.h" />
-    <ClInclude Include="src\Titan\Events\KeyEvent.h" />
-    <ClInclude Include="src\Titan\Events\MouseEvent.h" />
+    <ClInclude Include="src\tipch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Titan\Application.cpp">
@@ -34,5 +46,6 @@
     <ClCompile Include="src\Titan\Log.cpp">
       <Filter>Titan</Filter>
     </ClCompile>
+    <ClCompile Include="src\tipch.cpp" />
   </ItemGroup>
 </Project>
