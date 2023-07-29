@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Titan {
 
 	class TI_API WindowResizeEvent : public Event
