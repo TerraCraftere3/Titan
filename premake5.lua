@@ -8,6 +8,16 @@ workspace "TitanEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "TitanEngine/vendor/GLFW/include"
+
+include "TitanEngine/vendor/GLFW"
+
+function pch()
+	pchheader "tipch.h"
+	pchsource "Engine/src/tipch.cpp"
+end
+
 project "Engine"
 	location "TitanEngine"
 	kind "SharedLib"
@@ -16,8 +26,7 @@ project "Engine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "tipch.h"
-	pchsource "Engine/src/tipch.cpp"
+	
 	
 	files
 	{
@@ -29,9 +38,19 @@ project "Engine"
 
 	includedirs
 	{
+		"%{prj.location}/src",
 		"%{prj.location}/vendor/spdlog/include",
-		"%{prj.location}/src"
+		"%{IncludeDir.GLFW}"
 	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
+	}
+
+	staticruntime "on"
+	runtime "Release"
 
 	filter "system:windows"
 		cppdialect "C++17"
@@ -51,6 +70,8 @@ project "Engine"
 	filter "configurations:Debug"
 		defines "TI_DEBUG"
 		symbols "On"
+		staticruntime "on"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "TI_RELEASE"

@@ -13,6 +13,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Titan/Log.h"
+
 //platform specific includes
 #ifdef TI_PLATFORM_WINDOWS
 	#include <Windows.h>
