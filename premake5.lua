@@ -49,7 +49,6 @@ project "Engine"
 		"opengl32.lib"
 	}
 
-	buildoptions "/MD"
 
 	filter "system:windows"
 		cppdialect "C++17"
@@ -68,15 +67,17 @@ project "Engine"
 
 	filter "configurations:Debug"
 		defines "TI_DEBUG"
-		symbols "On"
 		buildoptions "/MDd"
+		symbols "On"
 
 	filter "configurations:Release"
 		defines "TI_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TI_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter { "system:windows", "configurations:Release" }
@@ -120,14 +121,17 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "TI_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TI_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TI_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter { "system:windows", "configurations:Release" }

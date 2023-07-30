@@ -40,6 +40,12 @@
     <ClInclude Include="src\Titan\Events\MouseEvent.h">
       <Filter>Titan\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Titan\Layer.h">
+      <Filter>Titan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\LayerStack.h">
+      <Filter>Titan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Titan\Log.h">
       <Filter>Titan</Filter>
     </ClInclude>
@@ -56,6 +62,12 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Titan\Application.cpp">
+      <Filter>Titan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Layer.cpp">
+      <Filter>Titan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\LayerStack.cpp">
       <Filter>Titan</Filter>
     </ClCompile>
     <ClCompile Include="src\Titan\Log.cpp">

@@ -38,12 +38,8 @@ namespace Titan {
 	#define TITAN_CORE_TRACE(...)
 	#define TITAN_CORE_INFO(...)
 	#define TITAN_CORE_WARN(...)
-	#define TITAN_CORE_ERROR(...)
-	#define TITAN_CORE_FATAL(...)
 
 	#define TITAN_TRACE(...)
 	#define TITAN_INFO(...)
 	#define TITAN_WARN(...)
-	#define TITAN_ERROR(...)
-	#define TITAN_FATAL(...)
 #endif

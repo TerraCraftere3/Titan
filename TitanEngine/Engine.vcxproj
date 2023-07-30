@@ -83,7 +83,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MD /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -161,6 +161,8 @@
     <ClInclude Include="src\Titan\Events\Event.h" />
     <ClInclude Include="src\Titan\Events\KeyEvent.h" />
     <ClInclude Include="src\Titan\Events\MouseEvent.h" />
+    <ClInclude Include="src\Titan\Layer.h" />
+    <ClInclude Include="src\Titan\LayerStack.h" />
     <ClInclude Include="src\Titan\Log.h" />
     <ClInclude Include="src\Titan\Logo.h" />
     <ClInclude Include="src\Titan\Window.h" />
@@ -169,6 +171,8 @@
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Titan\Application.cpp" />
+    <ClCompile Include="src\Titan\Layer.cpp" />
+    <ClCompile Include="src\Titan\LayerStack.cpp" />
     <ClCompile Include="src\Titan\Log.cpp" />
     <ClCompile Include="src\tipch.cpp" />
   </ItemGroup>
