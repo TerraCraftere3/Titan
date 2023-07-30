@@ -10,8 +10,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "TitanEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "TitanEngine/vendor/Glad/include"
+IncludeDir["ImGui"] = "TitanEngine/vendor/imgui"
 
 include "TitanEngine/vendor/GLFW"
+include "TitanEngine/vendor/Glad"
+include "TitanEngine/vendor/imgui"
 
 function pch()
 	pchheader "tipch.h"
@@ -40,12 +44,16 @@ project "Engine"
 	{
 		"%{prj.location}/src",
 		"%{prj.location}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -57,7 +65,8 @@ project "Engine"
 
 		defines {
 			"TI_BUILD_DLL",
-			"TI_PLATFORM_WINDOWS"
+			"TI_PLATFORM_WINDOWS",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands

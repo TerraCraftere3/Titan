@@ -10,3 +10,6 @@
 [submodule "TitanEngine/vendor/GLFW"]
 	path = TitanEngine/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "TitanEngine/vendor/imgui"]
+	path = TitanEngine/vendor/imgui
+	url = https://github.com/TheCherno/imgui

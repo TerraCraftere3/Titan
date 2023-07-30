@@ -29,6 +29,7 @@ public:
 		TITAN_ERROR("This is 'TITAN_ERROR()'");
 		TITAN_FATAL("This is 'TITAN_FATAL()'");
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Titan::ImGuiLayer());
 	}
 
 	~Sandbox() 

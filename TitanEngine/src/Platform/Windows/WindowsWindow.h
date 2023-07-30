@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Titan/Window.h"
-
-#include <GLFW/glfw3.h>
+struct GLFWwindow;
 
 namespace Titan {
 	class WindowsWindow : public Window
