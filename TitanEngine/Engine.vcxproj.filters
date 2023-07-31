@@ -68,6 +68,8 @@
       <Filter>Titan</Filter>
     </ClInclude>
     <ClInclude Include="src\tipch.h" />
+    <ClInclude Include="src\Titan\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
@@ -92,5 +94,6 @@
       <Filter>Titan</Filter>
     </ClCompile>
     <ClCompile Include="src\tipch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

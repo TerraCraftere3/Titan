@@ -82,9 +82,16 @@ namespace Titan {
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui::NewFrame();
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5.f); // Round borders
+		bool showing = 25;
+		ImGui::ShowDemoWindow(&showing);
+		ImGui::Begin("Inspector");
+		ImGui::End();
+
+		//Notifications
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(43.f / 255.f, 43.f / 255.f, 43.f / 255.f, 100.f / 255.f)); // Background color
-		ImGui::RenderNotifications(); // <-- Here we render all notifications
+		ImGui::RenderNotifications(); // <-- Here w e render all notifications
 		ImGui::PopStyleVar(1); // Don't forget to Pop()
+
 		ImGui::PopStyleColor(1);
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
