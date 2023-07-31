@@ -12,4 +12,4 @@
 	url = https://github.com/TheCherno/glfw
 [submodule "TitanEngine/vendor/imgui"]
 	path = TitanEngine/vendor/imgui
-	url = https://github.com/TerraCraftere3/vanadium-imgui
+	url = https://github.com/TerraCraftere3/vanadium-imgui/

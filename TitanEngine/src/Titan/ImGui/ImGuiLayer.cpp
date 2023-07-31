@@ -2,6 +2,8 @@
 #include "ImGuiLayer.h"
 
 #include "imgui.h"
+#include "imgui_ext/notifys/imgui_notify.h"
+#include "imgui_ext/notifys/tahoma.h"
 #include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
 
 #include <GLFW/glfw3.h>
@@ -53,6 +55,13 @@ namespace Titan {
 		io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
 
 		ImGui_ImplOpenGL3_Init("#version 410");
+
+		ImFontConfig font_cfg;
+		font_cfg.FontDataOwnedByAtlas = false;
+		io.Fonts->AddFontFromMemoryTTF((void*)tahoma, sizeof(tahoma), 17.f, &font_cfg);
+
+		// Initialize notify
+		ImGui::MergeIconsWithLatestFont(16.f, false);
 	}
 
 	void ImGuiLayer::OnDetach()
@@ -72,10 +81,11 @@ namespace Titan {
 
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui::NewFrame();
-
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
-
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5.f); // Round borders
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(43.f / 255.f, 43.f / 255.f, 43.f / 255.f, 100.f / 255.f)); // Background color
+		ImGui::RenderNotifications(); // <-- Here we render all notifications
+		ImGui::PopStyleVar(1); // Don't forget to Pop()
+		ImGui::PopStyleColor(1);
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}

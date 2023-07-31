@@ -19,7 +19,7 @@ include "TitanEngine/vendor/imgui"
 
 function pch()
 	pchheader "tipch.h"
-	pchsource "Engine/src/tipch.cpp"
+	pchsource "TitanEngine/src/tipch.cpp"
 end
 
 project "Engine"
@@ -30,7 +30,7 @@ project "Engine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	
+	pch()
 	
 	files
 	{
