@@ -13,3 +13,6 @@
 [submodule "TitanEngine/vendor/imgui"]
 	path = TitanEngine/vendor/imgui
 	url = https://github.com/TerraCraftere3/vanadium-imgui/
+[submodule "TitanEngine/vendor/glm"]
+	path = TitanEngine/vendor/glm
+	url = https://github.com/g-truc/glm

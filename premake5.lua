@@ -12,6 +12,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "TitanEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "TitanEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "TitanEngine/vendor/imgui"
+IncludeDir["glm"] = "TitanEngine/vendor/glm"
 
 include "TitanEngine/vendor/GLFW"
 include "TitanEngine/vendor/Glad"
@@ -37,7 +38,9 @@ project "Engine"
 		"%{prj.location}/src/**.h",
 		"%{prj.location}/src/**.cpp",
 		"%{prj.location}/src/**.hpp",
-		"%{prj.location}/src/**.c"
+		"%{prj.location}/src/**.c",
+		"%{IncludeDir.glm}/glm/**.hpp",
+		"%{IncludeDir.glm}/glm/**.inl"
 	}
 
 	includedirs
@@ -46,7 +49,8 @@ project "Engine"
 		"%{prj.location}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -113,7 +117,8 @@ project "Sandbox"
 	includedirs
 	{
 		"TitanEngine/vendor/spdlog/include",
-		"TitanEngine/src"
+		"TitanEngine/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links
