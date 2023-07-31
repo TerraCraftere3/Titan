@@ -13,6 +13,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+
+#include <Titan/Events/Event.h>
 #include "Titan/Log.h"
 
 //platform specific includes
