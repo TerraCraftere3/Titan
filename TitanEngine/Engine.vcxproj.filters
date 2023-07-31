@@ -70,6 +70,8 @@
     <ClInclude Include="src\tipch.h" />
     <ClInclude Include="src\Titan\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Titan\KeyCodes.h" />
+    <ClInclude Include="src\Titan\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">

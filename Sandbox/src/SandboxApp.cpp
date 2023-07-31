@@ -10,11 +10,17 @@ public:
 
 	void OnUpdate() override
 	{
+		if (Titan::Input::IsKeyPressed(TI_KEY_TAB))
+			TITAN_INFO("Works...");
 	}
 
 	void OnEvent(Titan::Event& event) override
 	{
-		TITAN_TRACE("{0}", event.ToString());
+		if (event.GetEventType() == Titan::EventType::KeyPressed)
+		{
+			Titan::KeyPressedEvent& e = (Titan::KeyPressedEvent&)event;
+			TITAN_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 

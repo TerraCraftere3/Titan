@@ -168,10 +168,12 @@
     <ClInclude Include="src\Titan\Events\MouseEvent.h" />
     <ClInclude Include="src\Titan\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Titan\Input.h" />
+    <ClInclude Include="src\Titan\KeyCodes.h" />
     <ClInclude Include="src\Titan\Layer.h" />
     <ClInclude Include="src\Titan\LayerStack.h" />
     <ClInclude Include="src\Titan\Log.h" />
     <ClInclude Include="src\Titan\Logo.h" />
+    <ClInclude Include="src\Titan\MouseButtonCodes.h" />
     <ClInclude Include="src\Titan\Window.h" />
     <ClInclude Include="src\tipch.h" />
   </ItemGroup>
