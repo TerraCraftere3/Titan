@@ -1,11 +1,10 @@
 #include "tipch.h"
 #include "WindowsWindow.h"
 
-#include <Titan/Events/MouseEvent.h>
-#include <Titan/Events/KeyEvent.h>
-#include <Titan/Events/ApplicationEvent.h>
+#include "Titan/Events/ApplicationEvent.h"
+#include "Titan/Events/MouseEvent.h"
+#include "Titan/Events/KeyEvent.h"
 
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
 namespace Titan {

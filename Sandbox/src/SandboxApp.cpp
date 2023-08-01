@@ -1,4 +1,5 @@
 #include <Titan.h>
+#include <imgui/imgui.h>
 
 class ExampleLayer : public Titan::Layer
 {
@@ -8,19 +9,11 @@ public:
 	{
 	}
 
-	void OnUpdate() override
+	virtual void OnImGuiRender() override
 	{
-		if (Titan::Input::IsKeyPressed(TI_KEY_TAB))
-			TITAN_INFO("Works...");
-	}
-
-	void OnEvent(Titan::Event& event) override
-	{
-		if (event.GetEventType() == Titan::EventType::KeyPressed)
-		{
-			Titan::KeyPressedEvent& e = (Titan::KeyPressedEvent&)event;
-			TITAN_TRACE("{0}", (char)e.GetKeyCode());
-		}
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 };
 
