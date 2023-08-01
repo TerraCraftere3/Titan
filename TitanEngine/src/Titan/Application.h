@@ -9,7 +9,6 @@
 
 #include "Titan/ImGui/ImGuiLayer.h"
 
-
 namespace Titan {
 	class TI_API Application
 	{
@@ -31,8 +30,11 @@ namespace Titan {
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+	private:
 		static Application* s_Instance;
 	};
 	

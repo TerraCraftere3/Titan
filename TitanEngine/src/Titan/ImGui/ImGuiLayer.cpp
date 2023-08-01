@@ -3,13 +3,13 @@
 
 
 #include "imgui.h"
-#include "backends/imgui_impl_opengl3.h"
-#include "backends/imgui_impl_glfw.h"
-#include "Titan/Application.h"
+#include "Platform/OpenGL/imgui_impl_glfw.h"
+#include "Platform/OpenGL/imgui_impl_opengl3.h"
 
 // TEMPORARY
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <Titan/Application.h>
 
 
 namespace Titan {
