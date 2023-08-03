@@ -9,7 +9,7 @@
 
 namespace Titan {
 
-	#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
+#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 
@@ -19,7 +19,7 @@ namespace Titan {
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -27,7 +27,6 @@ namespace Titan {
 
 	Application::~Application()
 	{
-
 	}
 
 	void Application::PushLayer(Layer* layer)
@@ -42,11 +41,24 @@ namespace Titan {
 		layer->OnAttach();
 	}
 
+	void Application::OnEvent(Event& e)
+	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		{
+			(*--it)->OnEvent(e);
+			if (e.Handled)
+				break;
+		}
+	}
+
 	void Application::Run()
 	{
-		while (m_Running) 
+		while (m_Running)
 		{
-			glClearColor(0, 0, 1, 1);
+			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack)
@@ -61,23 +73,8 @@ namespace Titan {
 		}
 	}
 
-	void Application::OnEvent(Event& e)
+	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
-		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClosed));
-
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
-		{
-			(*--it)->OnEvent(e);
-			if (e.Handled)
-				break;
-		}
-	}
-
-	bool Application::OnWindowClosed(WindowCloseEvent& e)
-	{
-		TITAN_CORE_WARN("Closing window...");
-		Sleep(250);
 		m_Running = false;
 		return true;
 	}

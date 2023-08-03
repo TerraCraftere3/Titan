@@ -6,7 +6,6 @@
 #include "Titan/Events/KeyEvent.h"
 #include "Titan/Events/MouseEvent.h"
 
-
 namespace Titan {
 
 	class TI_API ImGuiLayer : public Layer

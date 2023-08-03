@@ -10,6 +10,7 @@
 #include "Titan/ImGui/ImGuiLayer.h"
 
 namespace Titan {
+
 	class TI_API Application
 	{
 	public:
@@ -27,17 +28,17 @@ namespace Titan {
 
 		inline static Application& Get() { return *s_Instance; }
 	private:
-		bool OnWindowClosed(WindowCloseEvent& e);
+		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
 	private:
 		static Application* s_Instance;
 	};
-	
-	// Clientside
+
+	// To be defined in CLIENT
 	Application* CreateApplication();
+
 }
