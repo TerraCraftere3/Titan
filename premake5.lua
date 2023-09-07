@@ -25,8 +25,10 @@ end
 
 project "Engine"
 	location "TitanEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -41,6 +43,11 @@ project "Engine"
 		"%{prj.location}/src/**.c",
 		"%{IncludeDir.glm}/glm/**.hpp",
 		"%{IncludeDir.glm}/glm/**.inl"
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -81,17 +88,17 @@ project "Engine"
 	filter "configurations:Debug"
 		defines "TI_DEBUG"
 		buildoptions "/MDd"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "TI_RELEASE"
 		buildoptions "/MD"
-		optimize "On"
+		symbols "on"
 
 	filter "configurations:Dist"
 		defines "TI_DIST"
 		buildoptions "/MD"
-		optimize "On"
+		symbols "on"
 
 	filter { "system:windows", "configurations:Release" }
 		buildoptions "/MT"
@@ -100,6 +107,8 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -140,17 +149,17 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "TI_DEBUG"
 		buildoptions "/MDd"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "TI_RELEASE"
 		buildoptions "/MD"
-		optimize "On"
+		symbols "on"
 
 	filter "configurations:Dist"
 		defines "TI_DIST"
 		buildoptions "/MD"
-		optimize "On"
+		symbols "on"
 
 	filter { "system:windows", "configurations:Release" }
 		buildoptions "/MT"

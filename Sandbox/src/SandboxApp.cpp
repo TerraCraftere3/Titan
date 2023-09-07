@@ -18,8 +18,8 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-		ImGui::Begin("Test");
-		ImGui::Text("Hello World");
+		ImGui::Begin("Hi");
+		ImGui::Text("Finally it works!!!");
 		ImGui::End();
 	}
 
