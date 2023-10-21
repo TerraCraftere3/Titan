@@ -1,6 +1,6 @@
 #pragma once
 
-const std::string titanLogo = R""""(
+const char titanLogo[] = R""""(
   _______ _ _              
  |__   __(_) |             
     | |   _| |_ __ _ _ __  
@@ -10,7 +10,7 @@ const std::string titanLogo = R""""(
 
 )"""";
 
-const std::string titanEngineLogo = R""""(
+const char titanEngineLogo[] = R""""(
   _______ _ _              ______             _            
  |__   __(_) |            |  ____|           (_)           
     | |   _| |_ __ _ _ __ | |__   _ __   __ _ _ _ __   ___ 
@@ -21,7 +21,7 @@ const std::string titanEngineLogo = R""""(
                                         |___/              
 )"""";
 
-const std::string credits = R""""(
+const char credits[] = R""""(
 Made by TerraSTUDIOS
 Apache License : Version 2.0, January 2004
 http://www.apache.org/licenses/

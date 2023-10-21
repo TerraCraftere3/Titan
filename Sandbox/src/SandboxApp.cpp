@@ -5,9 +5,11 @@
 class ExampleLayer : public Titan::Layer
 {
 public:
+	bool open;
 	ExampleLayer()
 		: Layer("Example")
 	{
+		open = false;
 	}
 
 	void OnUpdate() override
@@ -18,8 +20,9 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-		ImGui::Begin("Hi");
-		ImGui::Text("Finally it works!!!");
+		ImGui::Begin("Test Window", &open);
+		ImGuiID dockspace_id = ImGui::GetID("Test Window");
+		ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f));
 		ImGui::End();
 	}
 

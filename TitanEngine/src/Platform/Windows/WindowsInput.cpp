@@ -1,8 +1,8 @@
 #include "tipch.h"
 #include "WindowsInput.h"
 
-#include <GLFW/glfw3.h>
 #include "Titan/Application.h"
+#include <GLFW/glfw3.h>
 
 namespace Titan {
 

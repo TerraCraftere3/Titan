@@ -6,8 +6,8 @@ extern Titan::Application* Titan::CreateApplication();
 
 int main(int argc, char** argv) 
 {
-	printf(titanEngineLogo.c_str());
-	printf(credits.c_str());
+	printf(titanEngineLogo);
+	printf(credits);
 
 	Titan::Log::Init();
 	TITAN_CORE_WARN("Initialized Log!");
