@@ -8,6 +8,10 @@
 #include "Titan/Events/ApplicationEvent.h"
 
 #include "Titan/ImGui/ImGuiLayer.h"
+<<<<<<< HEAD
+=======
+#include <imgui.h>
+>>>>>>> 466d50ea07b4144007abb49d81a465d9896116d0
 
 namespace Titan {
 

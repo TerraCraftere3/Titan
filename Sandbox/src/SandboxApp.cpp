@@ -20,9 +20,14 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
+<<<<<<< HEAD
 		ImGui::Begin("Test Window", &open);
 		ImGuiID dockspace_id = ImGui::GetID("Test Window");
 		ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f));
+=======
+		ImGui::Begin("Hi");
+		ImGui::Text("Finally it works!!!");
+>>>>>>> 466d50ea07b4144007abb49d81a465d9896116d0
 		ImGui::End();
 	}
 
