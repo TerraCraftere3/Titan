@@ -1,14 +1,10 @@
 #pragma once
 
 #ifdef TI_PLATFORM_WINDOWS
-
 extern Titan::Application* Titan::CreateApplication();
 
 int main(int argc, char** argv) 
 {
-	printf(titanEngineLogo);
-	printf(credits);
-
 	Titan::Log::Init();
 	TITAN_CORE_WARN("Initialized Log!");
 	auto app = Titan::CreateApplication();
