@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Titan/Window.h"
+#include "Titan/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
-
 namespace Titan {
+
 	class WindowsWindow : public Window
 	{
 	public:
@@ -28,6 +29,7 @@ namespace Titan {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
@@ -40,4 +42,5 @@ namespace Titan {
 
 		WindowData m_Data;
 	};
+
 }
