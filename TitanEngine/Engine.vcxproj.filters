@@ -90,9 +90,6 @@
     <ClInclude Include="src\Titan\Log.h">
       <Filter>src\Titan</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Logo.h">
-      <Filter>src\Titan</Filter>
-    </ClInclude>
     <ClInclude Include="src\Titan\MouseButtonCodes.h">
       <Filter>src\Titan</Filter>
     </ClInclude>
