@@ -17,3 +17,10 @@ For now you need to clone the entire repo.
 - Debug UI (imgui)
 - Window and Graphics (OpenGL and GLFW)
 - Mathematics LIbary (glm)
+
+## Releases
+
+| Number | Title                | Status |
+| ------ | -------------------- | ------ |
+| 0.2    | The Age of Rendering | Alpha  |
+| 0.1    | The Beginning        | Alpha  |
