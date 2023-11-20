@@ -23,4 +23,5 @@ For now you need to clone the entire repo.
 | Number | Title                | Status |
 | ------ | -------------------- | ------ |
 | 0.2    | The Age of Rendering | Alpha  |
-| 0.1    | The Beginning        | Alpha  |
+| 0.1    | Window and Events    | Alpha  |
+| 0.0    | The Beginning        | Alpha  |
