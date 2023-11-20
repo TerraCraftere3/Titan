@@ -11,6 +11,7 @@
 
 #include "Titan/Renderer/Shader.h"
 #include "Titan/Renderer/Buffer.h"
+#include "Titan/Renderer/VertexArray.h"
 
 namespace Titan {
 
@@ -38,10 +39,10 @@ namespace Titan {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexBuffer> m_VertexBuffer;
+		std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<VertexArray> m_VertexArray;
 		
 	private:
 		static Application* s_Instance;

@@ -13,26 +13,7 @@ namespace Titan {
 
 	Application* Application::s_Instance = nullptr;
 
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-	{
-		switch (type)
-		{
-			case ShaderDataType::Float:		return GL_FLOAT;
-			case ShaderDataType::Float2:	return GL_FLOAT;
-			case ShaderDataType::Float3:	return GL_FLOAT;
-			case ShaderDataType::Float4:	return GL_FLOAT;
-			case ShaderDataType::Mat3:		return GL_FLOAT;
-			case ShaderDataType::Mat4:		return GL_FLOAT;
-			case ShaderDataType::Int:		return GL_INT;
-			case ShaderDataType::Int2:		return GL_INT;
-			case ShaderDataType::Int3:		return GL_INT;
-			case ShaderDataType::Int4:		return GL_INT;
-			case ShaderDataType::Bool:		return GL_BOOL;
-		}
-
-		TI_CORE_ASSERT(false, "Unknown ShaderDataType!");
-		return 0;
-	}
+	
 
 	Application::Application()
 	{
@@ -45,17 +26,14 @@ namespace Titan {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		// TODO: Vertex Array
-		// TODO: Vertex Buffer
-		// TODO: Index Buffer
+		m_VertexArray.reset(VertexArray::Create());
 
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
-
-		float vertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 1, 0, 0, 1,
+		float vertices[4 * 7] = {
+			 0.5f, 0.5f, 0.0f, 1, 0, 0, 1,
 			 0.5f, -0.5f, 0.0f, 0, 1, 0, 1,
-			 0.0f,  0.5f, 0.0f, 0, 0, 1, 1
+		   -0.5f,  -0.5f, 0.0f, 0, 0, 1, 1,
+		   -0.5f,  0.5f, 0.0f, 1, 0, 1, 1,
+
 		};
 
 		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
@@ -69,23 +47,11 @@ namespace Titan {
 			m_VertexBuffer->SetLayout(layout);
 		}
 
-		uint32_t index = 0;
-		const auto& layout = m_VertexBuffer->GetLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index, element.GetCompnentCount(),
-				ShaderDataTypeToOpenGLBaseType(element.Type),
-				element.Normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(),
-				(const void*) element.Offset);
-			index++;
-		}
-
-		
-
-		uint32_t indices[3] = { 0, 1, 2 };
+		uint32_t indices[6] = { 0, 1, 2, 0, 2, 3};
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -157,7 +123,7 @@ namespace Titan {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			m_Shader->Bind();
-			glBindVertexArray(m_VertexArray);
+			m_VertexArray->Bind();
 			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
