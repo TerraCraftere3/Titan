@@ -18,8 +18,8 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-		ImGui::Begin("Hi");
-		ImGui::Text("Finally it works!!!");
+		ImGui::Begin("Example");
+		ImGui::Text("This window is being created in SandboxApp.cpp");
 		ImGui::End();
 	}
 
