@@ -13,6 +13,8 @@
 #include "Titan/Renderer/Buffer.h"
 #include "Titan/Renderer/VertexArray.h"
 
+#include "Titan/Renderer/OrthographicCamera.h"
+
 namespace Titan {
 
 	class TI_API Application
@@ -43,7 +45,8 @@ namespace Titan {
 		std::shared_ptr<VertexBuffer> m_VertexBuffer;
 		std::shared_ptr<IndexBuffer> m_IndexBuffer;
 		std::shared_ptr<VertexArray> m_VertexArray;
-		
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};

@@ -170,6 +170,7 @@
     <ClInclude Include="src\Titan\MouseButtonCodes.h" />
     <ClInclude Include="src\Titan\Renderer\Buffer.h" />
     <ClInclude Include="src\Titan\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Titan\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Titan\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Titan\Renderer\Renderer.h" />
     <ClInclude Include="src\Titan\Renderer\RendererAPI.h" />
@@ -608,6 +609,7 @@
     <ClCompile Include="src\Titan\LayerStack.cpp" />
     <ClCompile Include="src\Titan\Log.cpp" />
     <ClCompile Include="src\Titan\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Titan\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Titan\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Titan\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Titan\Renderer\RendererAPI.cpp" />
