@@ -5,6 +5,8 @@
 #include "Titan/Layer.h"
 #include "Titan/Log.h"
 
+#include "Titan/Core/Timestep.h"
+
 #include "Titan/Input.h"
 #include "Titan/KeyCodes.h"
 #include "Titan/MouseButtonCodes.h"

@@ -7,6 +7,8 @@
 #include "Titan/Events/Event.h"
 #include "Titan/Events/ApplicationEvent.h"
 
+#include "Titan/Core/Timestep.h"
+
 #include "Titan/ImGui/ImGuiLayer.h"
 
 namespace Titan {
@@ -30,10 +32,12 @@ namespace Titan {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

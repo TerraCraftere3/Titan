@@ -1,20 +1,21 @@
 #include <Titan.h>
 
 #include "imgui.h"
+#include <glm/ext/matrix_transform.hpp>
 
 class ExampleLayer : public Titan::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPos(0, 0, 0)
+		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPos(0, 0, 0), m_SquarePosition(0.0f)
 	{
 		m_VertexArray.reset(Titan::VertexArray::Create());
 
 		float vertices[4 * 7] = {
-			 0.5f, 0.5f, 0.0f, 1, 0, 0, 1,
-			 0.5f, -0.5f, 0.0f, 1, 1, 0, 1,
-		   -0.5f,  -0.5f, 0.0f, 0, 1, 0, 1,
-		   -0.5f,  0.5f, 0.0f, 0, 0, 0, 1,
+			 0.5f,  0.5f,  0.0f, 1, 0, 0, 1,
+			 0.5f, -0.5f,  0.0f, 0, 1, 0, 1,
+		    -0.5f, -0.5f,  0.0f, 0, 0, 1, 1,
+		    -0.5f,  0.5f,  0.0f, 1, 0, 1, 1
 
 		};
 
@@ -42,6 +43,7 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 			out vec4 v_Color;
@@ -50,7 +52,7 @@ public:
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -69,24 +71,50 @@ public:
 			}
 		)";
 
+		std::string tileFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec3 v_Position;
+
+			void main()
+			{
+				color = vec4(v_Position * 1 + 0.5, 1.0);
+				color = vec4(0.1,0.1,1,1);
+			}
+		)";
+
 		m_Shader.reset(new Titan::Shader(vertexSrc, fragmentSrc));
+		m_ShaderTiles.reset(new Titan::Shader(vertexSrc, tileFragmentSrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Titan::Timestep ts) override
 	{
+		//TITAN_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
+		
 		if (Titan::Input::IsKeyPressed(TI_KEY_A))
-			m_CameraPos.x -= m_CameraSpeed;
+			m_CameraPos.x -= m_CameraSpeed * ts;
 		if (Titan::Input::IsKeyPressed(TI_KEY_D))
-			m_CameraPos.x += m_CameraSpeed;
+			m_CameraPos.x += m_CameraSpeed * ts;
 		if (Titan::Input::IsKeyPressed(TI_KEY_S))
-			m_CameraPos.y -= m_CameraSpeed;
+			m_CameraPos.y -= m_CameraSpeed * ts;
 		if (Titan::Input::IsKeyPressed(TI_KEY_W))
-			m_CameraPos.y += m_CameraSpeed;
+			m_CameraPos.y += m_CameraSpeed * ts;
 
 		if (Titan::Input::IsKeyPressed(TI_KEY_Q))
-			m_Camera.SetRotation(m_Camera.GetRotation() + 2.0f);
+			m_Camera.SetRotation(m_Camera.GetRotation() + m_CameraRotSpeed * ts);
 		if (Titan::Input::IsKeyPressed(TI_KEY_E))
-			m_Camera.SetRotation(m_Camera.GetRotation() - 2.0f);
+			m_Camera.SetRotation(m_Camera.GetRotation() - m_CameraRotSpeed * ts);
+
+		if (Titan::Input::IsKeyPressed(TI_KEY_J))
+			m_SquarePosition.x -= m_CameraSpeed * ts;
+		if (Titan::Input::IsKeyPressed(TI_KEY_L))
+			m_SquarePosition.x += m_CameraSpeed * ts;
+		if (Titan::Input::IsKeyPressed(TI_KEY_I))
+			m_SquarePosition.y -= m_CameraSpeed * ts;
+		if (Titan::Input::IsKeyPressed(TI_KEY_K))
+			m_SquarePosition.y += m_CameraSpeed * ts;
 
 		Titan::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Titan::RenderCommand::Clear();
@@ -95,15 +123,41 @@ public:
 
 		Titan::Renderer::BeginScene(m_Camera);
 
-		Titan::Renderer::Submit(m_Shader, m_VertexArray);
+		glm::mat4 transformSquare = glm::translate(glm::mat4(1.0f), m_SquarePosition);
+
+		Titan::Renderer::Submit(m_Shader, m_VertexArray, transformSquare);
+
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+		
+		for (int x = 0; x < m_Tiles; x++) {
+			for (int y = 0; y < m_Tiles; y++) {
+				glm::vec3 pos((0.1f * x + (x * 0.01f))-0.5f, (0.1f*y+(y*0.01f))-0.5f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Titan::Renderer::Submit(m_ShaderTiles, m_VertexArray, transform);
+			}
+		}
 
 		Titan::Renderer::EndScene();
 	}
 
 	virtual void OnImGuiRender() override
 	{
-		ImGui::Begin("Example");
-		ImGui::Text("This window and the mesh is being created in SandboxApp.cpp");
+		//Camera
+		ImGui::Begin("Camera");
+		ImGui::Text("Pos: %f, %f, %f", m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);
+		ImGui::Text("Rot: %f", m_Camera.GetRotation());
+		ImGui::End();
+
+		//Square
+		ImGui::Begin("Square");
+		ImGui::Text("Pos: %f, %f, %f", m_SquarePosition.x, m_SquarePosition.y, m_SquarePosition.z);
+		ImGui::End();
+
+		//Tutorial
+		ImGui::Begin("Tutorial");
+		ImGui::Text("Use WASD to move the camera");
+		ImGui::Text("Use Q and E to rotate the camera");
+		ImGui::Text("Use IKJL to move the square");
 		ImGui::End();
 	}
 
@@ -114,13 +168,20 @@ public:
 
 private:
 	std::shared_ptr<Titan::Shader> m_Shader;
+	std::shared_ptr<Titan::Shader> m_ShaderTiles;
 	std::shared_ptr<Titan::VertexBuffer> m_VertexBuffer;
 	std::shared_ptr<Titan::IndexBuffer> m_IndexBuffer;
 	std::shared_ptr<Titan::VertexArray> m_VertexArray;
 
 	Titan::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPos;
-	float m_CameraSpeed = 0.025f;
+
+	float m_CameraSpeed = 2.0f;
+	float m_CameraRotSpeed = 90.0f;
+
+	glm::vec3 m_SquarePosition;
+
+	float m_Tiles = 8;
 
 };
 

@@ -156,6 +156,7 @@
     <ClInclude Include="src\Titan.h" />
     <ClInclude Include="src\Titan\Application.h" />
     <ClInclude Include="src\Titan\Core.h" />
+    <ClInclude Include="src\Titan\Core\Timestep.h" />
     <ClInclude Include="src\Titan\EntryPoint.h" />
     <ClInclude Include="src\Titan\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Titan\Events\Event.h" />
