@@ -11,17 +11,26 @@ For now you need to clone the entire repo.
 - Open TitanEngine.sln
 - Run SandboxApp (Just click run)
 
-## Features
-
-- Logging (spdlog)
-- Debug UI (imgui)
-- Window and Graphics (OpenGL and GLFW)
-- Mathematics LIbary (glm)
-
 ## Releases
 
 | Number | Title                   | Status |
 | ------ | ----------------------- | ------ |
-| 0.2    | The Age of Rendering    | Alpha  |
-| 0.1    | Window and Event System | Alpha  |
-| 0.0    | The Beginning           | Alpha  |
+| 0.2.x  | The Age of Rendering    | Alpha  |
+| 0.1.x  | Window and Event System | Alpha  |
+| 0.0.x  | The Beginning           | Alpha  |
+
+## Features
+
+- [x] Math Libary (GLM)
+- [x] Window (GLFW)
+- [x] Rendering (OpenGL and Custom API)
+- [x] Simple Shaders
+- [ ] Textures
+- [ ] Editor
+- [x] Logging (spdlog and Custom API)
+- [x] 2D
+- [ ] 3D
+- [x] UI Rendering (Dear ImGui)
+- [ ] PBR (Physics Based Rendering)
+- [ ] RayTracing
+- [x] Event System
