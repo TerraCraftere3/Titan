@@ -13,6 +13,7 @@ IncludeDir["GLFW"] = "TitanEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "TitanEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "TitanEngine/vendor/imgui"
 IncludeDir["glm"] = "TitanEngine/vendor/glm"
+IncludeDir["stb_image"] = "TitanEngine/vendor/stb_image"
 
 include "TitanEngine/vendor/GLFW"
 include "TitanEngine/vendor/Glad"
@@ -40,9 +41,10 @@ project "Engine"
 		"%{prj.location}/src/**.h",
 		"%{prj.location}/src/**.cpp",
 		"%{prj.location}/src/**.hpp",
-		"%{prj.location}/src/**.c",
+		"%{prj.location}/vendor/stb_image/**.cpp",
+		"%{prj.location}/vendor/stb_image/**.h",
 		"%{IncludeDir.glm}/glm/**.hpp",
-		"%{IncludeDir.glm}/glm/**.inl"
+		"%{IncludeDir.glm}/glm/**.inl",
 	}
 
 	defines
@@ -57,7 +59,8 @@ project "Engine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

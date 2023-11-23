@@ -11,33 +11,36 @@ public:
 	ExampleLayer()
 		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPos(0, 0, 0), m_SquarePosition(0.0f)
 	{
-		m_VertexArray.reset(Titan::VertexArray::Create());
-
-		float vertices[4 * 7] = {
-			 0.5f,  0.5f,  0.0f, 1, 0, 0, 1,
-			 0.5f, -0.5f,  0.0f, 0, 1, 0, 1,
-		    -0.5f, -0.5f,  0.0f, 0, 0, 1, 1,
-		    -0.5f,  0.5f,  0.0f, 1, 0, 1, 1
-		};
-
-		m_VertexBuffer.reset(Titan::VertexBuffer::Create(vertices, sizeof(vertices)));
-
+		//Tiles
 		{
-			Titan::BufferLayout layout = {
-						{ Titan::ShaderDataType::Float3, "a_Position" },
-						{ Titan::ShaderDataType::Float4, "a_Color"}
+			m_VertexArray.reset(Titan::VertexArray::Create());
+
+			float vertices[4 * 7] = {
+				 0.5f,  0.5f,  0.0f, 1, 0, 0, 1,
+				 0.5f, -0.5f,  0.0f, 0, 1, 0, 1,
+				-0.5f, -0.5f,  0.0f, 0, 0, 1, 1,
+				-0.5f,  0.5f,  0.0f, 1, 0, 1, 1
 			};
 
-			m_VertexBuffer->SetLayout(layout);
-		}
+			m_VertexBuffer.reset(Titan::VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		uint32_t indices[6] = { 0, 1, 2, 0, 2, 3 };
-		m_IndexBuffer.reset(Titan::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
-		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
+			{
+				Titan::BufferLayout layout = {
+							{ Titan::ShaderDataType::Float3, "a_Position" },
+							{ Titan::ShaderDataType::Float4, "a_Color"}
+				};
 
-		std::string vertexSrc = R"(
+				m_VertexBuffer->SetLayout(layout);
+			}
+
+			uint32_t indices[6] = { 0, 1, 2, 0, 2, 3 };
+			m_IndexBuffer.reset(Titan::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+
+			m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+			m_VertexArray->SetIndexBuffer(m_IndexBuffer);
+
+			std::string flatColorVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -57,42 +60,7 @@ public:
 			}
 		)";
 
-		std::string fragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main()
-			{
-				color = vec4(v_Position * 1 + 0.5, 1.0);
-				color = v_Color;
-			}
-		)";
-
-		std::string flatColorVertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
-
-		std::string flatColorFragmentSrc = R"(
+			std::string flatColorFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
@@ -108,68 +76,150 @@ public:
 			}
 		)";
 
-		m_Shader.reset(Titan::Shader::Create(vertexSrc, fragmentSrc));
-		m_FlatColorShader.reset(Titan::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
+			m_FlatColorShader.reset(Titan::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
+		}
+		
+		//Square
+		{
+			std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 0) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec3 v_Position;
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_Position = a_Position;
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+			std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec3 v_Position;
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = vec4(v_Position * 1 + 0.5, 1.0);
+				color = vec4(v_TexCoord + 0.5, 0, 1);
+				color = texture(u_Texture, v_TexCoord + 0.5);
+			}
+		)";
+
+			m_SquareVA.reset(Titan::VertexArray::Create());
+
+			float vertices[4 * 5] = {
+				-0.5f, -0.5f,  0.0f, 0.0f, 0.0f,
+				 0.5f, -0.5f,  0.0f, 1.0f, 0.0f,
+				 0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
+				-0.5f,  0.5f,  0.0f, 0.0f, 1.0f
+			};
+
+			m_SquareVB.reset(Titan::VertexBuffer::Create(vertices, sizeof(vertices)));
+
+
+			{
+				Titan::BufferLayout layout = {
+					{ Titan::ShaderDataType::Float3, "a_Position" },
+					{ Titan::ShaderDataType::Float2, "a_TexCoord"}
+				};
+
+				m_SquareVB->SetLayout(layout);
+			}
+
+			uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
+			m_SquareIB.reset(Titan::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+
+			m_SquareVA->AddVertexBuffer(m_SquareVB);
+			m_SquareVA->SetIndexBuffer(m_SquareIB);
+
+			m_TextureShader.reset(Titan::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+			m_Texture = Titan::Texture2D::Create("assets/textures/Engine/error.png");
+
+			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_TextureShader)->Bind();
+			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		}
+		
 	}
 
 	void OnUpdate(Titan::Timestep ts) override
 	{
-		//TITAN_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
+		//Input
+		{
+			if (Titan::Input::IsKeyPressed(TI_KEY_A))
+				m_CameraPos.x -= m_CameraSpeed * ts;
+			if (Titan::Input::IsKeyPressed(TI_KEY_D))
+				m_CameraPos.x += m_CameraSpeed * ts;
+			if (Titan::Input::IsKeyPressed(TI_KEY_S))
+				m_CameraPos.y -= m_CameraSpeed * ts;
+			if (Titan::Input::IsKeyPressed(TI_KEY_W))
+				m_CameraPos.y += m_CameraSpeed * ts;
+
+			if (Titan::Input::IsKeyPressed(TI_KEY_Q))
+				m_Camera.SetRotation(m_Camera.GetRotation() + m_CameraRotSpeed * ts);
+			if (Titan::Input::IsKeyPressed(TI_KEY_E))
+				m_Camera.SetRotation(m_Camera.GetRotation() - m_CameraRotSpeed * ts);
+
+			if (Titan::Input::IsKeyPressed(TI_KEY_J))
+				m_SquarePosition.x -= m_CameraSpeed * ts;
+			if (Titan::Input::IsKeyPressed(TI_KEY_L))
+				m_SquarePosition.x += m_CameraSpeed * ts;
+			if (Titan::Input::IsKeyPressed(TI_KEY_K))
+				m_SquarePosition.y -= m_CameraSpeed * ts;
+			if (Titan::Input::IsKeyPressed(TI_KEY_I))
+				m_SquarePosition.y += m_CameraSpeed * ts;
+		}
 		
-		if (Titan::Input::IsKeyPressed(TI_KEY_A))
-			m_CameraPos.x -= m_CameraSpeed * ts;
-		if (Titan::Input::IsKeyPressed(TI_KEY_D))
-			m_CameraPos.x += m_CameraSpeed * ts;
-		if (Titan::Input::IsKeyPressed(TI_KEY_S))
-			m_CameraPos.y -= m_CameraSpeed * ts;
-		if (Titan::Input::IsKeyPressed(TI_KEY_W))
-			m_CameraPos.y += m_CameraSpeed * ts;
-
-		if (Titan::Input::IsKeyPressed(TI_KEY_Q))
-			m_Camera.SetRotation(m_Camera.GetRotation() + m_CameraRotSpeed * ts);
-		if (Titan::Input::IsKeyPressed(TI_KEY_E))
-			m_Camera.SetRotation(m_Camera.GetRotation() - m_CameraRotSpeed * ts);
-
-		if (Titan::Input::IsKeyPressed(TI_KEY_J))
-			m_SquarePosition.x -= m_CameraSpeed * ts;
-		if (Titan::Input::IsKeyPressed(TI_KEY_L))
-			m_SquarePosition.x += m_CameraSpeed * ts;
-		if (Titan::Input::IsKeyPressed(TI_KEY_K))
-			m_SquarePosition.y -= m_CameraSpeed * ts;
-		if (Titan::Input::IsKeyPressed(TI_KEY_I))
-			m_SquarePosition.y += m_CameraSpeed * ts;
-
-		Titan::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
-		Titan::RenderCommand::Clear();
-
-		m_Camera.SetPosition(m_CameraPos);
-
-		Titan::Renderer::BeginScene(m_Camera);
-
-		glm::mat4 transformSquare = glm::translate(glm::mat4(1.0f), m_SquarePosition);
-
-		Titan::Renderer::Submit(m_Shader, m_VertexArray, transformSquare);
-
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-		/*
-		Titan::MaterialRef material = new Titan::Material(m_FlatColorShader);
-		Titan::MaterialInstanceRef mi = new Titan::MaterialInstance(material);
-
-		material->Set("u_Color", redColor);
-		squareMesh->SetMaterial(mi);
-		*/
-		std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_TileColor);
-
-		for (int x = 0; x < m_Tiles; x++) {
-			for (int y = 0; y < m_Tiles; y++) {
-				glm::vec3 pos((0.1f * x + (x * 0.01f))-0.5f, (0.1f*y+(y*0.01f))-0.5f, 0.0f);
-				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Titan::Renderer::Submit(m_FlatColorShader, m_VertexArray, transform);
-			}
+		//Screen Reset
+		{
+			Titan::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+			Titan::RenderCommand::Clear();
 		}
 
-		Titan::Renderer::EndScene();
+		//Scene
+		{
+			m_Camera.SetPosition(m_CameraPos);
+
+			Titan::Renderer::BeginScene(m_Camera);
+
+			glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->Bind();
+			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_TileColor);
+
+			//Tiles
+			/* {
+				for (int x = 0; x < m_Tiles; x++) {
+					for (int y = 0; y < m_Tiles; y++) {
+						glm::vec3 pos((0.1f * x + (x * 0.01f)) - 0.5f, (0.1f * y + (y * 0.01f)) - 0.5f, 0.0f);
+						glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+						Titan::Renderer::Submit(m_FlatColorShader, m_VertexArray, transform);
+					}
+				}
+			}*/
+			
+			//Square
+			{
+				glm::mat4 transformSquare = glm::translate(glm::mat4(1.0f), m_SquarePosition);
+				m_Texture->Bind();
+				Titan::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(transformSquare, glm::vec3(1.5f)));
+			}
+
+			Titan::Renderer::EndScene();
+		}
 	}
 
 	virtual void OnImGuiRender() override
@@ -181,9 +231,12 @@ public:
 		ImGui::End();
 
 		//Square
-		ImGui::Begin("Tiles");
+		ImGui::Begin("Square");
 		ImGui::Text("Pos: %f, %f, %f", m_SquarePosition.x, m_SquarePosition.y, m_SquarePosition.z);
-		ImGui::ColorEdit3("Tile Color", glm::value_ptr(m_TileColor));
+		ImGui::End();
+
+		ImGui::Begin("Tiles");
+		ImGui::ColorEdit3("Color", glm::value_ptr(m_TileColor));
 		ImGui::End();
 
 		//Tutorial
@@ -201,11 +254,12 @@ public:
 	}
 
 private:
-	std::shared_ptr<Titan::Shader> m_Shader;
-	std::shared_ptr<Titan::Shader> m_FlatColorShader;
-	std::shared_ptr<Titan::VertexBuffer> m_VertexBuffer;
-	std::shared_ptr<Titan::IndexBuffer> m_IndexBuffer;
-	std::shared_ptr<Titan::VertexArray> m_VertexArray;
+	Titan::Ref<Titan::Shader> m_FlatColorShader, m_TextureShader;
+	Titan::Ref<Titan::VertexBuffer> m_VertexBuffer, m_SquareVB;
+	Titan::Ref<Titan::IndexBuffer> m_IndexBuffer, m_SquareIB;
+	Titan::Ref<Titan::VertexArray> m_VertexArray, m_SquareVA;
+
+	Titan::Ref<Titan::Texture2D> m_Texture;
 
 	Titan::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPos;

@@ -16,6 +16,9 @@
     <Filter Include="src\Titan">
       <UniqueIdentifier>{FCA6E7B3-6811-9C2A-B14F-4DD01DF9797F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Titan\Core">
+      <UniqueIdentifier>{D488ECC3-C056-E0C9-A9EA-50F09557BC2E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Titan\Events">
       <UniqueIdentifier>{601F5476-4C18-73C8-754A-584D61A252D4}</UniqueIdentifier>
     </Filter>
@@ -46,12 +49,27 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -68,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="src\Titan\Core.h">
       <Filter>src\Titan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core\Timestep.h">
+      <Filter>src\Titan\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\EntryPoint.h">
       <Filter>src\Titan</Filter>
@@ -111,10 +132,25 @@
     <ClInclude Include="src\Titan\Renderer\GraphicsContext.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\OrthographicCamera.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\RenderCommand.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Titan\Renderer\Renderer.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\RendererAPI.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Titan\Renderer\Shader.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\Texture.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\VertexArray.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Window.h">
@@ -1371,20 +1407,27 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Titan\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Titan\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Titan\Renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\Titan\Core\Timestep.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1414,21 +1457,32 @@
     <ClCompile Include="src\Titan\Renderer\Buffer.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\RenderCommand.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Titan\Renderer\Renderer.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\RendererAPI.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Titan\Renderer\Shader.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\Texture.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\VertexArray.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\tipch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Titan\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Titan\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Titan\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Titan\Renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

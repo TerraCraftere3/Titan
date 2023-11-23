@@ -15,9 +15,12 @@
 // ------------ Renderer -------------
 #include "Titan/Renderer/RenderCommand.h"
 #include "Titan/Renderer/Renderer.h"
-#include "Titan/Renderer/Shader.h"
+
 #include "Titan/Renderer/Buffer.h"
+#include "Titan/Renderer/Shader.h"
+#include "Titan/Renderer/Texture.h"
 #include "Titan/Renderer/VertexArray.h"
+
 #include "Titan/Renderer/OrthographicCamera.h"
 // -----------------------------------
 
