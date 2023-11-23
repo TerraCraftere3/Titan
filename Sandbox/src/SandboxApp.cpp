@@ -2,6 +2,8 @@
 
 #include "imgui.h"
 #include <glm/ext/matrix_transform.hpp>
+#include <Platform/OpenGL/OpenGLShader.h>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Titan::Layer
 {
@@ -16,7 +18,6 @@ public:
 			 0.5f, -0.5f,  0.0f, 0, 1, 0, 1,
 		    -0.5f, -0.5f,  0.0f, 0, 0, 1, 1,
 		    -0.5f,  0.5f,  0.0f, 1, 0, 1, 1
-
 		};
 
 		m_VertexBuffer.reset(Titan::VertexBuffer::Create(vertices, sizeof(vertices)));
@@ -71,22 +72,44 @@ public:
 			}
 		)";
 
-		std::string tileFragmentSrc = R"(
+		std::string flatColorVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec4 a_Color;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec3 v_Position;
+			out vec4 v_Color;
+
+			void main()
+			{
+				v_Position = a_Position;
+				v_Color = a_Color;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string flatColorFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
 
 			in vec3 v_Position;
 
+			uniform vec3 u_Color;
+
 			void main()
 			{
 				color = vec4(v_Position * 1 + 0.5, 1.0);
-				color = vec4(0.1,0.1,1,1);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_Shader.reset(new Titan::Shader(vertexSrc, fragmentSrc));
-		m_ShaderTiles.reset(new Titan::Shader(vertexSrc, tileFragmentSrc));
+		m_Shader.reset(Titan::Shader::Create(vertexSrc, fragmentSrc));
+		m_FlatColorShader.reset(Titan::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
 	}
 
 	void OnUpdate(Titan::Timestep ts) override
@@ -111,9 +134,9 @@ public:
 			m_SquarePosition.x -= m_CameraSpeed * ts;
 		if (Titan::Input::IsKeyPressed(TI_KEY_L))
 			m_SquarePosition.x += m_CameraSpeed * ts;
-		if (Titan::Input::IsKeyPressed(TI_KEY_I))
-			m_SquarePosition.y -= m_CameraSpeed * ts;
 		if (Titan::Input::IsKeyPressed(TI_KEY_K))
+			m_SquarePosition.y -= m_CameraSpeed * ts;
+		if (Titan::Input::IsKeyPressed(TI_KEY_I))
 			m_SquarePosition.y += m_CameraSpeed * ts;
 
 		Titan::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
@@ -128,12 +151,21 @@ public:
 		Titan::Renderer::Submit(m_Shader, m_VertexArray, transformSquare);
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-		
+		/*
+		Titan::MaterialRef material = new Titan::Material(m_FlatColorShader);
+		Titan::MaterialInstanceRef mi = new Titan::MaterialInstance(material);
+
+		material->Set("u_Color", redColor);
+		squareMesh->SetMaterial(mi);
+		*/
+		std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_TileColor);
+
 		for (int x = 0; x < m_Tiles; x++) {
 			for (int y = 0; y < m_Tiles; y++) {
 				glm::vec3 pos((0.1f * x + (x * 0.01f))-0.5f, (0.1f*y+(y*0.01f))-0.5f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Titan::Renderer::Submit(m_ShaderTiles, m_VertexArray, transform);
+				Titan::Renderer::Submit(m_FlatColorShader, m_VertexArray, transform);
 			}
 		}
 
@@ -149,8 +181,9 @@ public:
 		ImGui::End();
 
 		//Square
-		ImGui::Begin("Square");
+		ImGui::Begin("Tiles");
 		ImGui::Text("Pos: %f, %f, %f", m_SquarePosition.x, m_SquarePosition.y, m_SquarePosition.z);
+		ImGui::ColorEdit3("Tile Color", glm::value_ptr(m_TileColor));
 		ImGui::End();
 
 		//Tutorial
@@ -158,6 +191,7 @@ public:
 		ImGui::Text("Use WASD to move the camera");
 		ImGui::Text("Use Q and E to rotate the camera");
 		ImGui::Text("Use IKJL to move the square");
+		ImGui::Text("You can edit the color of the tiles");
 		ImGui::End();
 	}
 
@@ -168,7 +202,7 @@ public:
 
 private:
 	std::shared_ptr<Titan::Shader> m_Shader;
-	std::shared_ptr<Titan::Shader> m_ShaderTiles;
+	std::shared_ptr<Titan::Shader> m_FlatColorShader;
 	std::shared_ptr<Titan::VertexBuffer> m_VertexBuffer;
 	std::shared_ptr<Titan::IndexBuffer> m_IndexBuffer;
 	std::shared_ptr<Titan::VertexArray> m_VertexArray;
@@ -182,6 +216,8 @@ private:
 	glm::vec3 m_SquarePosition;
 
 	float m_Tiles = 8;
+
+	glm::vec3 m_TileColor = { 0.2, 0.2, 0.2 };
 
 };
 
