@@ -40,43 +40,7 @@ public:
 			m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 			m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
-			std::string flatColorVertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
-
-			std::string flatColorFragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-
-			uniform vec3 u_Color;
-
-			void main()
-			{
-				color = vec4(v_Position * 1 + 0.5, 1.0);
-				color = vec4(u_Color, 1.0);
-			}
-		)";
-
-			m_FlatColorShader.reset(Titan::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
+			m_FlatColorShader.reset(Titan::Shader::Create("assets/shaders/Color.glsl"));
 		}
 		
 		//Square
@@ -166,7 +130,7 @@ public:
 			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_TileColor);
 
 			//Tiles
-			/* {
+			{
 				for (int x = 0; x < m_Tiles; x++) {
 					for (int y = 0; y < m_Tiles; y++) {
 						glm::vec3 pos((0.1f * x + (x * 0.01f)) - 0.5f, (0.1f * y + (y * 0.01f)) - 0.5f, 0.0f);
@@ -174,7 +138,7 @@ public:
 						Titan::Renderer::Submit(m_FlatColorShader, m_VertexArray, transform);
 					}
 				}
-			}*/
+			}
 			
 			//Square
 			{
@@ -205,6 +169,7 @@ public:
 
 		ImGui::Begin("Tiles");
 		ImGui::ColorEdit3("Color", glm::value_ptr(m_TileColor));
+		ImGui::SliderInt("Count", &m_Tiles, 5, 20);
 		ImGui::End();
 
 		//Tutorial
@@ -237,9 +202,9 @@ private:
 
 	glm::vec3 m_SquarePosition;
 
-	float m_Tiles = 8;
+	int m_Tiles = 16;
 
-	glm::vec3 m_TileColor = { 0.2, 0.2, 0.2 };
+	glm::vec3 m_TileColor = { 0.8, 0.3, 0.2 };
 
 };
 
