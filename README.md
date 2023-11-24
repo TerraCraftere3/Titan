@@ -27,7 +27,7 @@ For now you need to clone the entire repo.
 - [x] Window (GLFW)
 - [x] Rendering (OpenGL and Custom API)
 - [x] Simple Shaders
-- [ ] Textures
+- [x] Textures
 - [ ] Editor
 - [x] Logging (spdlog and Custom API)
 - [x] 2D
@@ -36,6 +36,11 @@ For now you need to clone the entire repo.
 - [ ] PBR (Physics Based Rendering)
 - [ ] RayTracing
 - [x] Event System
+- [x] Windows
+- [ ] Linux
+- [ ] Mac
+- [ ] Asset library
+- [x] Asset files
 
 ## [License](https://github.com/TerraCraftere3/Titan/blob/main/LICENSE)
 

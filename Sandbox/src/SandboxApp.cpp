@@ -9,9 +9,9 @@ class ExampleLayer : public Titan::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPos(0, 0, 0), m_SquarePosition(0.0f)
+		: Layer("Example"), m_CameraController(1280.0f/720.0f, true), m_SquarePosition(0.0f)
 	{
-		m_ShaderLibrary.Load("assets/shaders/Color.glsl");
+		auto colorShader = m_ShaderLibrary.Load("assets/shaders/Color.glsl");
 		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		std::dynamic_pointer_cast<Titan::OpenGLShader>(textureShader)->Bind();
@@ -87,30 +87,18 @@ public:
 
 	void OnUpdate(Titan::Timestep ts) override
 	{
+		m_CameraController.OnUpdate(ts);
+
 		//Input
 		{
-			if (Titan::Input::IsKeyPressed(TI_KEY_A))
-				m_CameraPos.x -= m_CameraSpeed * ts;
-			if (Titan::Input::IsKeyPressed(TI_KEY_D))
-				m_CameraPos.x += m_CameraSpeed * ts;
-			if (Titan::Input::IsKeyPressed(TI_KEY_S))
-				m_CameraPos.y -= m_CameraSpeed * ts;
-			if (Titan::Input::IsKeyPressed(TI_KEY_W))
-				m_CameraPos.y += m_CameraSpeed * ts;
-
-			if (Titan::Input::IsKeyPressed(TI_KEY_Q))
-				m_Camera.SetRotation(m_Camera.GetRotation() + m_CameraRotSpeed * ts);
-			if (Titan::Input::IsKeyPressed(TI_KEY_E))
-				m_Camera.SetRotation(m_Camera.GetRotation() - m_CameraRotSpeed * ts);
-
 			if (Titan::Input::IsKeyPressed(TI_KEY_J))
-				m_SquarePosition.x -= m_CameraSpeed * ts;
+				m_SquarePosition.x -= 2 * ts;
 			if (Titan::Input::IsKeyPressed(TI_KEY_L))
-				m_SquarePosition.x += m_CameraSpeed * ts;
+				m_SquarePosition.x += 2 * ts;
 			if (Titan::Input::IsKeyPressed(TI_KEY_K))
-				m_SquarePosition.y -= m_CameraSpeed * ts;
+				m_SquarePosition.y -= 2 * ts;
 			if (Titan::Input::IsKeyPressed(TI_KEY_I))
-				m_SquarePosition.y += m_CameraSpeed * ts;
+				m_SquarePosition.y += 2 * ts;
 		}
 		
 		//Screen Reset
@@ -121,9 +109,7 @@ public:
 
 		//Scene
 		{
-			m_Camera.SetPosition(m_CameraPos);
-
-			Titan::Renderer::BeginScene(m_Camera);
+			Titan::Renderer::BeginScene(m_CameraController.GetCamera());
 
 			
 
@@ -162,8 +148,9 @@ public:
 	{
 		//Camera
 		ImGui::Begin("Camera");
-		ImGui::Text("Pos: %f, %f, %f", m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);
-		ImGui::Text("Rot: %f", m_Camera.GetRotation());
+		auto camPos = m_CameraController.GetCamera().GetPosition();
+		ImGui::Text("Pos: %f, %f, %f", camPos.x, camPos.y, camPos.z);
+		ImGui::Text("Rot: %f", m_CameraController.GetCamera().GetRotation());
 		ImGui::End();
 
 		//Square
@@ -189,7 +176,7 @@ public:
 
 	void OnEvent(Titan::Event& event) override
 	{
-		
+		m_CameraController.OnEvent(event);
 	}
 
 private:
@@ -201,11 +188,7 @@ private:
 
 	Titan::Ref<Titan::Texture2D> m_Texture, m_TextureTransparent;
 
-	Titan::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPos;
-
-	float m_CameraSpeed = 2.0f;
-	float m_CameraRotSpeed = 90.0f;
+	Titan::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquarePosition;
 

@@ -171,6 +171,7 @@
     <ClInclude Include="src\Titan\LayerStack.h" />
     <ClInclude Include="src\Titan\Log.h" />
     <ClInclude Include="src\Titan\MouseButtonCodes.h" />
+    <ClInclude Include="src\Titan\OrthographicCameraController.h" />
     <ClInclude Include="src\Titan\Renderer\Buffer.h" />
     <ClInclude Include="src\Titan\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Titan\Renderer\OrthographicCamera.h" />
@@ -615,6 +616,7 @@
     <ClCompile Include="src\Titan\Layer.cpp" />
     <ClCompile Include="src\Titan\LayerStack.cpp" />
     <ClCompile Include="src\Titan\Log.cpp" />
+    <ClCompile Include="src\Titan\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Titan\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Titan\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Titan\Renderer\RenderCommand.cpp" />

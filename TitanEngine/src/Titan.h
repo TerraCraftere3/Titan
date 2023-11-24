@@ -10,6 +10,7 @@
 #include "Titan/Input.h"
 #include "Titan/KeyCodes.h"
 #include "Titan/MouseButtonCodes.h"
+#include "Titan/OrthographicCameraController.h"
 
 #include "Titan/ImGui/ImGuiLayer.h"
 // ------------ Renderer -------------
