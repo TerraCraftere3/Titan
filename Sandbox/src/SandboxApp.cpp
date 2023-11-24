@@ -11,6 +11,13 @@ public:
 	ExampleLayer()
 		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPos(0, 0, 0), m_SquarePosition(0.0f)
 	{
+		m_ShaderLibrary.Load("assets/shaders/Color.glsl");
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
+
+		std::dynamic_pointer_cast<Titan::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Titan::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+
+
 		//Tiles
 		{
 			m_VertexArray.reset(Titan::VertexArray::Create());
@@ -39,8 +46,6 @@ public:
 
 			m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 			m_VertexArray->SetIndexBuffer(m_IndexBuffer);
-
-			m_FlatColorShader.reset(Titan::Shader::Create("assets/shaders/Color.glsl"));
 		}
 		
 		//Square
@@ -73,14 +78,9 @@ public:
 			m_SquareVA->AddVertexBuffer(m_SquareVB);
 			m_SquareVA->SetIndexBuffer(m_SquareIB);
 
-			m_TextureShader.reset(Titan::Shader::Create("assets/shaders/Texture.glsl"));
-
 			//https://youtu.be/N94fHNZEHas?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&t=67
 			m_Texture = Titan::Texture2D::Create("assets/textures/Engine/masks/circle.png");
 			m_TextureTransparent = Titan::Texture2D::Create("assets/textures/Engine/transparent.png");
-
-			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_TextureShader)->Bind();
-			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 		}
 		
 	}
@@ -125,27 +125,33 @@ public:
 
 			Titan::Renderer::BeginScene(m_Camera);
 
-			glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->Bind();
-			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_TileColor);
+			
 
 			//Tiles
 			{
+				auto flatColorShader = m_ShaderLibrary.Get("Color");
+				
+				glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+				std::dynamic_pointer_cast<Titan::OpenGLShader>(flatColorShader)->Bind();
+				std::dynamic_pointer_cast<Titan::OpenGLShader>(flatColorShader)->UploadUniformFloat3("u_Color", m_TileColor);
+
 				for (int x = 0; x < m_Tiles; x++) {
 					for (int y = 0; y < m_Tiles; y++) {
 						glm::vec3 pos((0.1f * x + (x * 0.01f)) - 0.5f, (0.1f * y + (y * 0.01f)) - 0.5f, 0.0f);
 						glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-						Titan::Renderer::Submit(m_FlatColorShader, m_VertexArray, transform);
+						Titan::Renderer::Submit(flatColorShader, m_VertexArray, transform);
 					}
 				}
 			}
 			
 			//Square
 			{
+				auto textureShader = m_ShaderLibrary.Get("Texture");
+
 				m_TextureTransparent->Bind();
-				Titan::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+				Titan::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 				m_Texture->Bind();
-				Titan::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+				Titan::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 			}
 
 			Titan::Renderer::EndScene();
@@ -187,7 +193,8 @@ public:
 	}
 
 private:
-	Titan::Ref<Titan::Shader> m_FlatColorShader, m_TextureShader;
+	Titan::ShaderLibrary m_ShaderLibrary;
+	Titan::Ref<Titan::Shader> m_FlatColorShader;
 	Titan::Ref<Titan::VertexBuffer> m_VertexBuffer, m_SquareVB;
 	Titan::Ref<Titan::IndexBuffer> m_IndexBuffer, m_SquareIB;
 	Titan::Ref<Titan::VertexArray> m_VertexArray, m_SquareVA;
