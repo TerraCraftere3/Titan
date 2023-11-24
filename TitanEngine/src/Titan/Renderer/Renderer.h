@@ -10,6 +10,8 @@ namespace Titan {
 	class Renderer
 	{
 	public:
+		static void Init();
+
 		static void BeginScene(OrthographicCamera& camera); //TODO: Scene Parameters
 		static void EndScene();
 

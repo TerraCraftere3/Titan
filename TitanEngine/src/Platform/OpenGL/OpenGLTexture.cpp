@@ -13,30 +13,31 @@ namespace Titan {
 		stbi_set_flip_vertically_on_load(true);
 		stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 		TI_CORE_ASSERT(data, "Failed to load image!");
-		GLenum format = GL_RGB;
-		GLenum formatdepth = GL_RGB8;
-		{
-			switch (channels) {
-			case 3:
-				format = GL_RGB;
-				formatdepth = GL_RGB8;
-				break;
-			case 4:
-				format = GL_RGBA;
-				formatdepth = GL_RGBA8;
-				break;
-			}
-		}
+
 		m_Width = width;
 		m_Height = height;
 
+		GLenum internalFormat = 0, dataFormat = 0;
+
+		if (channels == 4)
+		{
+			internalFormat = GL_RGBA8;
+			dataFormat = GL_RGBA;
+		}else if (channels == 3)
+		{
+			internalFormat = GL_RGB8;
+			dataFormat = GL_RGB;
+		}
+		
+		TI_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!")
+
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
-		glTextureStorage2D(m_RendererID, 1, formatdepth, m_Width, m_Height);
+		glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height);
 
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, format, GL_UNSIGNED_BYTE, data);
+		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
 
 		stbi_image_free(data);
 	}

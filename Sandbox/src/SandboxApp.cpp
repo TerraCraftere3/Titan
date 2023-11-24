@@ -148,7 +148,9 @@ public:
 
 			m_TextureShader.reset(Titan::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
-			m_Texture = Titan::Texture2D::Create("assets/textures/Engine/error.png");
+			//https://youtu.be/N94fHNZEHas?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&t=67
+			m_Texture = Titan::Texture2D::Create("assets/textures/Engine/masks/circle.png");
+			m_TextureTransparent = Titan::Texture2D::Create("assets/textures/Engine/transparent.png");
 
 			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_TextureShader)->Bind();
 			std::dynamic_pointer_cast<Titan::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -213,9 +215,10 @@ public:
 			
 			//Square
 			{
-				glm::mat4 transformSquare = glm::translate(glm::mat4(1.0f), m_SquarePosition);
+				m_TextureTransparent->Bind();
+				Titan::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 				m_Texture->Bind();
-				Titan::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(transformSquare, glm::vec3(1.5f)));
+				Titan::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 			}
 
 			Titan::Renderer::EndScene();
@@ -259,7 +262,7 @@ private:
 	Titan::Ref<Titan::IndexBuffer> m_IndexBuffer, m_SquareIB;
 	Titan::Ref<Titan::VertexArray> m_VertexArray, m_SquareVA;
 
-	Titan::Ref<Titan::Texture2D> m_Texture;
+	Titan::Ref<Titan::Texture2D> m_Texture, m_TextureTransparent;
 
 	Titan::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPos;
