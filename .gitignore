@@ -1,12 +1,14 @@
-# Directories
-.vs/
+# Binaries
+**/bin/
+!vendor/bin/premake/
 bin-int/
-github/
 
-# Files
-*.user
-github.bat
-.gitignore
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
 
 # Dev and Todo Files
 dev-*.*

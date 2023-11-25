@@ -23,6 +23,19 @@ namespace Titan {
 		TITAN_CORE_INFO("  Vendor: {0}", (const char*)glGetString(GL_VENDOR));
 		TITAN_CORE_INFO("  Renderer: {0}", (const char*)glGetString(GL_RENDERER));
 		TITAN_CORE_INFO("  Version: {0}", (const char*)glGetString(GL_VERSION));
+
+		#ifdef TI_ENABLE_ASSERTS
+			int versionMajor;
+			int versionMinor;
+
+			int minMajor = 4;
+			int minMinor = 5;
+
+			glGetIntegerv(GL_MAJOR_VERSION, &versionMajor);
+			glGetIntegerv(GL_MINOR_VERSION, &versionMinor);
+
+			TI_CORE_ASSERT(versionMajor > minMajor || (versionMajor == minMajor && versionMinor >= minMinor), "Titan requires at least OpenGL version 4.5!");
+		#endif
 	}
 
 	void OpenGLContext::SwapBuffers()
