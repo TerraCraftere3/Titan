@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include <GLFW/glfw3.h>
-#include "Titan/Application.h"
+#include "Titan/Core/Application.h"
 
 namespace Titan {
 

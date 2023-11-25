@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Titan/Log.h"
+#include "Titan/Core/Log.h"
 
 #ifdef HZ_PLATFORM_WINDOWS
 #include <Windows.h>

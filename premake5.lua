@@ -35,7 +35,7 @@ project "Engine"
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	pch()
-	
+
 	files
 	{
 		"%{prj.location}/src/**.h",
@@ -105,7 +105,7 @@ project "Engine"
 
 	filter { "system:windows", "configurations:Release" }
 		buildoptions "/MT"
-	
+
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
@@ -117,7 +117,7 @@ project "Sandbox"
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	debugdir ("bin/" .. outputdir .. "/Sandbox")
-	
+
 	files
 	{
 		"%{prj.location}/src/**.h",

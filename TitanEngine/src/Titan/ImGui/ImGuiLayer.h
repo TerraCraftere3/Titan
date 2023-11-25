@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Titan/Layer.h"
+#include "Titan/Core/Layer.h"
 
 #include "Titan/Events/ApplicationEvent.h"
 #include "Titan/Events/KeyEvent.h"

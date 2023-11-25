@@ -1,7 +1,7 @@
 #pragma once
 
 #include "tipch.h"
-#include "Titan/Core.h"
+#include "Titan/Core/Core.h"
 
 namespace Titan {
 

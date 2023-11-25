@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Titan/Input.h"
+#include "Titan/Core/Input.h"
 
 namespace Titan {
 

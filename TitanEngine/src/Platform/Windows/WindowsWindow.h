@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Titan/Window.h"
+#include "Titan/Core/Window.h"
 #include "Titan/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

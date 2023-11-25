@@ -81,17 +81,38 @@
     <ClInclude Include="src\Titan.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Application.h">
-      <Filter>src\Titan</Filter>
+    <ClInclude Include="src\Titan\Core\Application.h">
+      <Filter>src\Titan\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Core.h">
-      <Filter>src\Titan</Filter>
+    <ClInclude Include="src\Titan\Core\Core.h">
+      <Filter>src\Titan\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core\EntryPoint.h">
+      <Filter>src\Titan\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core\Input.h">
+      <Filter>src\Titan\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core\KeyCodes.h">
+      <Filter>src\Titan\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core\Layer.h">
+      <Filter>src\Titan\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core\LayerStack.h">
+      <Filter>src\Titan\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core\Log.h">
+      <Filter>src\Titan\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Core\MouseButtonCodes.h">
+      <Filter>src\Titan\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Core\Timestep.h">
       <Filter>src\Titan\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\EntryPoint.h">
-      <Filter>src\Titan</Filter>
+    <ClInclude Include="src\Titan\Core\Window.h">
+      <Filter>src\Titan\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Events\ApplicationEvent.h">
       <Filter>src\Titan\Events</Filter>
@@ -108,24 +129,6 @@
     <ClInclude Include="src\Titan\ImGui\ImGuiLayer.h">
       <Filter>src\Titan\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Input.h">
-      <Filter>src\Titan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Titan\KeyCodes.h">
-      <Filter>src\Titan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Titan\Layer.h">
-      <Filter>src\Titan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Titan\LayerStack.h">
-      <Filter>src\Titan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Titan\Log.h">
-      <Filter>src\Titan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Titan\MouseButtonCodes.h">
-      <Filter>src\Titan</Filter>
-    </ClInclude>
     <ClInclude Include="src\Titan\Renderer\Buffer.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
@@ -133,6 +136,9 @@
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Renderer\OrthographicCamera.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\OrthographicCameraController.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Renderer\RenderCommand.h">
@@ -152,9 +158,6 @@
     </ClInclude>
     <ClInclude Include="src\Titan\Renderer\VertexArray.h">
       <Filter>src\Titan\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Titan\Window.h">
-      <Filter>src\Titan</Filter>
     </ClInclude>
     <ClInclude Include="src\tipch.h">
       <Filter>src</Filter>
@@ -1410,7 +1413,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1437,8 +1439,17 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Titan\Application.cpp">
-      <Filter>src\Titan</Filter>
+    <ClCompile Include="src\Titan\Core\Application.cpp">
+      <Filter>src\Titan\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Core\Layer.cpp">
+      <Filter>src\Titan\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Core\LayerStack.cpp">
+      <Filter>src\Titan\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Core\Log.cpp">
+      <Filter>src\Titan\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Titan\ImGui\ImGuiBuild.cpp">
       <Filter>src\Titan\ImGui</Filter>
@@ -1446,19 +1457,13 @@
     <ClCompile Include="src\Titan\ImGui\ImGuiLayer.cpp">
       <Filter>src\Titan\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Titan\Layer.cpp">
-      <Filter>src\Titan</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Titan\LayerStack.cpp">
-      <Filter>src\Titan</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Titan\Log.cpp">
-      <Filter>src\Titan</Filter>
-    </ClCompile>
     <ClCompile Include="src\Titan\Renderer\Buffer.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Titan\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Titan\Renderer\RenderCommand.cpp">
@@ -1485,6 +1490,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Titan\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>

@@ -110,7 +110,6 @@ public:
 		//Scene
 		{
 			Titan::Renderer::BeginScene(m_CameraController.GetCamera());
-
 			
 
 			//Tiles
@@ -160,6 +159,7 @@ public:
 		ImGui::End();
 		*/
 
+		//Tiless
 		ImGui::Begin("Tiles");
 		ImGui::ColorEdit3("Color", glm::value_ptr(m_TileColor));
 		ImGui::SliderInt("Count", &m_Tiles, 5, 20);
@@ -172,8 +172,6 @@ public:
 		ImGui::Text("Use IKJL to move the square");
 		ImGui::Text("You can edit the color of the tiles");
 		ImGui::End();
-
-		ImGui::ShowDemoWindow();
 	}
 
 	void OnEvent(Titan::Event& e) override

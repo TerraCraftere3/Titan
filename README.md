@@ -2,14 +2,14 @@
 
 Titan is a game engine (for now just a framework) developed by me.
 The Engine suports 2D, advanced Mathematics, Windowing, Modern OpenGL and more.
-For now it does NOT support things like 3D.
+For now it does NOT support 3D Rendering.
 
 ## How to use
 
 For now you need to clone the entire repo.
 
 - Clone the repository in an empty folder
-- Run premake.bat (Optional)
+- Run `scripts/GenProjects` (Optional)
 - Open TitanEngine.sln
 - Run SandboxApp.cpp
 
@@ -26,7 +26,8 @@ For now you need to clone the entire repo.
 - [x] Math Libary (GLM)
 - [x] Window (GLFW)
 - [x] Rendering (OpenGL and Custom API)
-- [x] Simple Shaders
+- [x] Shaders
+- [ ] Compute Shaders
 - [x] Textures
 - [ ] Editor
 - [x] Logging (spdlog and Custom API)

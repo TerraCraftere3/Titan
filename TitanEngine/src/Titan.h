@@ -1,19 +1,19 @@
 #pragma once
 
 //For use by apps
-#include "Titan/Application.h"
-#include "Titan/Layer.h"
-#include "Titan/Log.h"
+#include "Titan/Core/Application.h"
+#include "Titan/Core/Layer.h"
+#include "Titan/Core/Log.h"
 
 #include "Titan/Core/Timestep.h"
 
-#include "Titan/Input.h"
-#include "Titan/KeyCodes.h"
-#include "Titan/MouseButtonCodes.h"
-#include "Titan/OrthographicCameraController.h"
+#include "Titan/Core/Input.h"
+#include "Titan/Core/KeyCodes.h"
+#include "Titan/Core/MouseButtonCodes.h"
+#include "Titan/Renderer/OrthographicCameraController.h"
 
 #include "Titan/ImGui/ImGuiLayer.h"
-// ------------ Renderer -------------
+// ---------------- Renderer -----------------
 #include "Titan/Renderer/RenderCommand.h"
 #include "Titan/Renderer/Renderer.h"
 
@@ -23,8 +23,8 @@
 #include "Titan/Renderer/VertexArray.h"
 
 #include "Titan/Renderer/OrthographicCamera.h"
-// -----------------------------------
+// -------------------------------------------
 
-// ---------- Entry Point ------------
-#include "Titan/EntryPoint.h"
-// -----------------------------------
+// -------------- Entry Point ----------------
+#include "Titan/Core/EntryPoint.h"
+// -------------------------------------------
