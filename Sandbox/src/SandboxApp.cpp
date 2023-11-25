@@ -172,11 +172,13 @@ public:
 		ImGui::Text("Use IKJL to move the square");
 		ImGui::Text("You can edit the color of the tiles");
 		ImGui::End();
+
+		ImGui::ShowDemoWindow();
 	}
 
-	void OnEvent(Titan::Event& event) override
+	void OnEvent(Titan::Event& e) override
 	{
-		m_CameraController.OnEvent(event);
+		m_CameraController.OnEvent(e);
 	}
 
 private:
