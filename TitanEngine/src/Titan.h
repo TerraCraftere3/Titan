@@ -24,7 +24,3 @@
 
 #include "Titan/Renderer/OrthographicCamera.h"
 // -------------------------------------------
-
-// -------------- Entry Point ----------------
-#include "Titan/Core/EntryPoint.h"
-// -------------------------------------------

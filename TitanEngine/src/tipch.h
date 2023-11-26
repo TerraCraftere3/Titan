@@ -15,6 +15,6 @@
 
 #include "Titan/Core/Log.h"
 
-#ifdef HZ_PLATFORM_WINDOWS
+#ifdef TI_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif

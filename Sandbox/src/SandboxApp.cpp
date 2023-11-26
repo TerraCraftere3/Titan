@@ -1,9 +1,15 @@
 #include <Titan.h>
 
+// -------------- Entry Point ----------------
+#include "Titan/Core/EntryPoint.h"
+// -------------------------------------------
+
 #include "imgui.h"
 #include <glm/ext/matrix_transform.hpp>
 #include <Platform/OpenGL/OpenGLShader.h>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Sandbox2D.h"
 
 class ExampleLayer : public Titan::Layer
 {
@@ -20,7 +26,7 @@ public:
 
 		//Tiles
 		{
-			m_VertexArray.reset(Titan::VertexArray::Create());
+			m_VertexArray = Titan::VertexArray::Create();
 
 			float vertices[4 * 7] = {
 				 0.5f,  0.5f,  0.0f, 1, 0, 0, 1,
@@ -29,7 +35,7 @@ public:
 				-0.5f,  0.5f,  0.0f, 1, 0, 1, 1
 			};
 
-			m_VertexBuffer.reset(Titan::VertexBuffer::Create(vertices, sizeof(vertices)));
+			m_VertexBuffer = Titan::VertexBuffer::Create(vertices, sizeof(vertices));
 
 
 			{
@@ -42,7 +48,7 @@ public:
 			}
 
 			uint32_t indices[6] = { 0, 1, 2, 0, 2, 3 };
-			m_IndexBuffer.reset(Titan::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+			m_IndexBuffer = Titan::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 
 			m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 			m_VertexArray->SetIndexBuffer(m_IndexBuffer);
@@ -51,7 +57,7 @@ public:
 		//Square
 		{
 
-			m_SquareVA.reset(Titan::VertexArray::Create());
+			m_SquareVA = Titan::VertexArray::Create();
 
 			float vertices[4 * 5] = {
 				-0.5f, -0.5f,  0.0f, 0.0f, 0.0f,
@@ -60,7 +66,7 @@ public:
 				-0.5f,  0.5f,  0.0f, 0.0f, 1.0f
 			};
 
-			m_SquareVB.reset(Titan::VertexBuffer::Create(vertices, sizeof(vertices)));
+			m_SquareVB = Titan::VertexBuffer::Create(vertices, sizeof(vertices));
 
 
 			{
@@ -73,12 +79,11 @@ public:
 			}
 
 			uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
-			m_SquareIB.reset(Titan::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+			m_SquareIB = Titan::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 
 			m_SquareVA->AddVertexBuffer(m_SquareVB);
 			m_SquareVA->SetIndexBuffer(m_SquareIB);
 
-			//https://youtu.be/N94fHNZEHas?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&t=67
 			m_Texture = Titan::Texture2D::Create("assets/textures/Engine/masks/circle.png");
 			m_TextureTransparent = Titan::Texture2D::Create("assets/textures/Engine/transparent.png");
 		}
@@ -110,7 +115,6 @@ public:
 		//Scene
 		{
 			Titan::Renderer::BeginScene(m_CameraController.GetCamera());
-			
 
 			//Tiles
 			{
@@ -152,14 +156,7 @@ public:
 		ImGui::Text("Rot: %f", m_CameraController.GetCamera().GetRotation());
 		ImGui::End();
 
-		//Square
-		/*
-		ImGui::Begin("Square");
-		ImGui::Text("Pos: %f, %f, %f", m_SquarePosition.x, m_SquarePosition.y, m_SquarePosition.z);
-		ImGui::End();
-		*/
-
-		//Tiless
+		//Tiles
 		ImGui::Begin("Tiles");
 		ImGui::ColorEdit3("Color", glm::value_ptr(m_TileColor));
 		ImGui::SliderInt("Count", &m_Tiles, 5, 20);
@@ -208,7 +205,8 @@ public:
 		TITAN_WARN("This is 'TITAN_WARN()'");
 		TITAN_ERROR("This is 'TITAN_ERROR()'");
 		TITAN_FATAL("This is 'TITAN_FATAL()'");
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() 

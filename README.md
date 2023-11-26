@@ -1,7 +1,7 @@
 # Titan
 
 Titan is a game engine (for now just a framework) developed by me.
-The Engine suports 2D, advanced Mathematics, Windowing, Modern OpenGL and more.
+The Engine supports 2D, advanced Mathematics, Windowing, Modern OpenGL and more.
 For now it does NOT support 3D Rendering.
 
 ## How to use
@@ -23,7 +23,7 @@ For now you need to clone the entire repo.
 
 ## Features
 
-- [x] Math Libary (GLM)
+- [x] Math Library (GLM)
 - [x] Window (GLFW)
 - [x] Rendering (OpenGL and Custom API)
 - [x] Shaders
