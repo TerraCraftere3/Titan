@@ -16,6 +16,7 @@
 // ---------------- Renderer -----------------
 #include "Titan/Renderer/RenderCommand.h"
 #include "Titan/Renderer/Renderer.h"
+#include "Titan/Renderer/Renderer2D.h"
 
 #include "Titan/Renderer/Buffer.h"
 #include "Titan/Renderer/Shader.h"

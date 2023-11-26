@@ -1,6 +1,6 @@
 #include "Sandbox2D.h"
-#include <imgui.h>
 #include <glm/gtc/type_ptr.hpp>
+#include <imgui.h>
 #include <Platform/OpenGL/OpenGLShader.h>
 
 Sandbox2D::Sandbox2D()
@@ -10,34 +10,6 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	m_VertexArray = Titan::VertexArray::Create();
-
-	float vertices[4 * 7] = {
-		 0.5f,  0.5f,  0.0f, 1, 0, 0, 1,
-		 0.5f, -0.5f,  0.0f, 0, 1, 0, 1,
-		-0.5f, -0.5f,  0.0f, 0, 0, 1, 1,
-		-0.5f,  0.5f,  0.0f, 1, 0, 1, 1
-	};
-
-	m_VertexBuffer = Titan::VertexBuffer::Create(vertices, sizeof(vertices));
-
-
-	{
-		Titan::BufferLayout layout = {
-					{ Titan::ShaderDataType::Float3, "a_Position" },
-					{ Titan::ShaderDataType::Float4, "a_Color"}
-		};
-
-		m_VertexBuffer->SetLayout(layout);
-	}
-
-	uint32_t indices[6] = { 0, 1, 2, 0, 2, 3 };
-	m_IndexBuffer = Titan::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
-
-	m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-	m_VertexArray->SetIndexBuffer(m_IndexBuffer);
-
-	m_FlatColorShader = Titan::Shader::Create("assets/shaders/Color.glsl");
 }
 
 void Sandbox2D::OnDetach()
@@ -51,17 +23,16 @@ void Sandbox2D::OnUpdate(Titan::Timestep ts)
 	Titan::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 	Titan::RenderCommand::Clear();
 
-	Titan::Renderer::BeginScene(m_CameraController.GetCamera());
+	Titan::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	//TODO: Shader::SetMat4
-	//TODO: Shader::SetFloat4
-	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-	std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
+	Titan::Renderer2D::DrawQuad({  .0f, .0f, .0f }, { 1.0f, 1.0f }, m_SquareColor);
+	Titan::Renderer2D::DrawQuad({ 1.0f, .0f, .0f }, { 0.5f, 1.0f }, glm::vec4(0.8f, 0.3f, 0.2f, 1.0f));
+	
+	Titan::Renderer2D::EndScene();
 
-	Titan::Renderer::Submit(m_FlatColorShader, m_VertexArray, glm::mat4(1.0f));
-
-	Titan::Renderer::EndScene();
+	/*std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->Bind();
+	std::dynamic_pointer_cast<Titan::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);*/
+	
 }
 
 void Sandbox2D::OnImGuiRender()
