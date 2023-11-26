@@ -26,10 +26,11 @@ in vec3 v_Position;
 in vec2 v_TexCoord;
 
 uniform sampler2D u_Texture;
+uniform vec4 u_Color;
 
 void main()
 {
 	color = vec4(v_Position * 1 + 0.5, 1.0);
 	color = vec4(v_TexCoord + 0.5, 0, 1);
-	color = texture(u_Texture, v_TexCoord);
+	color = texture(u_Texture, v_TexCoord * 1.0) * u_Color;
 }
