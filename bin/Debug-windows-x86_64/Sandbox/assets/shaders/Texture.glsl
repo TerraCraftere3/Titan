@@ -2,7 +2,7 @@
 #version 330 core
 
 layout(location = 0) in vec3 a_Position;
-layout(location = 0) in vec2 a_TexCoord;
+layout(location = 1) in vec2 a_TexCoord;
 
 uniform mat4 u_ViewProjection;
 uniform mat4 u_Transform;
@@ -31,5 +31,5 @@ void main()
 {
 	color = vec4(v_Position * 1 + 0.5, 1.0);
 	color = vec4(v_TexCoord + 0.5, 0, 1);
-	color = texture(u_Texture, v_TexCoord + 0.5);
+	color = texture(u_Texture, v_TexCoord);
 }

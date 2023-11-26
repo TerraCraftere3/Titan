@@ -10,6 +10,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+	m_Texture = Titan::Texture2D::Create("assets/textures/Engine/masks/circle.png");
 }
 
 void Sandbox2D::OnDetach()
@@ -25,8 +26,8 @@ void Sandbox2D::OnUpdate(Titan::Timestep ts)
 
 	Titan::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	Titan::Renderer2D::DrawQuad({  .0f, .0f, .0f }, { 1.0f, 1.0f }, m_SquareColor);
-	Titan::Renderer2D::DrawQuad({ 1.0f, .0f, .0f }, { 0.5f, 1.0f }, glm::vec4(0.8f, 0.3f, 0.2f, 1.0f));
+	Titan::Renderer2D::DrawQuad({  .0f, .0f,   .0f }, { 1.0f, 1.0f }, m_Texture);
+	Titan::Renderer2D::DrawQuad({ 0.0f, .0f, -0.1f }, { 2.0f, 2.0f }, m_SquareColor);
 	
 	Titan::Renderer2D::EndScene();
 

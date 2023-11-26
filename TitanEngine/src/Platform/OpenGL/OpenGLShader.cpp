@@ -184,9 +184,34 @@ namespace Titan {
 		UploadUniformFloat3(name, value);
 	}
 
+	void OpenGLShader::SetFloat2(const std::string& name, const glm::vec2& value)
+	{
+		UploadUniformFloat2(name, value);
+	}
+
+	void OpenGLShader::SetFloat(const std::string& name, const float& value)
+	{
+		UploadUniformFloat(name, value);
+	}
+
 	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
 	{
 		UploadUniformMat4(name, value);
+	}
+
+	void OpenGLShader::SetMat3(const std::string& name, const glm::mat3& value)
+	{
+		UploadUniformMat3(name, value);
+	}
+
+	void OpenGLShader::SetMat2(const std::string& name, const glm::mat2& value)
+	{
+		TI_CORE_ASSERT(false, "SetMat2 is not implemented");
+	}
+
+	void OpenGLShader::SetInt(const std::string& name, const int& value)
+	{
+		UploadUniformInt(name, value);
 	}
 
 	void OpenGLShader::UploadUniformInt(const std::string& name, int value)

@@ -15,14 +15,9 @@ public:
 	virtual void OnImGuiRender() override;
 	void OnEvent(Titan::Event& e) override;
 private:
-
-	//TODO: Remove Sandbox2D Example Code:
-	Titan::Ref<Titan::VertexBuffer> m_VertexBuffer;
-	Titan::Ref<Titan::IndexBuffer> m_IndexBuffer;
-	Titan::Ref<Titan::VertexArray> m_VertexArray;
-
-	Titan::Ref<Titan::Shader> m_FlatColorShader;
 	Titan::OrthographicCameraController m_CameraController;
+
+	Titan::Ref<Titan::Texture2D> m_Texture;
 
 	glm::vec4 m_SquareColor = { 0.3, 0.8, 0.2, 1.0 };
 };
