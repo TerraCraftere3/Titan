@@ -15,6 +15,8 @@
 
 #include "Titan/Core/Log.h"
 
+#include "Titan/Debug/Instrumentor.h"
+
 #ifdef TI_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif

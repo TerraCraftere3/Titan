@@ -27,10 +27,15 @@ Logging: https://github.com/gabime/spdlog
 	} //Logo and credits
 
 	Titan::Log::Init();
-	TITAN_CORE_WARN("Initialized Log!");
 
+	TI_PROFILE_BEGIN_SESSION("Startup", "Profile/Startup.json");
 	auto app = Titan::CreateApplication();
+	TI_PROFILE_END_SESSION();
+	TI_PROFILE_BEGIN_SESSION("Runtime", "Profile/Runtime.json");
 	app->Run();
+	TI_PROFILE_END_SESSION();
+	TI_PROFILE_BEGIN_SESSION("Shutdown", "Profile/Shutdown.json");
 	delete app;
+	TI_PROFILE_END_SESSION();
 }
 #endif
