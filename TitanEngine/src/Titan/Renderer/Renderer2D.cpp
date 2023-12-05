@@ -102,16 +102,16 @@ namespace Titan
 		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor)
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
 	{
-		DrawQuad(glm::vec3(position, 0), size, texture, tilingFactor);
+		DrawQuad(glm::vec3(position, 0), size, texture, tilingFactor, tintColor);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor)
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
 	{
 		TI_PROFILE_FUNCTION();
 
-		s_Storage->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		s_Storage->TextureShader->SetFloat4("u_Color", tintColor);
 		s_Storage->TextureShader->SetFloat("u_TilingFactor", tilingFactor);
 		texture->Bind();
 
@@ -145,16 +145,16 @@ namespace Titan
 		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);
 	}
 
-	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor)
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
 	{
-		DrawRotatedQuad(glm::vec3(position, 0), size, rotation, texture, tilingFactor);
+		DrawRotatedQuad(glm::vec3(position, 0), size, rotation, texture, tilingFactor, tintColor);
 	}
 
-	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor)
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
 	{
 		TI_PROFILE_FUNCTION();
 
-		s_Storage->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		s_Storage->TextureShader->SetFloat4("u_Color", tintColor);
 		s_Storage->TextureShader->SetFloat("u_TilingFactor", tilingFactor);
 		texture->Bind();
 

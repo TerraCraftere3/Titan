@@ -23,7 +23,7 @@ For now you need to clone the entire repo.
 
 ## Features
 
-- [x] Math Library (GLM)
+- [x] Math Library ([GLM](https://github.com/g-truc/glm))
 - [x] Window ([GLFW](https://github.com/glfw/glfw))
 - [x] Rendering ([OpenGL](https://www.opengl.org/) and Custom API)
 - [x] Shaders

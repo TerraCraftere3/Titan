@@ -20,5 +20,6 @@ private:
 	Titan::Ref<Titan::Texture2D> m_Texture;
 
 	glm::vec4 m_SquareColor = { 0.3, 0.8, 0.2, 1.0 };
+	glm::vec4 m_CircleColor = { 0.8, 0.3, 0.2, 1.0 };
 	float m_SquareRot = 30.0f;
 };
