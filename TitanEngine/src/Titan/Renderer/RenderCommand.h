@@ -7,6 +7,7 @@ namespace Titan {
 	class RenderCommand {
 	public:
 		inline static void Init() {
+			TI_PROFILE_FUNCTION();
 			s_RendererAPI->Init();
 		}
 

@@ -8,6 +8,7 @@ namespace Titan {
 	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
 		: m_Width(width), m_Height(height), m_InternalFormat(GL_RGBA8), m_DataFormat(GL_RGBA)
 	{
+		TI_PROFILE_FUNCTION();
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
 		glTextureStorage2D(m_RendererID, 1, m_InternalFormat, m_Width, m_Height);
@@ -22,9 +23,16 @@ namespace Titan {
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
 		: m_Path(path)
 	{
-		int width, height, channels;
+		TI_PROFILE_FUNCTION();
+
 		stbi_set_flip_vertically_on_load(true);
-		stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+
+		int width, height, channels;
+		stbi_uc* data;
+		{
+			TI_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std::string&)");
+			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		}
 		TI_CORE_ASSERT(data, "Failed to load image!");
 
 		m_Width = width;
@@ -58,11 +66,15 @@ namespace Titan {
 
 	OpenGLTexture2D::~OpenGLTexture2D()
 	{
+		TI_PROFILE_FUNCTION();
+
 		glDeleteTextures(1, &m_RendererID);
 	}
 
 	void OpenGLTexture2D::SetData(void* data, uint32_t size)
 	{
+		TI_PROFILE_FUNCTION();
+
 		//Bytes per Pixel
 		uint32_t bpp = 0;
 		if (m_DataFormat == GL_RGBA) bpp = 4;
@@ -73,6 +85,8 @@ namespace Titan {
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
+		TI_PROFILE_FUNCTION();
+
 		glBindTextureUnit(slot, m_RendererID);
 	}
 

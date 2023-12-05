@@ -10,6 +10,7 @@ namespace Titan {
 
 	void Renderer::Init()
 	{
+		TI_PROFILE_FUNCTION();
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}

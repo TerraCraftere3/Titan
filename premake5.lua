@@ -1,9 +1,9 @@
 workspace "TitanEngine"
 	architecture 'x64'
-	configurations { 
-		"Debug", 
-		"Release", 
-		"Dist" 
+	configurations {
+		"Debug",
+		"Release",
+		"Dist"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -116,7 +116,7 @@ project "Sandbox"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	debugdir ("bin/" .. outputdir .. "/Sandbox")
+	debugdir ("runtime")
 
 	files
 	{

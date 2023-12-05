@@ -25,16 +25,15 @@ void Sandbox2D::OnUpdate(Titan::Timestep ts)
 {
 	TI_PROFILE_FUNCTION();
 
-	{
-		TI_PROFILE_SCOPE("CameraController::OnUpdate");
-		m_CameraController.OnUpdate(ts);
-	}
+
+	m_CameraController.OnUpdate(ts);
 
 	Titan::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 	Titan::RenderCommand::Clear();
 
 	{
-		TI_PROFILE_SCOPE("Scene");
+		TI_PROFILE_SCOPE("Renderer Draw");
+
 		Titan::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		
 		Titan::Renderer2D::DrawQuad({  .0f, .0f,   .0f }, { 1.0f, 1.0f }, m_Texture);

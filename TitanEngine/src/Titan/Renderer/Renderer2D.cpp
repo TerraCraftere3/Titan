@@ -21,6 +21,8 @@ namespace Titan
 
 	void Renderer2D::Init()
 	{
+		TI_PROFILE_FUNCTION();
+
 		s_Storage = new Renderer2DStorage();
 
 		s_Storage->QuadVertexArray = VertexArray::Create();
@@ -61,18 +63,22 @@ namespace Titan
 
 	void Renderer2D::Shutdown()
 	{
+		TI_PROFILE_FUNCTION();
+
 		delete s_Storage;
 	}
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
+		TI_PROFILE_FUNCTION();
+
 		s_Storage->TextureShader->Bind();
 		s_Storage->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
 	{
-
+		TI_PROFILE_FUNCTION();
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
@@ -82,6 +88,8 @@ namespace Titan
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
+		TI_PROFILE_FUNCTION();
+
 		s_Storage->TextureShader->SetFloat4("u_Color", color);
 		s_Storage->WhiteTexture->Bind();
 
@@ -99,6 +107,8 @@ namespace Titan
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
 	{
+		TI_PROFILE_FUNCTION();
+
 		s_Storage->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
 		texture->Bind();
 

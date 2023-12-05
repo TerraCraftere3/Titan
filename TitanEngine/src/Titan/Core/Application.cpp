@@ -19,10 +19,12 @@ namespace Titan {
 
 	Application::Application()
 	{
+		TI_PROFILE_FUNCTION();
+
 		TI_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create(WindowProps().Title="Titan Engine"));
+		m_Window = Scope<Window>(Window::Create(WindowProps().Title="Titan Engine"));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		Renderer::Init();
@@ -37,16 +39,24 @@ namespace Titan {
 
 	void Application::PushLayer(Layer* layer)
 	{
+		TI_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
+		TI_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)
 	{
+		TI_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -61,21 +71,34 @@ namespace Titan {
 
 	void Application::Run()
 	{
+		TI_PROFILE_FUNCTION();
+
 		while (m_Running)
 		{
+			TI_PROFILE_SCOPE("RunLoop");
+			
 			float time = (float)glfwGetTime(); //TODO: Platform::GetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized) {
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
+				{
+					TI_PROFILE_SCOPE("LayerStack::OnUpdate");
+
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timestep);
+				}
+				
 			}
 
 			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
+			{
+				TI_PROFILE_SCOPE("LayerStack::OnImGuiRender");
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
+			}
 			m_ImGuiLayer->End();
+			
 
 			m_Window->OnUpdate();
 		}
@@ -91,6 +114,8 @@ namespace Titan {
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		TI_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;

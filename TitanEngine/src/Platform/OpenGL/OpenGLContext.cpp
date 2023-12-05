@@ -15,6 +15,7 @@ namespace Titan {
 
 	void OpenGLContext::Init()
 	{
+		TI_PROFILE_FUNCTION();
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		TI_CORE_ASSERT(status, "Failed to initialize Glad!");
@@ -40,6 +41,7 @@ namespace Titan {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		TI_PROFILE_FUNCTION();
 		glfwSwapBuffers(m_WindowHandle);
 	}
 

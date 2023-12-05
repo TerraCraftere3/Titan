@@ -19,6 +19,9 @@
     <Filter Include="src\Titan\Core">
       <UniqueIdentifier>{D488ECC3-C056-E0C9-A9EA-50F09557BC2E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Titan\Debug">
+      <UniqueIdentifier>{72FE8941-DE89-F705-E79A-7AFA53A55306}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Titan\Events">
       <UniqueIdentifier>{601F5476-4C18-73C8-754A-584D61A252D4}</UniqueIdentifier>
     </Filter>
@@ -114,6 +117,9 @@
     <ClInclude Include="src\Titan\Core\Window.h">
       <Filter>src\Titan\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Titan\Debug\Instrumentor.h">
+      <Filter>src\Titan\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\Titan\Events\ApplicationEvent.h">
       <Filter>src\Titan\Events</Filter>
     </ClInclude>
@@ -145,6 +151,9 @@
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Renderer\Renderer.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\Renderer2D.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Renderer\RendererAPI.h">
@@ -1413,8 +1422,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\Titan\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1474,6 +1481,9 @@
     <ClCompile Include="src\Titan\Renderer\Renderer.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\Renderer2D.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Titan\Renderer\RendererAPI.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
@@ -1492,6 +1502,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Titan\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>
