@@ -190,6 +190,9 @@ namespace Titan {
 		glUseProgram(0);
 	}
 
+	//---------------------------------------------------------------------------
+	//                          SetUniform
+	//---------------------------------------------------------------------------
 	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
 	{
 		UploadUniformFloat4(name, value);
@@ -230,6 +233,9 @@ namespace Titan {
 		UploadUniformInt(name, value);
 	}
 
+	//---------------------------------------------------------------------------
+	//                          UploadUniform
+	//---------------------------------------------------------------------------
 	void OpenGLShader::UploadUniformInt(const std::string& name, int value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());

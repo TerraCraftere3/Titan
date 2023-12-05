@@ -36,8 +36,8 @@ void Sandbox2D::OnUpdate(Titan::Timestep ts)
 
 		Titan::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		
-		Titan::Renderer2D::DrawQuad({  .0f, .0f,   .0f }, { 1.0f, 1.0f }, m_Texture);
-		Titan::Renderer2D::DrawQuad({ 0.0f, .0f, -0.1f }, { 2.0f, 2.0f }, m_SquareColor);
+		Titan::Renderer2D::DrawQuad({  .0f, .0f,   .0f }, { 1.25f, 1.25f }, m_Texture, 5.0f);
+		Titan::Renderer2D::DrawRotatedQuad(glm::vec3(1.5f, 0.5f, -0.1f ), glm::vec2(1.0f, 1.0f ), glm::radians(m_SquareRot), m_SquareColor);
 		
 		Titan::Renderer2D::EndScene();
 	}
@@ -54,6 +54,7 @@ void Sandbox2D::OnImGuiRender()
 	//Square
 	ImGui::Begin("Square");
 	ImGui::ColorEdit4("Color", glm::value_ptr(m_SquareColor));
+	ImGui::DragFloat("Rotation", &m_SquareRot, 1.0f, 0, 360);
 	ImGui::End();
 }
 

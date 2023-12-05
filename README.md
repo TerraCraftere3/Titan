@@ -24,13 +24,13 @@ For now you need to clone the entire repo.
 ## Features
 
 - [x] Math Library (GLM)
-- [x] Window (GLFW)
-- [x] Rendering (OpenGL and Custom API)
+- [x] Window ([GLFW](https://github.com/glfw/glfw))
+- [x] Rendering ([OpenGL](https://www.opengl.org/) and Custom API)
 - [x] Shaders
 - [ ] Compute Shaders
 - [x] Textures
 - [ ] Editor
-- [x] Logging (spdlog and Custom API)
+- [x] Logging ([spdlog](https://github.com/gabime/spdlog) and Custom API)
 - [x] 2D
 - [ ] 3D
 - [x] UI Rendering ([Vanadium ImGui](https://github.com/TerraCraftere3/vanadium-imgui))
@@ -42,6 +42,7 @@ For now you need to clone the entire repo.
 - [ ] Mac
 - [ ] Asset library
 - [x] Asset files
+- [ ] Hot Code Reloading
 
 ## [License](https://github.com/TerraCraftere3/Titan/blob/main/LICENSE)
 

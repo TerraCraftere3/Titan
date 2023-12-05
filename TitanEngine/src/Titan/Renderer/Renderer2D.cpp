@@ -91,28 +91,76 @@ namespace Titan
 		TI_PROFILE_FUNCTION();
 
 		s_Storage->TextureShader->SetFloat4("u_Color", color);
+		s_Storage->TextureShader->SetFloat("u_TilingFactor", 1.0f);
 		s_Storage->WhiteTexture->Bind();
 
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 0));
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
+			* glm::scale(glm::mat4(1.0f), glm::vec3(size, 0));
 		s_Storage->TextureShader->SetMat4("u_Transform", transform);
 
 		s_Storage->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture)
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor)
 	{
-		DrawQuad(glm::vec3(position, 0), size, texture);
+		DrawQuad(glm::vec3(position, 0), size, texture, tilingFactor);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor)
 	{
 		TI_PROFILE_FUNCTION();
 
 		s_Storage->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		s_Storage->TextureShader->SetFloat("u_TilingFactor", tilingFactor);
 		texture->Bind();
 
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 0));
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) 
+			* glm::scale(glm::mat4(1.0f), glm::vec3(size, 0));
+		s_Storage->TextureShader->SetMat4("u_Transform", transform);
+
+		s_Storage->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color)
+	{
+		DrawRotatedQuad(glm::vec3(position, 0), size, rotation, color);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color)
+	{
+		TI_PROFILE_FUNCTION();
+
+		s_Storage->TextureShader->SetFloat4("u_Color", color);
+		s_Storage->TextureShader->SetFloat("u_TilingFactor", 1.0f);
+		s_Storage->WhiteTexture->Bind();
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
+			* glm::rotate(glm::mat4(1.0f), rotation, { 0.0f, 0.0f, 1.0f })
+			* glm::scale(glm::mat4(1.0f), glm::vec3(size, 0));
+		s_Storage->TextureShader->SetMat4("u_Transform", transform);
+
+		s_Storage->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor)
+	{
+		DrawRotatedQuad(glm::vec3(position, 0), size, rotation, texture, tilingFactor);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor)
+	{
+		TI_PROFILE_FUNCTION();
+
+		s_Storage->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		s_Storage->TextureShader->SetFloat("u_TilingFactor", tilingFactor);
+		texture->Bind();
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
+			* glm::rotate(glm::mat4(1.0f), rotation, { 0.0f, 0.0f, 1.0f })
+			* glm::scale(glm::mat4(1.0f), glm::vec3(size, 0));
 		s_Storage->TextureShader->SetMat4("u_Transform", transform);
 
 		s_Storage->QuadVertexArray->Bind();
