@@ -26,6 +26,7 @@ namespace Titan {
 		virtual void SetMat2(const std::string& name, const glm::mat2& value) = 0;
 		//Int
 		virtual void SetInt(const std::string& name, const int& value) = 0;
+		virtual void SetIntArray(const std::string& name, int* values, uint32_t count) = 0;
 
 		virtual const std::string& GetName() const = 0;
 

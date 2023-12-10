@@ -17,7 +17,8 @@ public:
 private:
 	Titan::OrthographicCameraController m_CameraController;
 
-	Titan::Ref<Titan::Texture2D> m_Texture;
+	Titan::Ref<Titan::Texture2D> m_CircleTexture;
+	Titan::Ref<Titan::Texture2D> m_CheckerboardTexture;
 
 	glm::vec4 m_SquareColor = { 0.3, 0.8, 0.2, 1.0 };
 	glm::vec4 m_CircleColor = { 0.8, 0.2, 0.4, 1.0 };
