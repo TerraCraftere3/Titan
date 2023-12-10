@@ -200,11 +200,11 @@ class Sandbox : public Titan::Application
 public:
 	Sandbox()
 	{
-		TITAN_TRACE("This is 'TITAN_TRACE()'");
-		TITAN_INFO("This is 'TITAN_INFO()'");
-		TITAN_WARN("This is 'TITAN_WARN()'");
-		TITAN_ERROR("This is 'TITAN_ERROR()'");
-		TITAN_FATAL("This is 'TITAN_FATAL()'");
+		TI_TRACE("This is 'TITAN_TRACE()'");
+		TI_INFO("This is 'TITAN_INFO()'");
+		TI_WARN("This is 'TITAN_WARN()'");
+		TI_ERROR("This is 'TITAN_ERROR()'");
+		TI_FATAL("This is 'TITAN_FATAL()'");
 		//PushLayer(new ExampleLayer());
 		PushLayer(new Sandbox2D());
 	}

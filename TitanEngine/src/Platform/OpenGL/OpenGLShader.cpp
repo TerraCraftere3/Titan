@@ -71,7 +71,7 @@ namespace Titan {
 		}
 		else
 		{
-			TITAN_CORE_ERROR("Could not open file '{0}'", filepath);
+			TI_CORE_ERROR("Could not open file '{0}'", filepath);
 		}
 
 		return result;
@@ -136,7 +136,7 @@ namespace Titan {
 
 				glDeleteShader(shader);
 
-				TITAN_CORE_ERROR("{0}", infoLog.data());
+				TI_CORE_ERROR("{0}", infoLog.data());
 				TI_CORE_ASSERT(false, "Shader compilation failure!");
 				break;
 			}
@@ -164,7 +164,7 @@ namespace Titan {
 			for (auto id : glShaderIDs)
 				glDeleteShader(id);
 
-			TITAN_CORE_ERROR("{0}", infoLog.data());
+			TI_CORE_ERROR("{0}", infoLog.data());
 			TI_CORE_ASSERT(false, "Shader link failure!");
 			return;
 		}

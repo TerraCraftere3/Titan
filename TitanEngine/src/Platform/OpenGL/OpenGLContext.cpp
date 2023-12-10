@@ -20,10 +20,10 @@ namespace Titan {
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		TI_CORE_ASSERT(status, "Failed to initialize Glad!");
 
-		TITAN_CORE_INFO("OpenGL Info:");
-		TITAN_CORE_INFO("  Vendor: {0}", (const char*)glGetString(GL_VENDOR));
-		TITAN_CORE_INFO("  Renderer: {0}", (const char*)glGetString(GL_RENDERER));
-		TITAN_CORE_INFO("  Version: {0}", (const char*)glGetString(GL_VERSION));
+		TI_CORE_INFO("OpenGL Info:");
+		TI_CORE_INFO("  Vendor: {0}", (const char*)glGetString(GL_VENDOR));
+		TI_CORE_INFO("  Renderer: {0}", (const char*)glGetString(GL_RENDERER));
+		TI_CORE_INFO("  Version: {0}", (const char*)glGetString(GL_VERSION));
 
 		#ifdef TI_ENABLE_ASSERTS
 			int versionMajor;

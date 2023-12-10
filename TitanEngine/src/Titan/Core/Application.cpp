@@ -103,7 +103,7 @@ namespace Titan {
 			m_Window->OnUpdate();
 		}
 
-		TITAN_CORE_WARN("Window closed...");
+		TI_CORE_WARN("Window closed...");
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

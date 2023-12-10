@@ -13,7 +13,7 @@ namespace Titan {
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
-		TITAN_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+		TI_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
 	Scope<Window> Window::Create(const WindowProps& props)
@@ -43,7 +43,7 @@ namespace Titan {
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
-		TITAN_CORE_INFO("Creating window \"{0}\" ({1}, {2})", props.Title, props.Width, props.Height);
+		TI_CORE_INFO("Creating window \"{0}\" ({1}, {2})", props.Title, props.Width, props.Height);
 
 		if (!s_GLFWInitialized)
 		{

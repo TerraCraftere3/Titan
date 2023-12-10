@@ -65,8 +65,8 @@
 #endif
 
 #ifdef TI_ENABLE_ASSERTS
-#define TI_ASSERT(x, ...) { if(!(x)) { TITAN_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-#define TI_CORE_ASSERT(x, ...) { if(!(x)) { TITAN_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define TI_ASSERT(x, ...) { if(!(x)) { TI_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define TI_CORE_ASSERT(x, ...) { if(!(x)) { TI_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
 #define TI_ASSERT(x, ...)
 #define TI_CORE_ASSERT(x, ...)
