@@ -182,6 +182,7 @@
     <ClInclude Include="src\Titan\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Titan\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Titan\Renderer\Shader.h" />
+    <ClInclude Include="src\Titan\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\Titan\Renderer\Texture.h" />
     <ClInclude Include="src\Titan\Renderer\VertexArray.h" />
     <ClInclude Include="src\tipch.h" />
@@ -626,6 +627,7 @@
     <ClCompile Include="src\Titan\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Titan\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Titan\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Titan\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Titan\Renderer\Texture.cpp" />
     <ClCompile Include="src\Titan\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\tipch.cpp">

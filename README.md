@@ -1,6 +1,6 @@
 # Titan
 
-Titan is a game engine (for now just a framework) developed by me.
+Titan is a game engine (framework) developed by me.
 The Engine supports 2D, advanced Mathematics, Windowing, Modern OpenGL and more.
 For now it does NOT support 3D Rendering.
 
@@ -9,9 +9,9 @@ For now it does NOT support 3D Rendering.
 For now you need to clone the entire repo.
 
 - Clone the repository in an empty folder
-- Run `scripts/GenProjects` (Optional)
-- Open TitanEngine.sln
-- Run SandboxApp.cpp
+- Run `scripts/GenProjects`
+- Open `TitanEngine.sln`
+- Run the Project
 
 ## Releases
 
@@ -29,6 +29,7 @@ For now you need to clone the entire repo.
 - [x] Shaders
 - [ ] Compute Shaders
 - [x] Textures
+- [x] Spritesheets
 - [ ] Editor
 - [x] Logging ([spdlog](https://github.com/gabime/spdlog) and Custom API)
 - [x] 2D
@@ -44,6 +45,7 @@ For now you need to clone the entire repo.
 - [x] Asset files
 - [ ] Hot Code Reloading
 - [x] Batching
+- [ ] Shadows, Water Effects, etc.
 
 ## [License](https://github.com/TerraCraftere3/Titan/blob/main/LICENSE)
 

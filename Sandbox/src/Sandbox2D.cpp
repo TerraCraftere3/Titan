@@ -17,6 +17,11 @@ void Sandbox2D::OnAttach()
 	m_SpriteSheet = Titan::Texture2D::Create("assets/game/textures/tilemap.png");
 	m_CheckerboardTexture = Titan::Texture2D::Create("assets/engine/textures/transparent.png");
 
+	m_HeartEmptyTexture = Titan::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 8,0 }, { 16, 16 });
+	m_HeartHalfTexture = Titan::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 9,0 }, { 16, 16 });
+	m_HeartFullTexture = Titan::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 10,0 }, { 16, 16 });
+	m_HeartTexture = Titan::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 8,0 }, { 16, 16 }, {3, 1});
+
 	//Particle Test
 	m_Particle.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
@@ -35,7 +40,6 @@ void Sandbox2D::OnUpdate(Titan::Timestep ts)
 {
 	TI_PROFILE_FUNCTION();
 
-
 	m_CameraController.OnUpdate(ts);
 
 	Titan::Renderer2D::ResetStats();
@@ -52,7 +56,7 @@ void Sandbox2D::OnUpdate(Titan::Timestep ts)
 			TI_PROFILE_SCOPE("Spritesheet Scene");
 			Titan::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-			Titan::Renderer2D::DrawQuad({ .0f, .0f, 0.0f }, { 1.0f, 1.0f }, m_SpriteSheet, 1.0f, m_SpriteSheetColor);
+			Titan::Renderer2D::DrawQuad({   .0f, .0f, 0.0f }, { 3.0f, 1.0f }, m_HeartTexture, 1.0f, m_SpriteSheetColor);
 
 			Titan::Renderer2D::EndScene();
 		}
