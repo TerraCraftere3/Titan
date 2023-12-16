@@ -130,14 +130,20 @@ project "Sandbox"
 	{
 		"TitanEngine/vendor/spdlog/include",
 		"TitanEngine/src",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links
 	{
 		"Engine",
-		"ImGui"
+		"GLFW",
+		"Glad",
+		"ImGui",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
