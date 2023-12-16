@@ -90,7 +90,7 @@ namespace Titan
 		for (uint32_t i = 0; i < s_Data.MaxTextureSlots; i++)
 			samplers[i] = i;
 
-		s_Data.TextureShader = Shader::Create("assets/shaders/Texture.glsl");
+		s_Data.TextureShader = Shader::Create("assets/engine/shaders/Texture.glsl");
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);
 
@@ -195,8 +195,17 @@ namespace Titan
 	{
 		TI_PROFILE_FUNCTION();
 
+		constexpr float x = 8, y = 0;
+		constexpr float sheetWidth = 272.0f, sheetHeight = 128.0f;
+		constexpr float spriteWidth = 16.0f, spriteHeight = 16.0f;
+
 		constexpr size_t quadVertexCount = 4;
-		constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
+		constexpr glm::vec2 textureCoords[] = {
+			{ (x * spriteWidth) / sheetWidth, (y * spriteHeight) / sheetHeight },
+			{ ((x+1) * spriteWidth) / sheetWidth, (y * spriteHeight) / sheetHeight },
+			{ ((x+1) * spriteWidth) / sheetWidth, ((y+1) * spriteHeight) / sheetHeight },
+			{ (x * spriteWidth) / sheetWidth, ((y+1) * spriteHeight) / sheetHeight }
+		};
 
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
 			FlushAndReset();
