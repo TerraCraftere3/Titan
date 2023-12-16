@@ -199,6 +199,7 @@ class Sandbox : public Titan::Application
 {
 public:
 	Sandbox()
+		: Application("SandboxApp.cpp")
 	{
 		TI_TRACE("This is 'TITAN_TRACE()'");
 		TI_INFO("This is 'TITAN_INFO()'");

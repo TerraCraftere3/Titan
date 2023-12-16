@@ -15,16 +15,15 @@ namespace Titan {
 
 	Application* Application::s_Instance = nullptr;
 
-	
-
-	Application::Application()
+	Application::Application(const std::string& name)
 	{
 		TI_PROFILE_FUNCTION();
 
 		TI_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = Scope<Window>(Window::Create(WindowProps().Title="Titan Engine"));
+		WindowProps props = WindowProps(name);
+		m_Window = Scope<Window>(Window::Create(props));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		Renderer::Init();

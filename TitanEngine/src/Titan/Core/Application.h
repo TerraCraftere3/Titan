@@ -16,7 +16,7 @@ namespace Titan {
 	class TI_API Application
 	{
 	public:
-		Application();
+		Application(const std::string& name);
 		virtual ~Application();
 
 		void Run();

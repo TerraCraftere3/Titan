@@ -63,6 +63,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -87,7 +90,7 @@
     <ClInclude Include="src\Titan\Core\Application.h">
       <Filter>src\Titan\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Core\Core.h">
+    <ClInclude Include="src\Titan\Core\Base.h">
       <Filter>src\Titan\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Core\EntryPoint.h">
@@ -138,6 +141,9 @@
     <ClInclude Include="src\Titan\Renderer\Buffer.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\Framebuffer.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Titan\Renderer\GraphicsContext.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
@@ -160,6 +166,9 @@
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Renderer\Shader.h">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Titan\Renderer\SubTexture2D.h">
       <Filter>src\Titan\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Renderer\Texture.h">
@@ -1422,14 +1431,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Titan\Renderer\SubTexture2D.h" />
-    <ClInclude Include="src\Titan\Core\Base.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1471,6 +1481,9 @@
     <ClCompile Include="src\Titan\Renderer\Buffer.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\Framebuffer.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Titan\Renderer\OrthographicCamera.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
@@ -1492,6 +1505,9 @@
     <ClCompile Include="src\Titan\Renderer\Shader.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Titan\Renderer\SubTexture2D.cpp">
+      <Filter>src\Titan\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Titan\Renderer\Texture.cpp">
       <Filter>src\Titan\Renderer</Filter>
     </ClCompile>
@@ -1504,6 +1520,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Titan\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

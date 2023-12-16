@@ -1,9 +1,16 @@
 workspace "TitanEngine"
 	architecture 'x64'
+	startproject 'Neon-Editor'
+
 	configurations {
 		"Debug",
 		"Release",
 		"Dist"
+	}
+
+	flags
+	{
+		"MultiProcessorCompile"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -15,14 +22,18 @@ IncludeDir["ImGui"] = "TitanEngine/vendor/imgui"
 IncludeDir["glm"] = "TitanEngine/vendor/glm"
 IncludeDir["stb_image"] = "TitanEngine/vendor/stb_image"
 
-include "TitanEngine/vendor/GLFW"
-include "TitanEngine/vendor/Glad"
-include "TitanEngine/vendor/imgui"
-
 function pch()
 	pchheader "tipch.h"
 	pchsource "TitanEngine/src/tipch.cpp"
 end
+
+group "Dependencies"
+
+include "TitanEngine/vendor/GLFW"
+include "TitanEngine/vendor/Glad"
+include "TitanEngine/vendor/imgui"
+
+group "Titan"
 
 project "Engine"
 	location "TitanEngine"
@@ -86,6 +97,73 @@ project "Engine"
 		postbuildcommands
 		{
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+		}
+
+	filter "configurations:Debug"
+		defines "TI_DEBUG"
+		buildoptions "/MDd"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "TI_RELEASE"
+		buildoptions "/MD"
+		symbols "on"
+
+	filter "configurations:Dist"
+		defines "TI_DIST"
+		buildoptions "/MD"
+		symbols "on"
+
+	filter { "system:windows", "configurations:Release" }
+		buildoptions "/MT"
+
+project "Neon-Editor"
+	location "Neon"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	debugdir ("runtime")
+
+	files
+	{
+		"%{prj.location}/src/**.h",
+		"%{prj.location}/src/**.cpp",
+		"%{prj.location}/src/**.hpp",
+		"%{prj.location}/src/**.c"
+	}
+
+	includedirs
+	{
+		"TitanEngine/vendor/spdlog/include",
+		"TitanEngine/src",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
+	}
+
+	links
+	{
+		"Engine",
+		"GLFW",
+		"Glad",
+		"ImGui",
+		"opengl32.lib"
+	}
+
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+
+		defines {
+			"TI_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"

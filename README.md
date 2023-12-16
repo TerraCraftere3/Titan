@@ -17,35 +17,77 @@ For now you need to clone the entire repo.
 
 | Number | Title                   | Status |
 | ------ | ----------------------- | ------ |
+| 0.3.x  | Developing: Editor      | Alpha  |
 | 0.2.x  | The Age of Rendering    | Alpha  |
 | 0.1.x  | Window and Event System | Alpha  |
 | 0.0.x  | The Beginning           | Alpha  |
 
+## Libraries
+
+| Number         | Title                                            | Usage             |
+| -------------- | ------------------------------------------------ | ----------------- |
+| GLFW           | https://github.com/glfw/glfw                     | Windowing         |
+| OpenGL         | https://www.opengl.org/                          | Rendering         |
+| spdlog         | https://github.com/gabime/spdlog                 | Logging           |
+| Vanadium ImGui | https://github.com/TerraCraftere3/vanadium-imgui | Debug UI          |
+| Neon           | Integrated into Titan                            | Editor            |
+| glm            | https://github.com/g-truc/glm                    | Math              |
+| Premake        | https://github.com/premake/premake-core          | Solution Creation |
+
 ## Features
 
-- [x] Math Library ([GLM](https://github.com/g-truc/glm))
+#### Event Handling
+
+- [x] Event System
+- [x] Mouse Events
+- [x] Key Events
+- [x] Window Events
+- [ ] Custom Events
+
+#### Rendering
+
 - [x] Window ([GLFW](https://github.com/glfw/glfw))
 - [x] Rendering ([OpenGL](https://www.opengl.org/) and Custom API)
-- [x] Shaders
-- [ ] Compute Shaders
-- [x] Textures
-- [x] Spritesheets
-- [ ] Editor
-- [x] Logging ([spdlog](https://github.com/gabime/spdlog) and Custom API)
 - [x] 2D
 - [ ] 3D
-- [x] UI Rendering ([Vanadium ImGui](https://github.com/TerraCraftere3/vanadium-imgui))
+- [x] Debug UI Rendering ([Vanadium ImGui](https://github.com/TerraCraftere3/vanadium-imgui))
 - [ ] PBR (Physics Based Rendering)
 - [ ] RayTracing
-- [x] Event System
+- [x] Batching
+
+#### Templates
+
+- [ ] Water, PBR and other Shader Templates
+
+#### Shader
+
+- [x] Shader
+- [ ] Compute Shader
+
+#### Textures
+
+- [x] Texture Files
+- [x] 2D Textures
+- [ ] 3D Textures
+- [x] Spritesheets
+
+#### Platforms
+
 - [x] Windows
 - [ ] Linux
 - [ ] Mac
+
+#### Developing
+
+- [x] Logging ([spdlog](https://github.com/gabime/spdlog) and Custom API)
+- [x] Editor
+- [ ] Hot Code Reloading
+
+#### Other
+
+- [x] Math Library ([GLM](https://github.com/g-truc/glm))
 - [ ] Asset library
 - [x] Asset files
-- [ ] Hot Code Reloading
-- [x] Batching
-- [ ] Shadows, Water Effects, etc.
 
 ## Build Status
 
