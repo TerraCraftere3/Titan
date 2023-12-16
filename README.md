@@ -1,4 +1,4 @@
-# Titan
+# Titan ![MSBuild](https://github.com/TerraCraftere3/Titan/actions/workflows/msbuild.yml/badge.svg)
 
 Titan is a game engine (framework) developed by me.
 The Engine supports 2D, advanced Mathematics, Windowing, Modern OpenGL and more.
@@ -46,6 +46,12 @@ For now you need to clone the entire repo.
 - [ ] Hot Code Reloading
 - [x] Batching
 - [ ] Shadows, Water Effects, etc.
+
+## Build Status
+
+| Title   | Status                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------- |
+| MSBuild | ![MSBuild](https://github.com/TerraCraftere3/Titan/actions/workflows/msbuild.yml/badge.svg) |
 
 ## [License](https://github.com/TerraCraftere3/Titan/blob/main/LICENSE)
 
