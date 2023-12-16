@@ -30,7 +30,8 @@ For now you need to clone the entire repo.
 | OpenGL         | https://www.opengl.org/                          | Rendering         |
 | spdlog         | https://github.com/gabime/spdlog                 | Logging           |
 | Vanadium ImGui | https://github.com/TerraCraftere3/vanadium-imgui | Debug UI          |
-| Neon           | Integrated into Titan                            | Editor            |
+| Neon Editor    | Integrated into Titan                            | Editor            |
+| Titan Backend  | Integrated into Titan                            | Engine            |
 | glm            | https://github.com/g-truc/glm                    | Math              |
 | Premake        | https://github.com/premake/premake-core          | Solution Creation |
 
