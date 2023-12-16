@@ -8,16 +8,29 @@ namespace Titan {
 	OpenGLFramebuffer::OpenGLFramebuffer(const FramebufferSpecification& spec)
 		: m_Specification(spec)
 	{
+		TI_PROFILE_FUNCTION();
 		Invalidate();
 	}
 
 	OpenGLFramebuffer::~OpenGLFramebuffer()
 	{
+		TI_PROFILE_FUNCTION();
 		glDeleteFramebuffers(1, &m_RendererID);
+		glDeleteTextures(1, &m_ColorAttachment);
+		glDeleteTextures(1, &m_DepthAttachment);
 	}
 
 	void OpenGLFramebuffer::Invalidate()
 	{
+		TI_PROFILE_FUNCTION();
+
+		if (m_RendererID) 
+		{
+			TI_PROFILE_SCOPE("Delete old variables in Framebuffer");
+			glDeleteFramebuffers(1, &m_RendererID);
+			glDeleteTextures(1, &m_ColorAttachment);
+			glDeleteTextures(1, &m_DepthAttachment);
+		}
 		glCreateFramebuffers(1, &m_RendererID);
 		glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
 
@@ -44,11 +57,21 @@ namespace Titan {
 	void OpenGLFramebuffer::Bind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
+		glViewport(0, 0, m_Specification.Width, m_Specification.Height);
 	}
 
 	void OpenGLFramebuffer::Unbind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	}
+
+	void OpenGLFramebuffer::Resize(uint32_t Width, uint32_t Height)
+	{
+		TI_PROFILE_FUNCTION();
+
+		m_Specification.Width = Width;
+		m_Specification.Height = Height;
+		Invalidate();
 	}
 
 }

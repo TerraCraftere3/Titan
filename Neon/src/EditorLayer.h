@@ -24,6 +24,8 @@ namespace Titan {
 		Titan::Ref<SubTexture2D> m_HeartTexture;
 		Titan::Ref<Framebuffer> m_Framebuffer;
 
+		glm::vec2 m_ViewportSize = { 0, 0 };
+
 		glm::vec4 m_SpriteSheetColor = { 1.0, 0.3, 0.3, 1.0 };
 		float m_SquareRot = 30.0f;
 	};

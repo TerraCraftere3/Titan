@@ -66,6 +66,11 @@ namespace Titan {
 		dispatcher.Dispatch<WindowResizeEvent>(TI_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
 	}
 
+	void OrthographicCameraController::OnResize(float width, float height) {
+		m_AspectRatio = width / height;
+		CalculateView();
+	}
+
 	void OrthographicCameraController::CalculateView() {
 		m_Bounds = { -m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel };
 		m_Camera.SetProjection(m_Bounds.Left, m_Bounds.Right, m_Bounds.Bottom, m_Bounds.Top);
@@ -85,8 +90,7 @@ namespace Titan {
 	{
 		TI_PROFILE_FUNCTION();
 
-		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
-		CalculateView();
+		OnResize((float)e.GetWidth(), (float)e.GetHeight());
 		return false;
 	}
 

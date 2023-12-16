@@ -117,7 +117,7 @@ project "Engine"
 	filter { "system:windows", "configurations:Release" }
 		buildoptions "/MT"
 
-project "Neon-Editor"
+project "Neon"
 	location "Neon"
 	kind "ConsoleApp"
 	language "C++"
