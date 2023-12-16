@@ -1423,6 +1423,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Renderer\SubTexture2D.h" />
+    <ClInclude Include="src\Titan\Core\Base.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">

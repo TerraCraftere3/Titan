@@ -157,6 +157,7 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Titan.h" />
     <ClInclude Include="src\Titan\Core\Application.h" />
+    <ClInclude Include="src\Titan\Core\Base.h" />
     <ClInclude Include="src\Titan\Core\Core.h" />
     <ClInclude Include="src\Titan\Core\EntryPoint.h" />
     <ClInclude Include="src\Titan\Core\Input.h" />

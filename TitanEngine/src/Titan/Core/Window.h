@@ -2,7 +2,7 @@
 
 #include "tipch.h"
 
-#include "Titan/Core/Core.h"
+#include "Titan/Core/Base.h"
 #include "Titan/Events/Event.h"
 
 namespace Titan {

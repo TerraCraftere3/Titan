@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Titan/Core/Core.h"
+#include "Titan/Core/Base.h"
 #include "Layer.h"
 
 #include <vector>
