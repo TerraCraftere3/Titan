@@ -2,8 +2,6 @@
 
 #include "Titan.h"
 
-#include "ParticleSystem.h"
-
 class Sandbox2D : public Titan::Layer
 {
 public:
@@ -24,11 +22,6 @@ private:
 	Titan::Ref<Titan::SubTexture2D> m_HeartEmptyTexture, m_HeartHalfTexture, m_HeartFullTexture;
 	Titan::Ref<Titan::SubTexture2D> m_HeartTexture;
 
-	glm::vec4 m_SquareColor = { 0.3, 0.8, 0.2, 1.0 };
 	glm::vec4 m_SpriteSheetColor = { 1.0, 0.3, 0.3, 1.0 };
 	float m_SquareRot = 30.0f;
-
-	//Particle Test
-	ParticleProps m_Particle;
-	ParticleSystem m_ParticleSystem;
 };

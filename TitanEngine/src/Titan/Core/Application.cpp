@@ -53,6 +53,13 @@ namespace Titan {
 		layer->OnAttach();
 	}
 
+	void Application::Close()
+	{
+		TI_PROFILE_FUNCTION();
+
+		m_Running = false;
+	}
+
 	void Application::OnEvent(Event& e)
 	{
 		TI_PROFILE_FUNCTION();

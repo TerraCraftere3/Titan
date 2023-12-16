@@ -11,7 +11,7 @@
 	branch = master
 [submodule "TitanEngine/vendor/imgui"]
 	path = TitanEngine/vendor/imgui
-	url = https://github.com/TheCherno/imgui
+	url = https://github.com/TerraCraftere3/vanadium-imgui
 	branch = Vanadium
 [submodule "TitanEngine/vendor/glm"]
 	path = TitanEngine/vendor/glm
