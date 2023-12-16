@@ -43,6 +43,7 @@ For now you need to clone the entire repo.
 - [ ] Asset library
 - [x] Asset files
 - [ ] Hot Code Reloading
+- [x] Batching
 
 ## [License](https://github.com/TerraCraftere3/Titan/blob/main/LICENSE)
 
