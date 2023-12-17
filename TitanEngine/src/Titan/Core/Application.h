@@ -26,6 +26,8 @@ namespace Titan {
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
+		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; };
+
 		void Close();
 
 		inline Window& GetWindow() { return *m_Window; }

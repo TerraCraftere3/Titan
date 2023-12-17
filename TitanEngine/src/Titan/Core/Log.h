@@ -22,11 +22,11 @@ namespace Titan {
 }
 
 // Core log macros
-#define TI_CORE_TRACE(...)    ::Titan::Log::GetCoreLogger()->trace(__VA_ARGS__);
-#define TI_CORE_INFO(...)     ::Titan::Log::GetCoreLogger()->info(__VA_ARGS__);
-#define TI_CORE_WARN(...)     ::Titan::Log::GetCoreLogger()->warn(__VA_ARGS__);
-#define TI_CORE_ERROR(...)    ::Titan::Log::GetCoreLogger()->error(__VA_ARGS__);
-#define TI_CORE_FATAL(...)    ::Titan::Log::GetCoreLogger()->critical(__VA_ARGS__);
+#define TI_CORE_TRACE(...)    ::Titan::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define TI_CORE_INFO(...)     ::Titan::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define TI_CORE_WARN(...)     ::Titan::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define TI_CORE_ERROR(...)    ::Titan::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define TI_CORE_FATAL(...)    ::Titan::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define TI_TRACE(...)	     ::Titan::Log::GetClientLogger()->trace(__VA_ARGS__)

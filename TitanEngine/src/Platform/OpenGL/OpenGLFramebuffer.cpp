@@ -5,6 +5,8 @@
 
 namespace Titan {
 
+	static const uint32_t s_MaxFrameBufferSize = 8192;
+
 	OpenGLFramebuffer::OpenGLFramebuffer(const FramebufferSpecification& spec)
 		: m_Specification(spec)
 	{
@@ -68,6 +70,11 @@ namespace Titan {
 	void OpenGLFramebuffer::Resize(uint32_t Width, uint32_t Height)
 	{
 		TI_PROFILE_FUNCTION();
+		
+		if (Width == 0 || Height == 0 || Width > s_MaxFrameBufferSize || Height > s_MaxFrameBufferSize) {
+			TI_CORE_ERROR("Attempted to resize framebuffer to {0}, {1}", Width, Height);
+			return;
+		}
 
 		m_Specification.Width = Width;
 		m_Specification.Height = Height;

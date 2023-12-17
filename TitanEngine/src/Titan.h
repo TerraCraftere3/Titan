@@ -9,7 +9,7 @@
 
 #include "Titan/Core/Input.h"
 #include "Titan/Core/KeyCodes.h"
-#include "Titan/Core/MouseButtonCodes.h"
+#include "Titan/Core/MouseCodes.h"
 #include "Titan/Renderer/OrthographicCameraController.h"
 
 #include "Titan/ImGui/ImGuiLayer.h"

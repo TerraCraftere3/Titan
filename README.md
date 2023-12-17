@@ -1,4 +1,6 @@
-# Titan ![MSBuild](https://github.com/TerraCraftere3/Titan/actions/workflows/msbuild.yml/badge.svg)
+## <h1 style="text-align: center;">Titan</h1>
+
+![GitHub License](https://img.shields.io/github/license/TerraCrafterE3/Titan) ![GitHub repo size](https://img.shields.io/github/repo-size/TerraCrafterE3/Titan) ![Version Badge](https://img.shields.io/badge/Version-0.3.0-red?logo=github)
 
 Titan is a game engine (framework) developed by me.
 The Engine supports 2D, advanced Mathematics, Windowing, Modern OpenGL and more.
@@ -24,16 +26,16 @@ For now you need to clone the entire repo.
 
 ## Libraries
 
-| Number         | Title                                            | Usage             |
-| -------------- | ------------------------------------------------ | ----------------- |
-| GLFW           | https://github.com/glfw/glfw                     | Windowing         |
-| OpenGL         | https://www.opengl.org/                          | Rendering         |
-| spdlog         | https://github.com/gabime/spdlog                 | Logging           |
-| Vanadium ImGui | https://github.com/TerraCraftere3/vanadium-imgui | Debug UI          |
-| Neon Editor    | Integrated into Titan                            | Editor            |
-| Titan Backend  | Integrated into Titan                            | Engine            |
-| glm            | https://github.com/g-truc/glm                    | Math              |
-| Premake        | https://github.com/premake/premake-core          | Solution Creation |
+| Number         | Title                                                            | Usage             |
+| -------------- | ---------------------------------------------------------------- | ----------------- |
+| GLFW           | https://github.com/glfw/glfw                                     | Windowing         |
+| OpenGL         | https://www.opengl.org/                                          | Rendering         |
+| spdlog         | https://github.com/gabime/spdlog                                 | Logging           |
+| Vanadium ImGui | https://github.com/TerraCraftere3/vanadium-imgui                 | Debug UI          |
+| Neon Editor    | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Editor            |
+| Titan Backend  | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Engine            |
+| glm            | https://github.com/g-truc/glm                                    | Math              |
+| Premake        | https://github.com/premake/premake-core                          | Solution Creation |
 
 ## Features
 
@@ -99,3 +101,4 @@ For now you need to clone the entire repo.
 ## [License](https://github.com/TerraCraftere3/Titan/blob/main/LICENSE)
 
 Titan Engine uses the "Apache License", Version 2.0, January 2004. Learn more on http://www.apache.org/licenses/
+{5:12}(LICENSE)

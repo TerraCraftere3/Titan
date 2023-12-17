@@ -37,6 +37,19 @@ namespace Titan {
 	{
 		TI_PROFILE_FUNCTION();
 
+		// Resize
+		if (Titan::FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
+			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
+		{
+			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+		}
+
+		if (m_ViewportFocused) {
+			m_CameraController.OnUpdate(ts);
+		}
+
 		Titan::Renderer2D::ResetStats();
 		{
 			TI_PROFILE_SCOPE("Renderer Prep");
@@ -52,7 +65,7 @@ namespace Titan {
 				TI_PROFILE_SCOPE("Spritesheet Scene");
 				Titan::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-				Titan::Renderer2D::DrawQuad({ .0f, .0f, 0.0f }, { 50.0f, 50.0f }, m_CheckerboardTexture, 25.0f);
+				Titan::Renderer2D::DrawQuad({ .0f, .0f, 0.0f }, { 25.0f, 25.0f }, m_CheckerboardTexture, 25.0f);
 				Titan::Renderer2D::DrawQuad({ .0f, .0f, 0.1f }, { 3.0f, 1.0f }, m_HeartTexture, 1.0f, m_SpriteSheetColor);
 
 				Titan::Renderer2D::EndScene();
@@ -145,14 +158,13 @@ namespace Titan {
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
 		ImGui::Begin("Viewport");
-		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize)) {
-			m_Framebuffer->Resize(viewportPanelSize.x, viewportPanelSize.y);
-			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
-			TI_WARN("Resize Viewport to {0}, {1}", m_ViewportSize.x, m_ViewportSize.y);
 
-			m_CameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
-		}
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+		Application::Get().GetImGuiLayer()->SetBlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+
+		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 		uint32_t framebufferTextureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)framebufferTextureID, viewportPanelSize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::End();
@@ -161,7 +173,9 @@ namespace Titan {
 
 	void EditorLayer::OnEvent(Titan::Event& e)
 	{
-		m_CameraController.OnEvent(e);
+		if (m_ViewportFocused) {
+			m_CameraController.OnEvent(e);
+		}
 	}
 
 }

@@ -63,23 +63,11 @@ void Sandbox2D::OnImGuiRender()
 {
     TI_PROFILE_FUNCTION();
 
-	ImGui::Begin("Settings");
-	ImGui::Text("Spritesheet");
+	ImGui::Begin("Spritesheet");
 	ImGui::ColorEdit4("Spritesheet Color", glm::value_ptr(m_SpriteSheetColor));
-
+	ImGui::Text("Texture");
 	uint32_t textureID = m_SpriteSheet.get()->GetRendererID();
 	ImGui::Image((void*)textureID, ImVec2{ 16 * 17, 16 * 8 });
-	ImGui::End();
-
-	ImGui::Begin("Stats");
-	auto stats = Titan::Renderer2D::GetStats();
-	ImGui::Text("Renderer2D Stats:");
-	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
-	ImGui::Text("Quads: %d", stats.QuadCount);
-	ImGui::Text("Triangles: %d", stats.GetTotalTriangleCount());
-	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-
 	ImGui::End();
 }
 

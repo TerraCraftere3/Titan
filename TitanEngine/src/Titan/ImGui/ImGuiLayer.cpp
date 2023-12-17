@@ -57,6 +57,15 @@ namespace Titan {
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
 
+	void ImGuiLayer::OnEvent(Event& e) {
+		if (m_BlockEvents) 
+		{
+			ImGuiIO& io = ImGui::GetIO();
+			e.Handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+			e.Handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+		}
+	}
+
 	void ImGuiLayer::OnDetach()
 	{
 		TI_PROFILE_FUNCTION();
