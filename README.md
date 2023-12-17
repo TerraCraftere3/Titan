@@ -1,4 +1,4 @@
-## <h1 style="text-align: center;">Titan</h1>
+# Titan
 
 ![GitHub License](https://img.shields.io/github/license/TerraCrafterE3/Titan) ![GitHub repo size](https://img.shields.io/github/repo-size/TerraCrafterE3/Titan) ![Version Badge](https://img.shields.io/badge/Version-0.3.0-red?logo=github)
 
@@ -26,16 +26,17 @@ For now you need to clone the entire repo.
 
 ## Libraries
 
-| Number         | Title                                                            | Usage             |
-| -------------- | ---------------------------------------------------------------- | ----------------- |
-| GLFW           | https://github.com/glfw/glfw                                     | Windowing         |
-| OpenGL         | https://www.opengl.org/                                          | Rendering         |
-| spdlog         | https://github.com/gabime/spdlog                                 | Logging           |
-| Vanadium ImGui | https://github.com/TerraCraftere3/vanadium-imgui                 | Debug UI          |
-| Neon Editor    | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Editor            |
-| Titan Backend  | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Engine            |
-| glm            | https://github.com/g-truc/glm                                    | Math              |
-| Premake        | https://github.com/premake/premake-core                          | Solution Creation |
+| Number         | Title                                                            | Usage                   |
+| -------------- | ---------------------------------------------------------------- | ----------------------- |
+| GLFW           | https://github.com/glfw/glfw                                     | Windowing               |
+| OpenGL         | https://www.opengl.org/                                          | Rendering               |
+| spdlog         | https://github.com/gabime/spdlog                                 | Logging                 |
+| Vanadium ImGui | https://github.com/TerraCraftere3/vanadium-imgui                 | Debug UI                |
+| Neon Editor    | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Editor                  |
+| Titan Backend  | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Engine                  |
+| glm            | https://github.com/g-truc/glm                                    | Math                    |
+| Premake        | https://github.com/premake/premake-core                          | Solution Creation       |
+| Entt           | https://github.com/skypjack/entt                                 | Entity Component System |
 
 ## Features
 

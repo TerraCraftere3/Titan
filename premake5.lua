@@ -21,6 +21,7 @@ IncludeDir["Glad"] = "TitanEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "TitanEngine/vendor/imgui"
 IncludeDir["glm"] = "TitanEngine/vendor/glm"
 IncludeDir["stb_image"] = "TitanEngine/vendor/stb_image"
+IncludeDir["entt"] = "TitanEngine/vendor/entt/include"
 
 function pch()
 	pchheader "tipch.h"
@@ -71,7 +72,8 @@ project "Engine"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -145,7 +147,8 @@ project "Neon"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -212,7 +215,8 @@ project "Sandbox"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
