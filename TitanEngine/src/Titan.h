@@ -13,6 +13,10 @@
 #include "Titan/Renderer/OrthographicCameraController.h"
 
 #include "Titan/ImGui/ImGuiLayer.h"
+
+#include "Titan/Scene/Scene.h"
+#include "Titan/Scene/Entity.h"
+#include "Titan/Scene/Components.h"
 // ---------------- Renderer -----------------
 #include "Titan/Renderer/RenderCommand.h"
 #include "Titan/Renderer/Renderer.h"

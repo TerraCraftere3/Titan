@@ -13,21 +13,18 @@ namespace Titan {
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
 
-		void OnUpdate(Titan::Timestep ts) override;
+		void OnUpdate(Timestep ts) override;
 		virtual void OnImGuiRender() override;
-		void OnEvent(Titan::Event& e) override;
+		void OnEvent(Event& e) override;
 	private:
-		Titan::OrthographicCameraController m_CameraController;
+		OrthographicCameraController m_CameraController;
+		Ref<Framebuffer> m_Framebuffer;
 
-		Titan::Ref<Texture2D> m_CheckerboardTexture;
-		Titan::Ref<Texture2D> m_SpriteSheet;
-		Titan::Ref<SubTexture2D> m_HeartTexture;
-		Titan::Ref<Framebuffer> m_Framebuffer;
+		Ref<Scene> m_ActiveScene;
+		Entity m_SquareEntity;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0, 0 };
-
-		glm::vec4 m_SpriteSheetColor = { 1.0, 0.3, 0.3, 1.0 };
 		float m_SquareRot = 30.0f;
 	};
 

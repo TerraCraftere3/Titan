@@ -1435,6 +1435,8 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Titan\Scene\Scene.h" />
+    <ClInclude Include="src\Titan\Scene\Components.h" />
+    <ClInclude Include="src\Titan\Scene\Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1522,5 +1524,6 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Titan\Scene\Scene.cpp" />
+    <ClCompile Include="src\Titan\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>

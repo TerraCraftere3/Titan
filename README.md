@@ -1,6 +1,6 @@
 # Titan
 
-![GitHub License](https://img.shields.io/github/license/TerraCrafterE3/Titan) ![GitHub repo size](https://img.shields.io/github/repo-size/TerraCrafterE3/Titan) ![Version Badge](https://img.shields.io/badge/Version-0.3.0-red?logo=github)
+![GitHub License](https://img.shields.io/github/license/TerraCrafterE3/Titan) ![GitHub repo size](https://img.shields.io/github/repo-size/TerraCrafterE3/Titan) ![Version Badge](https://img.shields.io/badge/Version-0.3.0-red?logo=github) ![MSBuild](https://github.com/TerraCraftere3/Titan/actions/workflows/msbuild.yml/badge.svg)
 
 Titan is a game engine (framework) developed by me.
 The Engine supports 2D, advanced Mathematics, Windowing, Modern OpenGL and more.
@@ -24,19 +24,11 @@ For now you need to clone the entire repo.
 | 0.1.x  | Window and Event System | Alpha  |
 | 0.0.x  | The Beginning           | Alpha  |
 
-## Libraries
+## Build Status
 
-| Number         | Title                                                            | Usage                   |
-| -------------- | ---------------------------------------------------------------- | ----------------------- |
-| GLFW           | https://github.com/glfw/glfw                                     | Windowing               |
-| OpenGL         | https://www.opengl.org/                                          | Rendering               |
-| spdlog         | https://github.com/gabime/spdlog                                 | Logging                 |
-| Vanadium ImGui | https://github.com/TerraCraftere3/vanadium-imgui                 | Debug UI                |
-| Neon Editor    | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Editor                  |
-| Titan Backend  | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Engine                  |
-| glm            | https://github.com/g-truc/glm                                    | Math                    |
-| Premake        | https://github.com/premake/premake-core                          | Solution Creation       |
-| Entt           | https://github.com/skypjack/entt                                 | Entity Component System |
+| Title   | Status                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------- |
+| MSBuild | ![MSBuild](https://github.com/TerraCraftere3/Titan/actions/workflows/msbuild.yml/badge.svg) |
 
 ## Features
 
@@ -93,13 +85,21 @@ For now you need to clone the entire repo.
 - [ ] Asset library
 - [x] Asset files
 
-## Build Status
+## Libraries
 
-| Title   | Status                                                                                      |
-| ------- | ------------------------------------------------------------------------------------------- |
-| MSBuild | ![MSBuild](https://github.com/TerraCraftere3/Titan/actions/workflows/msbuild.yml/badge.svg) |
+| Number         | Title                                                            | Usage                   |
+| -------------- | ---------------------------------------------------------------- | ----------------------- |
+| GLFW           | https://github.com/glfw/glfw                                     | Windowing               |
+| OpenGL         | https://www.opengl.org/                                          | Rendering               |
+| spdlog         | https://github.com/gabime/spdlog                                 | Logging                 |
+| Vanadium ImGui | https://github.com/TerraCraftere3/vanadium-imgui                 | Debug UI                |
+| Neon Editor    | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Editor                  |
+| Titan Backend  | [Integrated into Titan](https://github.com/TerraCraftere3/Titan) | Engine                  |
+| glm            | https://github.com/g-truc/glm                                    | Math                    |
+| Premake        | https://github.com/premake/premake-core                          | Solution Creation       |
+| Entt           | https://github.com/skypjack/entt                                 | Entity Component System |
 
 ## [License](https://github.com/TerraCraftere3/Titan/blob/main/LICENSE)
 
 Titan Engine uses the "Apache License", Version 2.0, January 2004. Learn more on http://www.apache.org/licenses/
-{5:12}(LICENSE)
+All other Licenses for libraries, etc. can be found under `./LICENSES/`

@@ -17,28 +17,33 @@ namespace Titan {
 
 	void EditorLayer::OnAttach()
 	{
-		m_SpriteSheet = Titan::Texture2D::Create("assets/game/textures/tilemap.png");
-		m_CheckerboardTexture = Titan::Texture2D::Create("assets/engine/textures/transparent.png");
-		m_HeartTexture = Titan::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 8,0 }, { 16, 16 }, { 3, 1 });
+		TI_PROFILE_FUNCTION();
 
-		m_CameraController.SetZoomLevel(5);
-
-		Titan::FramebufferSpecification fbSpec;
+		FramebufferSpecification fbSpec;
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
-		m_Framebuffer = Titan::Framebuffer::Create(fbSpec);
+		m_Framebuffer = Framebuffer::Create(fbSpec);
+
+		m_ActiveScene = CreateRef<Scene>();
+
+		//Entity
+		Entity square = m_ActiveScene->CreateEntity();
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.3f, 1.0f, 0.2f, 1.0f });
+		
+		m_SquareEntity = square;
 	}
 
 	void EditorLayer::OnDetach()
 	{
+		TI_PROFILE_FUNCTION();
 	}
 
-	void EditorLayer::OnUpdate(Titan::Timestep ts)
+	void EditorLayer::OnUpdate(Timestep ts)
 	{
 		TI_PROFILE_FUNCTION();
 
 		// Resize
-		if (Titan::FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
 			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
 			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
 		{
@@ -50,35 +55,29 @@ namespace Titan {
 			m_CameraController.OnUpdate(ts);
 		}
 
-		Titan::Renderer2D::ResetStats();
+		Renderer2D::ResetStats();
 		{
 			TI_PROFILE_SCOPE("Renderer Prep");
 			m_Framebuffer->Bind();
-			Titan::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
-			Titan::RenderCommand::Clear();
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+			RenderCommand::Clear();
 		}
 
-		{
-			TI_PROFILE_SCOPE("Renderer Draw");
 
-			{
-				TI_PROFILE_SCOPE("Spritesheet Scene");
-				Titan::Renderer2D::BeginScene(m_CameraController.GetCamera());
+		Renderer2D::BeginScene(m_CameraController.GetCamera());
+		
+		m_ActiveScene->OnUpdate(ts);
 
-				Titan::Renderer2D::DrawQuad({ .0f, .0f, 0.0f }, { 25.0f, 25.0f }, m_CheckerboardTexture, 25.0f);
-				Titan::Renderer2D::DrawQuad({ .0f, .0f, 0.1f }, { 3.0f, 1.0f }, m_HeartTexture, 1.0f, m_SpriteSheetColor);
+		Renderer2D::EndScene();
 
-				Titan::Renderer2D::EndScene();
-			}
-
-			m_Framebuffer->Unbind();
-		}
+		m_Framebuffer->Unbind();
 
 	}
 
 	void EditorLayer::OnImGuiRender()
 	{
 		TI_PROFILE_FUNCTION();
+
 		static bool dockspaceOpen = true;
 		static bool opt_fullscreen_persistant = true;
 		bool opt_fullscreen = opt_fullscreen_persistant;
@@ -131,7 +130,7 @@ namespace Titan {
 				// which we can't undo at the moment without finer window depth/z control.
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
 
-				if (ImGui::MenuItem("Exit")) Titan::Application::Get().Close();
+				if (ImGui::MenuItem("Exit")) Application::Get().Close();
 				ImGui::EndMenu();
 			}
 
@@ -141,12 +140,15 @@ namespace Titan {
 		ImGui::End();
 
 		ImGui::Begin("Settings");
-		ImGui::Text("Spritesheet");
-		ImGui::ColorEdit4("Spritesheet Color", glm::value_ptr(m_SpriteSheetColor));
+		if (m_SquareEntity)
+		{
+			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+		}
 		ImGui::End();
 
 		ImGui::Begin("Stats");
-		auto stats = Titan::Renderer2D::GetStats();
+		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Stats:");
 		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 		ImGui::Text("Quads: %d", stats.QuadCount);
@@ -171,7 +173,7 @@ namespace Titan {
 		ImGui::PopStyleVar();
 	}
 
-	void EditorLayer::OnEvent(Titan::Event& e)
+	void EditorLayer::OnEvent(Event& e)
 	{
 		if (m_ViewportFocused) {
 			m_CameraController.OnEvent(e);
