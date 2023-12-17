@@ -1,7 +1,7 @@
 # Binaries
-**/bin/
+**bin**
 !vendor/bin/premake/
-bin-int/
+**bin-int**
 **/Profile/*.json
 
 # Visual Studio files and folder
