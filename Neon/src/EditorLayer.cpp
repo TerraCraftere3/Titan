@@ -27,10 +27,15 @@ namespace Titan {
 		m_ActiveScene = CreateRef<Scene>();
 
 		//Entity
-		Entity square = m_ActiveScene->CreateEntity();
-		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.3f, 1.0f, 0.2f, 1.0f });
-		
-		m_SquareEntity = square;
+		m_SquareEntity = m_ActiveScene->CreateEntity("Square (Color)");
+		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.3f, 1.0f, 0.2f, 1.0f });
+
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera");
+		m_CameraEntity.AddComponent<CameraComponent>();
+
+		m_SecondCameraEntity = m_ActiveScene->CreateEntity("Camera Second");
+		auto& cc = m_SecondCameraEntity.AddComponent<CameraComponent>();
+		cc.Primary = false;
 	}
 
 	void EditorLayer::OnDetach()
@@ -49,6 +54,8 @@ namespace Titan {
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
 		if (m_ViewportFocused) {
@@ -62,13 +69,8 @@ namespace Titan {
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 			RenderCommand::Clear();
 		}
-
-
-		Renderer2D::BeginScene(m_CameraController.GetCamera());
 		
 		m_ActiveScene->OnUpdate(ts);
-
-		Renderer2D::EndScene();
 
 		m_Framebuffer->Unbind();
 
@@ -144,6 +146,14 @@ namespace Titan {
 		{
 			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
 			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+		}
+
+		ImGui::DragFloat3("Camera Transform", 
+			glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+		if (ImGui::Checkbox("Camera Primary", &m_PrimaryCamera))
+		{
+			m_SecondCameraEntity.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
+			m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
 		}
 		ImGui::End();
 

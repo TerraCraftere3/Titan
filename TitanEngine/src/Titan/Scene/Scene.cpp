@@ -6,17 +6,13 @@
 #include <glm/glm.hpp>
 
 #include <Titan/Renderer/Renderer2D.h>
+#include <Titan/Renderer/RenderCommand.h>
 
 #include "Entity.h"
 
 namespace Titan {
 
 	Scene::Scene()
-	{
-		TI_PROFILE_FUNCTION();
-	}
-
-	Scene::~Scene()
 	{
 		TI_PROFILE_FUNCTION();
 	}
@@ -34,11 +30,53 @@ namespace Titan {
 
 	void Scene::OnUpdate(Timestep ts)
 	{
-		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto entity : group) {
-			auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-			
-			Renderer2D::DrawQuad(transform, sprite);
+		// Render sprites
+		Camera* mainCamera = nullptr;
+		glm::mat4* cameraTransform = nullptr;
+		auto view = m_Registry.view<TransformComponent, CameraComponent>();
+		for (auto entity : view)
+		{
+			auto& [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
+
+			if (camera.Primary)
+			{
+				mainCamera = &camera.Camera;
+				cameraTransform = &transform.Transform;
+				break;
+			}
+		}
+
+		if (mainCamera)
+		{
+			Renderer2D::BeginScene(mainCamera->GetProjection(), *cameraTransform);
+
+			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+			for (auto entity : group) {
+				auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+
+				Renderer2D::DrawQuad(transform, sprite);
+			}
+
+			Renderer2D::EndScene();
+		}
+		else
+		{
+			RenderCommand::SetClearColor({ 0.8f, 0.2f, 0.8f, 1.0f });
+			RenderCommand::Clear();
+		}
+	}
+
+	void Scene::OnViewportResize(uint32_t width, uint32_t height)
+	{
+		m_ViewportWidth = width;
+		m_ViewportHeight = height;
+
+		auto view = m_Registry.view<CameraComponent>();
+		for (auto entity : view)
+		{
+			auto& cameraComponent = view.get<CameraComponent>(entity);
+			if (!cameraComponent.FixedAspectRation)
+				cameraComponent.Camera.SetViewportSize(width, height);
 		}
 	}
 

@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include "SceneCamera.h"
+
 namespace Titan {
 	//component name should be: [NAME]Component
 
@@ -44,4 +46,13 @@ namespace Titan {
 		operator const glm::vec4& () const { return Color; };
 	};
 
+	struct CameraComponent
+	{
+		SceneCamera Camera;
+		bool Primary = true; //TODO: think about moving to scene
+		bool FixedAspectRation = false; //if true it doesnt resize on window resize.
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+	};
 }

@@ -43,9 +43,9 @@ namespace Titan {
 			return m_Scene->m_Registry.remove<T>(m_EntityHandle);
 		}
 
-		operator bool() const { return (uint32_t)m_EntityHandle != 0; };
+		operator bool() const { return m_EntityHandle != entt::null; };
 	private:
-		entt::entity m_EntityHandle{ 0 }; // 4 Bytes
+		entt::entity m_EntityHandle{ entt::null }; // 4 Bytes
 		Scene* m_Scene = nullptr; // 12 Bytes
 	};
 

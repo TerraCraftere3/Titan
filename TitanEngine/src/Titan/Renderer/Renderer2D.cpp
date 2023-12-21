@@ -121,6 +121,21 @@ namespace Titan
 		s_Data.TextureSlotIndex = 1;
 	}
 
+	void Renderer2D::BeginScene(const Camera& camera, const glm::mat4& transform)
+	{
+		TI_PROFILE_FUNCTION();
+
+		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		s_Data.QuadIndexCount = 0;
+		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
+
+		s_Data.TextureSlotIndex = 1;
+	}
+
 	void Renderer2D::EndScene()
 	{
 		TI_PROFILE_FUNCTION();
@@ -181,7 +196,7 @@ namespace Titan
 		DrawQuad(transform, texture, tilingFactor, tintColor);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor)
+	/*void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor)
 	{
 		DrawQuad({ position.x, position.y, 0.0f }, size, subtexture, tilingFactor, tintColor);
 	}
@@ -230,7 +245,7 @@ namespace Titan
 		s_Data.QuadIndexCount += 6;
 
 		s_Data.Stats.QuadCount++;
-	}
+	}*/
 
 	void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color)
 	{
@@ -333,7 +348,7 @@ namespace Titan
 		DrawQuad(transform, texture, tilingFactor, tintColor);
 	}
 
-	void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor)
+	/*void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor)
 	{
 		DrawRotatedQuad({ position.x, position.y, 0.0f }, size, rotation, subtexture, tilingFactor, tintColor);
 	}
@@ -383,7 +398,7 @@ namespace Titan
 		s_Data.QuadIndexCount += 6;
 
 		s_Data.Stats.QuadCount++;
-	}
+	}*/
 
 	void Renderer2D::ResetStats()
 	{

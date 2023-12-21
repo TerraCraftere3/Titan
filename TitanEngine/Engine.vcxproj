@@ -164,6 +164,7 @@
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Titan.h" />
+    <ClInclude Include="src\Titan\Renderer\Camera.h" />
     <ClInclude Include="src\Titan\Core\Application.h" />
     <ClInclude Include="src\Titan\Core\Base.h" />
     <ClInclude Include="src\Titan\Core\EntryPoint.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="src\Titan\Scene\Components.h" />
     <ClInclude Include="src\Titan\Scene\Entity.h" />
     <ClInclude Include="src\Titan\Scene\Scene.h" />
+    <ClInclude Include="src\Titan\Scene\SceneCamera.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -648,6 +650,7 @@
     </ClCompile>
     <ClCompile Include="src\Titan\Scene\Entity.cpp" />
     <ClCompile Include="src\Titan\Scene\Scene.cpp" />
+    <ClCompile Include="src\Titan\Scene\SceneCamera.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
