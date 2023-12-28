@@ -9,7 +9,6 @@
 [submodule "TitanEngine/vendor/imgui"]
 	path = TitanEngine/vendor/imgui
 	url = https://github.com/TerraCraftere3/vanadium-imgui
-	branch = master
 	ignore = dirty
 [submodule "TitanEngine/vendor/glm"]
 	path = TitanEngine/vendor/glm
