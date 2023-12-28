@@ -13,6 +13,7 @@
 
 void ImGuiStyles()
 {
+	ImGuiIO* io = &ImGui::GetIO();
 	ImGuiStyle* style = &ImGui::GetStyle();
 
 	style->WindowPadding = ImVec2(15, 15);
@@ -29,17 +30,17 @@ void ImGuiStyles()
 
 	style->Colors[ImGuiCol_Text] = ImVec4(0.80f, 0.80f, 0.83f, 1.00f);
 	style->Colors[ImGuiCol_TextDisabled] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
-	style->Colors[ImGuiCol_WindowBg] = ImVec4(0.06f, 0.05f, 0.07f, 1.00f);
-	//style->Colors[ImGuiCol_ChildWindowBg] = ImVec4(0.07f, 0.07f, 0.09f, 1.00f);
+	style->Colors[ImGuiCol_WindowBg] = ImVec4(0.06f, 0.05f, 0.07f, 0.75f);
+	style->Colors[ImGuiCol_ChildBg] = style->Colors[ImGuiCol_WindowBg];
+	style->Colors[ImGuiCol_TitleBg] = style->Colors[ImGuiCol_WindowBg];
 	style->Colors[ImGuiCol_PopupBg] = ImVec4(0.07f, 0.07f, 0.09f, 1.00f);
 	style->Colors[ImGuiCol_Border] = ImVec4(0.80f, 0.80f, 0.83f, 0.88f);
 	style->Colors[ImGuiCol_BorderShadow] = ImVec4(0.92f, 0.91f, 0.88f, 0.00f);
-	style->Colors[ImGuiCol_FrameBg] = ImVec4(0.103f, 0.103f, 0.103f, 1.00f);
-	style->Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
-	style->Colors[ImGuiCol_FrameBgActive] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
-	style->Colors[ImGuiCol_TitleBg] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
 	style->Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(1.00f, 0.98f, 0.95f, 0.75f);
 	style->Colors[ImGuiCol_TitleBgActive] = style->Colors[ImGuiCol_TitleBg];
+	style->Colors[ImGuiCol_FrameBg] = ImVec4(0.103f, 0.103f, 0.103f, 1.0f);
+	style->Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
+	style->Colors[ImGuiCol_FrameBgActive] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
 	style->Colors[ImGuiCol_MenuBarBg] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
 	style->Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
 	style->Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.80f, 0.80f, 0.83f, 0.31f);
@@ -77,6 +78,9 @@ void ImGuiStyles()
 	style->Colors[ImGuiCol_TabUnfocused] = style->Colors[ImGuiCol_Tab];
 
 	style->Colors[ImGuiCol_FrameBg] = style->Colors[ImGuiCol_Tab];
+	style->WindowRounding = 10;
+
+	//io->ConfigFlags | ImGuiWindowFlags_NoBackground;
 }
 
 namespace Titan {

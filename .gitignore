@@ -10,7 +10,7 @@
 .TitanEngine/vendor/**.*vcxproj*
 
 # Dev and Todo Files
-dev-*.*
-todo-*.*
+dev-*
+todo-*
 
 .gitmodules

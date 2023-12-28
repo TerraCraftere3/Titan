@@ -15,14 +15,6 @@ For now you need to clone the entire repo.
 - Open `TitanEngine.sln`
 - Run the Project
 
-## Support Me
-
-<ul style="list-style-type: none; margin: 0;">
-
-<li style="display: inline-block; margin-right: 0.25rem;"><a href="https://www.buymeacoffee.com/TerraCrafterE3"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="150"/></a></li>
-
-</ul>
-
 ## Releases
 
 | Number | Title                   | Status |
@@ -92,6 +84,14 @@ For now you need to clone the entire repo.
 - [x] Math Library ([GLM](https://github.com/g-truc/glm))
 - [ ] Asset library
 - [x] Asset files
+
+## Support Me
+
+<a href="https://www.buymeacoffee.com/TerraCrafterE3"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="150"/></a>
+
+## Discord
+
+<iframe src="https://discord.com/widget?id=1189152743995211857&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 
 ## Libraries
 

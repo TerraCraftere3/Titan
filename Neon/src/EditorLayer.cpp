@@ -181,6 +181,8 @@ namespace Titan {
 		ImGui::Image((void*)framebufferTextureID, viewportPanelSize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::End();
 		ImGui::PopStyleVar();
+
+		ImGui::ShowDemoWindow();
 	}
 
 	void EditorLayer::OnEvent(Event& e)

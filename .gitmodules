@@ -2,9 +2,6 @@
 	path = TitanEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
 	branch = v1.x
-[submodule "Engine/vendor/GLFW"]
-	path = Engine/vendor/GLFW
-	url = https://github.com/TheCherno/glfw
 [submodule "TitanEngine/vendor/GLFW"]
 	path = TitanEngine/vendor/GLFW
 	url = https://github.com/TheCherno/glfw

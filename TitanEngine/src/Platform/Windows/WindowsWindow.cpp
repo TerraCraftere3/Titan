@@ -58,6 +58,9 @@ namespace Titan {
 		{
 
 			TI_PROFILE_SCOPE("glfwCreateWindow");
+			glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
+			//glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); //Disables window titlebar
+
 			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		}
 
