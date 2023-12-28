@@ -30,7 +30,7 @@ namespace Titan {
 		m_SquareEntity = m_ActiveScene->CreateEntity("Square (Color)");
 		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.3f, 1.0f, 0.2f, 1.0f });
 
-		m_CameraEntity = m_ActiveScene->CreateEntity("Camera");
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera First");
 		m_CameraEntity.AddComponent<CameraComponent>();
 
 		m_SecondCameraEntity = m_ActiveScene->CreateEntity("Camera Second");
@@ -70,6 +70,8 @@ namespace Titan {
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		m_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		
+		m_HierachyPanel.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach()
@@ -175,6 +177,8 @@ namespace Titan {
 
 		ImGui::End();
 
+		m_HierachyPanel.OnImGuiRender();
+
 		ImGui::Begin("Settings");
 		if (m_SquareEntity)
 		{
@@ -215,8 +219,6 @@ namespace Titan {
 		ImGui::Image((void*)framebufferTextureID, viewportPanelSize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::End();
 		ImGui::PopStyleVar();
-
-		ImGui::ShowDemoWindow();
 	}
 
 	void EditorLayer::OnEvent(Event& e)

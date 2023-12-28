@@ -54,18 +54,23 @@ For now you need to clone the entire repo.
 #### Templates
 
 - [ ] Water, PBR and other Shader Templates
+- [ ] Texture Templates
 
 #### Shader
 
 - [x] Shader
 - [ ] Compute Shader
 
-#### Textures
+#### Filetypes
 
 - [x] Texture Files
 - [x] 2D Textures
 - [ ] 3D Textures
-- [x] Spritesheets
+- [ ] Spritesheets
+- [ ] 3D Models
+- [x] Shader Files
+- [ ] Custom Filetypes
+- [ ] Scene File
 
 #### Platforms
 
