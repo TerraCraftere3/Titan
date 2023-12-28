@@ -36,6 +36,40 @@ namespace Titan {
 		m_SecondCameraEntity = m_ActiveScene->CreateEntity("Camera Second");
 		auto& cc = m_SecondCameraEntity.AddComponent<CameraComponent>();
 		cc.Primary = false;
+
+		class CameraController : public ScriptableEntity
+		{
+		public:
+			void OnCreate()
+			{
+				auto& transform = GetComponent<TransformComponent>().Transform;
+				transform[3][0] = rand() % 10 - 5.0f;
+				transform[3][1] = rand() % 10 - 5.0f;
+			}
+
+			void OnDestroy()
+			{
+			}
+
+			void OnUpdate(Timestep ts)
+			{
+				auto& transform = GetComponent<TransformComponent>().Transform;
+
+				float speed = 5.0f;
+
+				if (Input::IsKeyPressed(KeyCode::A))
+					transform[3][0] -= speed * ts;
+				if (Input::IsKeyPressed(KeyCode::D))
+					transform[3][0] += speed * ts;
+				if (Input::IsKeyPressed(KeyCode::W))
+					transform[3][1] += speed * ts;
+				if (Input::IsKeyPressed(KeyCode::S))
+					transform[3][1] -= speed * ts;
+			}
+		};
+
+		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		m_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 	}
 
 	void EditorLayer::OnDetach()

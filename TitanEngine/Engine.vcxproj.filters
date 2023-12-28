@@ -1439,6 +1439,7 @@
     <ClInclude Include="src\Titan\Scene\Entity.h" />
     <ClInclude Include="src\Titan\Renderer\Camera.h" />
     <ClInclude Include="src\Titan\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Titan\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">

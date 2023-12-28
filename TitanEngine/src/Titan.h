@@ -16,6 +16,7 @@
 
 #include "Titan/Scene/Scene.h"
 #include "Titan/Scene/Entity.h"
+#include "Titan/Scene/ScriptableEntity.h"
 #include "Titan/Scene/Components.h"
 // ---------------- Renderer -----------------
 #include "Titan/Renderer/RenderCommand.h"

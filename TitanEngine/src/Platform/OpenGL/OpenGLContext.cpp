@@ -5,8 +5,6 @@
 #include <glad/glad.h>
 #include <GL/GL.h>
 
-#define IMGUI_ENABLE_TEST_ENGINE
-
 namespace Titan {
 
 	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle)

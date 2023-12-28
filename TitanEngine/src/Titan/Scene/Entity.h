@@ -48,5 +48,4 @@ namespace Titan {
 		entt::entity m_EntityHandle{ entt::null }; // 4 Bytes
 		Scene* m_Scene = nullptr; // 12 Bytes
 	};
-
 }
