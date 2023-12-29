@@ -77,7 +77,7 @@ namespace Titan {
 		}
 		else
 		{
-			RenderCommand::SetClearColor({ 0.8f, 0.2f, 0.8f, 1.0f });
+			RenderCommand::SetClearColor({ 0, 0, 0, 1.0f });
 			RenderCommand::Clear();
 		}
 	}

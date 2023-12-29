@@ -13,16 +13,20 @@ namespace Titan {
 
 	SceneHierachyPanel::SceneHierachyPanel(const Ref<Scene>& scene)
 	{
+		TI_PROFILE_FUNCTION();
 		SetContext(scene);
 	}
 
 	void SceneHierachyPanel::SetContext(const Ref<Scene>& scene)
 	{
+		TI_PROFILE_FUNCTION();
 		m_Context = scene;
 	}
 
 	void SceneHierachyPanel::OnImGuiRender()
 	{
+		TI_PROFILE_FUNCTION();
+
 		ImGui::Begin("Scene Hierachy");
 
 		m_Context->m_Registry.each([&](auto entityID)
@@ -46,6 +50,8 @@ namespace Titan {
 
 	void SceneHierachyPanel::DrawEntityNode(Entity entity)
 	{
+		TI_PROFILE_FUNCTION();
+
 		auto& tag = entity.GetComponent<TagComponent>().Tag;
 		
 		ImGuiTreeNodeFlags flags = ((m_SelectionContext == entity) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
@@ -64,6 +70,8 @@ namespace Titan {
 
 	void SceneHierachyPanel::DrawComponents(Entity entity)
 	{
+		TI_PROFILE_FUNCTION();
+
 		if (entity.HasComponent<TagComponent>())
 		{
 			auto& tag = entity.GetComponent<TagComponent>().Tag;
@@ -82,11 +90,75 @@ namespace Titan {
 			if (ImGui::TreeNodeEx((void*)typeid(TransformComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Transform"))
 			{
 				auto& transform = entity.GetComponent<TransformComponent>().Transform;
-
 				ImGui::DragFloat3("Position", glm::value_ptr(transform[3]), 0.25f);
 
 				ImGui::TreePop();
 			}		
+		}
+
+		if (entity.HasComponent<CameraComponent>())
+		{
+			if (ImGui::TreeNodeEx((void*)typeid(CameraComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Transform"))
+			{
+				auto& cc = entity.GetComponent<CameraComponent>();
+				auto& camera = cc.Camera;
+
+				ImGui::Checkbox("Primary", &cc.Primary);
+				//ImGui::Checkbox("Fixed Aspect Ratio", &cc.FixedAspectRation);
+
+				const char* projectionTypeStrings[] = { "Perspective", "Orthographic" };
+				const char* currentProjectionTypeString = projectionTypeStrings[(int)camera.GetProjectionType()];
+
+				if (ImGui::BeginCombo("Projection", currentProjectionTypeString))
+				{
+					for (int i = 0; i < 2; i++)
+					{
+						bool isSelected = currentProjectionTypeString == projectionTypeStrings[i];
+						if (ImGui::Selectable(projectionTypeStrings[i], isSelected))
+						{
+							currentProjectionTypeString = projectionTypeStrings[i];
+							camera.SetProjectionType((SceneCamera::ProjectionType)i);
+						}
+
+						if (isSelected)
+							ImGui::SetItemDefaultFocus();
+					}
+
+					ImGui::EndCombo();
+				}
+
+				if (cc.Camera.GetProjectionType() == SceneCamera::ProjectionType::Perspective)
+				{
+					float verticalFOV = glm::degrees(camera.GetPerspectiveFOV());
+					if (ImGui::DragFloat("Vertical Fov", &verticalFOV))
+						camera.SetOrthographicSize(glm::radians(verticalFOV));
+					
+					float perspectiveNearClip = camera.GetPerspectiveNearClip();
+					if (ImGui::DragFloat("Near Clip", &perspectiveNearClip))
+						camera.SetPerspectiveNearClip(perspectiveNearClip);
+
+					float perspectiveFarClip = camera.GetPerspectiveFarClip();
+					if (ImGui::DragFloat("Far Clip", &perspectiveFarClip))
+						camera.SetPerspectiveFarClip(perspectiveFarClip);
+				}
+				else if (cc.Camera.GetProjectionType() == SceneCamera::ProjectionType::Orthographic)
+				{
+					float orthoSize = camera.GetOrthographicSize();
+					if (ImGui::DragFloat("Size", &orthoSize))
+						camera.SetOrthographicSize(orthoSize);
+
+					float orthoNearClip = camera.GetOrthographicNearClip();
+					if (ImGui::DragFloat("Near Clip", &orthoNearClip))
+						camera.SetOrthographicNearClip(orthoNearClip);
+
+					float orthoFarClip = camera.GetOrthographicFarClip();
+					if (ImGui::DragFloat("Far Clip", &orthoFarClip))
+						camera.SetOrthographicFarClip(orthoFarClip);
+				}
+
+
+				ImGui::TreePop();
+			}
 		}
 	}
 

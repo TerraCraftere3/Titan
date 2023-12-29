@@ -27,8 +27,17 @@ namespace Titan {
 		m_ActiveScene = CreateRef<Scene>();
 
 		//Entity
-		m_SquareEntity = m_ActiveScene->CreateEntity("Square (Color)");
-		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.3f, 1.0f, 0.2f, 1.0f });
+		auto squareGreen = m_ActiveScene->CreateEntity("Square (Green)");
+		squareGreen.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.3f, 1.0f, 0.2f, 1.0f });
+		squareGreen.GetComponent<TransformComponent>().Transform[3][0] = -2.5f;
+
+		auto squareRed = m_ActiveScene->CreateEntity("Square (Red)");
+		squareRed.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.3f, 0.2f, 1.0f });
+		squareRed.GetComponent<TransformComponent>().Transform[3][0] =  0.0f;
+
+		auto squareBlue = m_ActiveScene->CreateEntity("Square (Blue)");
+		squareBlue.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.3f, 1.0f, 1.0f });
+		squareBlue.GetComponent<TransformComponent>().Transform[3][0] =  2.5f;
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera First");
 		m_CameraEntity.AddComponent<CameraComponent>();
@@ -181,6 +190,7 @@ namespace Titan {
 
 		m_HierachyPanel.OnImGuiRender();
 
+		/*
 		ImGui::Begin("Settings");
 		if (m_SquareEntity)
 		{
@@ -196,6 +206,7 @@ namespace Titan {
 			m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
 		}
 		ImGui::End();
+		*/
 
 		ImGui::Begin("Stats");
 		auto stats = Renderer2D::GetStats();
