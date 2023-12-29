@@ -1,6 +1,6 @@
 #include "tipch.h"
 
-#include "SceneHierachyPanel.h"
+#include "SceneHierarchyPanel.h"
 
 #include <imgui.h>
 
@@ -11,23 +11,23 @@ namespace Titan {
 
 
 
-	SceneHierachyPanel::SceneHierachyPanel(const Ref<Scene>& scene)
+	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& scene)
 	{
 		TI_PROFILE_FUNCTION();
 		SetContext(scene);
 	}
 
-	void SceneHierachyPanel::SetContext(const Ref<Scene>& scene)
+	void SceneHierarchyPanel::SetContext(const Ref<Scene>& scene)
 	{
 		TI_PROFILE_FUNCTION();
 		m_Context = scene;
 	}
 
-	void SceneHierachyPanel::OnImGuiRender()
+	void SceneHierarchyPanel::OnImGuiRender()
 	{
 		TI_PROFILE_FUNCTION();
 
-		ImGui::Begin("Scene Hierachy");
+		ImGui::Begin("Scene Hierarchy");
 
 		m_Context->m_Registry.each([&](auto entityID)
 			{
@@ -48,7 +48,7 @@ namespace Titan {
 		ImGui::End();
 	}
 
-	void SceneHierachyPanel::DrawEntityNode(Entity entity)
+	void SceneHierarchyPanel::DrawEntityNode(Entity entity)
 	{
 		TI_PROFILE_FUNCTION();
 
@@ -68,7 +68,7 @@ namespace Titan {
 		}
 	}
 
-	void SceneHierachyPanel::DrawComponents(Entity entity)
+	void SceneHierarchyPanel::DrawComponents(Entity entity)
 	{
 		TI_PROFILE_FUNCTION();
 
@@ -156,6 +156,16 @@ namespace Titan {
 						camera.SetOrthographicFarClip(orthoFarClip);
 				}
 
+
+				ImGui::TreePop();
+			}
+		}
+		if (entity.HasComponent<SpriteRendererComponent>())
+		{
+			if (ImGui::TreeNodeEx((void*)typeid(SpriteRendererComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Sprite Renderer"))
+			{
+				auto& src = entity.GetComponent<SpriteRendererComponent>();
+				ImGui::ColorEdit4("Color", glm::value_ptr(src.Color));
 
 				ImGui::TreePop();
 			}

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Titan.h"
-#include "Panels/SceneHierachyPanel.h"
+#include "Panels/SceneHierarchyPanel.h"
 
 namespace Titan {
 
@@ -32,7 +32,7 @@ namespace Titan {
 		glm::vec2 m_ViewportSize = { 0, 0 };
 		float m_SquareRot = 30.0f;
 
-		SceneHierachyPanel m_HierachyPanel;
+		SceneHierarchyPanel m_HierarchyPanel;
 	};
 
 }

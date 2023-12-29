@@ -7,11 +7,11 @@
 
 namespace Titan {
 
-	class SceneHierachyPanel
+	class SceneHierarchyPanel
 	{
 	public:
-		SceneHierachyPanel() = default;
-		SceneHierachyPanel(const Ref<Scene>& scene);
+		SceneHierarchyPanel() = default;
+		SceneHierarchyPanel(const Ref<Scene>& scene);
 
 		void SetContext(const Ref<Scene>& scene);
 

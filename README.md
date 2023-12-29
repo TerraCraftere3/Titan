@@ -78,11 +78,12 @@ For now you need to clone the entire repo.
 - [ ] Linux
 - [ ] Mac
 
-#### Developing
+#### Editor
 
-- [x] Logging ([spdlog](https://github.com/gabime/spdlog) and Custom API)
 - [x] Editor
 - [ ] Hot Code Reloading
+- [x] Properties Panel
+- [x] Scene Hierachy Panel
 
 #### Other
 

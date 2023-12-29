@@ -39,10 +39,10 @@ namespace Titan {
 		squareBlue.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.3f, 1.0f, 1.0f });
 		squareBlue.GetComponent<TransformComponent>().Transform[3][0] =  2.5f;
 
-		m_CameraEntity = m_ActiveScene->CreateEntity("Camera First");
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera A");
 		m_CameraEntity.AddComponent<CameraComponent>();
 
-		m_SecondCameraEntity = m_ActiveScene->CreateEntity("Camera Second");
+		m_SecondCameraEntity = m_ActiveScene->CreateEntity("Camera B");
 		auto& cc = m_SecondCameraEntity.AddComponent<CameraComponent>();
 		cc.Primary = false;
 
@@ -82,7 +82,7 @@ namespace Titan {
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		m_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		
-		m_HierachyPanel.SetContext(m_ActiveScene);
+		m_HierarchyPanel.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach()
@@ -188,29 +188,10 @@ namespace Titan {
 
 		ImGui::End();
 
-		m_HierachyPanel.OnImGuiRender();
+		m_HierarchyPanel.OnImGuiRender();
 
-		/*
-		ImGui::Begin("Settings");
-		if (m_SquareEntity)
-		{
-			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
-			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
-		}
-
-		ImGui::DragFloat3("Camera Transform", 
-			glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
-		if (ImGui::Checkbox("Camera Primary", &m_PrimaryCamera))
-		{
-			m_SecondCameraEntity.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
-			m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
-		}
-		ImGui::End();
-		*/
-
-		ImGui::Begin("Stats");
+		ImGui::Begin("Renderer2D Stats");
 		auto stats = Renderer2D::GetStats();
-		ImGui::Text("Renderer2D Stats:");
 		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 		ImGui::Text("Quads: %d", stats.QuadCount);
 		ImGui::Text("Triangles: %d", stats.GetTotalTriangleCount());
