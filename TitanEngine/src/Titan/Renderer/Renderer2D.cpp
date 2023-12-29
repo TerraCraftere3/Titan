@@ -121,7 +121,7 @@ namespace Titan
 		s_Data.TextureSlotIndex = 1;
 	}
 
-	void Renderer2D::BeginScene(const Camera& camera, const glm::mat4& transform)
+	void Renderer2D::BeginScene(const Camera& camera, const glm::mat4 transform)
 	{
 		TI_PROFILE_FUNCTION();
 

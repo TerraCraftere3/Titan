@@ -11,7 +11,7 @@
 namespace Titan {
 
 	EditorLayer::EditorLayer()
-		: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f)
+		: Layer("Sandbox2D")
 	{
 	}
 
@@ -29,15 +29,15 @@ namespace Titan {
 		//Entity
 		auto squareGreen = m_ActiveScene->CreateEntity("Square (Green)");
 		squareGreen.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.3f, 1.0f, 0.2f, 1.0f });
-		squareGreen.GetComponent<TransformComponent>().Transform[3][0] = -2.5f;
+		squareGreen.GetComponent<TransformComponent>().Translation.x = -2.5f;
 
 		auto squareRed = m_ActiveScene->CreateEntity("Square (Red)");
 		squareRed.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.3f, 0.2f, 1.0f });
-		squareRed.GetComponent<TransformComponent>().Transform[3][0] =  0.0f;
+		squareRed.GetComponent<TransformComponent>().Translation.x =  0.0f;
 
 		auto squareBlue = m_ActiveScene->CreateEntity("Square (Blue)");
 		squareBlue.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.3f, 1.0f, 1.0f });
-		squareBlue.GetComponent<TransformComponent>().Transform[3][0] =  2.5f;
+		squareBlue.GetComponent<TransformComponent>().Translation.x =  2.5f;
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera A");
 		m_CameraEntity.AddComponent<CameraComponent>();
@@ -51,11 +51,7 @@ namespace Titan {
 		public:
 			void OnCreate()
 			{
-				/*
-				auto& transform = GetComponent<TransformComponent>().Transform;
-				transform[3][0] = rand() % 10 - 5.0f;
-				transform[3][1] = rand() % 10 - 5.0f;
-				*/
+
 			}
 
 			void OnDestroy()
@@ -64,18 +60,18 @@ namespace Titan {
 
 			void OnUpdate(Timestep ts)
 			{
-				auto& transform = GetComponent<TransformComponent>().Transform;
+				auto& pos = GetComponent<TransformComponent>().Translation;
 
 				float speed = 5.0f;
 
 				if (Input::IsKeyPressed(KeyCode::A))
-					transform[3][0] -= speed * ts;
+					pos.x -= speed * ts;
 				if (Input::IsKeyPressed(KeyCode::D))
-					transform[3][0] += speed * ts;
+					pos.x += speed * ts;
 				if (Input::IsKeyPressed(KeyCode::W))
-					transform[3][1] += speed * ts;
+					pos.y += speed * ts;
 				if (Input::IsKeyPressed(KeyCode::S))
-					transform[3][1] -= speed * ts;
+					pos.y -= speed * ts;
 			}
 		};
 
@@ -100,13 +96,8 @@ namespace Titan {
 			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
 
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-		}
-
-		if (m_ViewportFocused) {
-			m_CameraController.OnUpdate(ts);
 		}
 
 		Renderer2D::ResetStats();
@@ -217,9 +208,7 @@ namespace Titan {
 
 	void EditorLayer::OnEvent(Event& e)
 	{
-		if (m_ViewportFocused) {
-			m_CameraController.OnEvent(e);
-		}
+
 	}
 
 }

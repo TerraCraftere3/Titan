@@ -18,7 +18,6 @@ namespace Titan {
 		virtual void OnImGuiRender() override;
 		void OnEvent(Event& e) override;
 	private:
-		OrthographicCameraController m_CameraController;
 		Ref<Framebuffer> m_Framebuffer;
 
 		Ref<Scene> m_ActiveScene;
@@ -26,11 +25,8 @@ namespace Titan {
 		Entity m_CameraEntity;
 		Entity m_SecondCameraEntity;
 
-		bool m_PrimaryCamera = true;
-
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0, 0 };
-		float m_SquareRot = 30.0f;
 
 		SceneHierarchyPanel m_HierarchyPanel;
 	};
