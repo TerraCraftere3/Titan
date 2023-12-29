@@ -24,6 +24,9 @@ namespace Titan {
 
 		void SetBlockEvents(bool b) { m_BlockEvents = b; };
 		bool GetBlockEvents() { return m_BlockEvents; };
+	
+		void SetDarkThemeColors();
+		void SetLightThemeColors();
 	private:
 		bool m_BlockEvents = true;
 		float m_Time = 0.0f;
