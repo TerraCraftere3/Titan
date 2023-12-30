@@ -22,6 +22,7 @@ IncludeDir["ImGui"] = "TitanEngine/vendor/imgui"
 IncludeDir["glm"] = "TitanEngine/vendor/glm"
 IncludeDir["stb_image"] = "TitanEngine/vendor/stb_image"
 IncludeDir["entt"] = "TitanEngine/vendor/entt/include"
+IncludeDir["yaml_cpp"] = "TitanEngine/vendor/yaml-cpp/include"
 
 function pch()
 	pchheader "tipch.h"
@@ -33,6 +34,7 @@ group "Dependencies"
 include "TitanEngine/vendor/GLFW"
 include "TitanEngine/vendor/Glad"
 include "TitanEngine/vendor/imgui"
+include "TitanEngine/vendor/yaml-cpp"
 
 group "Titan"
 
@@ -73,7 +75,8 @@ project "Engine"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yaml_cpp}"
 	}
 
 	links
@@ -81,7 +84,8 @@ project "Engine"
 		"GLFW",
 		"Glad",
 		"ImGui",
-		"opengl32.lib"
+		"opengl32.lib",
+		"yaml-cpp"
 	}
 
 
@@ -148,7 +152,8 @@ project "Neon"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yaml_cpp}"
 	}
 
 	links
@@ -216,7 +221,8 @@ project "Sandbox"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yaml_cpp}"
 	}
 
 	links

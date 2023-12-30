@@ -66,7 +66,7 @@ For now you need to clone the entire repo.
 - [x] Texture Files
 - [x] 2D Textures
 - [ ] 3D Textures
-- [ ] Spritesheets
+- [ ] Sprite sheets
 - [ ] 3D Models
 - [x] Shader Files
 - [ ] Custom Filetypes
@@ -83,7 +83,7 @@ For now you need to clone the entire repo.
 - [x] Editor
 - [ ] Hot Code Reloading
 - [x] Properties Panel
-- [x] Scene Hierachy Panel
+- [x] Scene Hierarchy Panel
 
 #### Other
 
