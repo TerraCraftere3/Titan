@@ -74,8 +74,9 @@ namespace Titan {
 			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 			for (auto entity : group) {
 				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-
-				Renderer2D::DrawQuad(transform.GetTransform(), sprite);
+				
+				glm::mat4 matrix = transform.GetTransform();
+				Renderer2D::DrawQuad(matrix, sprite);
 			}
 
 			Renderer2D::EndScene();
@@ -99,6 +100,18 @@ namespace Titan {
 			if (!cameraComponent.FixedAspectRatio)
 				cameraComponent.Camera.SetViewportSize(width, height);
 		}
+	}
+
+	Entity Scene::GetPrimaryCameraEntity() {
+		auto view = m_Registry.view<CameraComponent>();
+		for (auto entity : view)
+		{
+			const auto& cameraComponent = view.get<CameraComponent>(entity);
+			if (cameraComponent.Primary)
+				return Entity{ entity, this };
+		}
+
+		return {};
 	}
 
 	template<typename T>

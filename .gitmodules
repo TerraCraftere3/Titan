@@ -16,3 +16,6 @@
 [submodule "TitanEngine/vendor/yaml-cpp"]
 	path = TitanEngine/vendor/yaml-cpp
 	url = https://github.com/thecherno/yaml-cpp
+[submodule "TitanEngine/vendor/ImGuizmo"]
+	path = TitanEngine/vendor/ImGuizmo
+	url = https://github.com/thecherno/imguizmo

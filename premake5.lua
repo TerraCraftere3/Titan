@@ -23,6 +23,7 @@ IncludeDir["glm"] = "TitanEngine/vendor/glm"
 IncludeDir["stb_image"] = "TitanEngine/vendor/stb_image"
 IncludeDir["entt"] = "TitanEngine/vendor/entt/include"
 IncludeDir["yaml_cpp"] = "TitanEngine/vendor/yaml-cpp/include"
+IncludeDir["ImGuizmo"] = "TitanEngine/vendor/ImGuizmo"
 
 function includes()
 	includedirs

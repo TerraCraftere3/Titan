@@ -18,17 +18,21 @@ namespace Titan {
 		virtual void OnImGuiRender() override;
 		void OnEvent(Event& e) override;
 	private:
-		Ref<Framebuffer> m_Framebuffer;
+		bool OnKeyPressed(KeyPressedEvent& e);
 
+		void NewScene();
+		void OpenScene();
+		void SaveSceneAs();
+	private:
+		Ref<Framebuffer> m_Framebuffer;
 		Ref<Scene> m_ActiveScene;
-		Entity m_SquareEntity;
-		Entity m_CameraEntity;
-		Entity m_SecondCameraEntity;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0, 0 };
 
-		SceneHierarchyPanel m_HierarchyPanel;
+		int m_GizmoType = -1;
+
+		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};
 
 }

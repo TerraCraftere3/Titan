@@ -18,7 +18,7 @@ namespace Titan {
 	{
 	public:
 		NeonEditor()
-			: Application("Titan Engine | Neon")
+			: Application("Neon Editor")
 		{
 			PushLayer(new EditorLayer());
 		}

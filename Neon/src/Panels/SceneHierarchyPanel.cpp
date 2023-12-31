@@ -18,6 +18,7 @@ namespace Titan {
 	void SceneHierarchyPanel::SetContext(const Ref<Scene>& context)
 	{
 		m_Context = context;
+		m_SelectionContext = {};
 	}
 
 	void SceneHierarchyPanel::OnImGuiRender()
@@ -275,9 +276,9 @@ namespace Titan {
 
 				if (camera.GetProjectionType() == SceneCamera::ProjectionType::Perspective)
 				{
-					float perspectiveVerticalFov = glm::degrees(camera.GetPerspectiveFOV());
+					float perspectiveVerticalFov = glm::degrees(camera.GetPerspectiveVerticalFOV());
 					if (ImGui::DragFloat("Vertical FOV", &perspectiveVerticalFov))
-						camera.SetPerspectiveFOV(glm::radians(perspectiveVerticalFov));
+						camera.SetPerspectiveVerticalFOV(glm::radians(perspectiveVerticalFov));
 
 					float perspectiveNear = camera.GetPerspectiveNearClip();
 					if (ImGui::DragFloat("Near", &perspectiveNear))

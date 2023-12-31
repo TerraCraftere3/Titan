@@ -18,7 +18,9 @@ project "Engine"
 		"%{prj.location}/src/**.hpp",
 		"%{prj.location}/src/**.c",
 		"../%{IncludeDir.stb_image}/**.cpp",
-		"../%{IncludeDir.stb_image}/**.h"
+		"../%{IncludeDir.stb_image}/**.h",
+		"../%{IncludeDir.ImGuizmo}/**.h",
+		"../%{IncludeDir.ImGuizmo}/**.cpp"
 	}
 
 	includedirs
@@ -31,7 +33,8 @@ project "Engine"
 		"../%{IncludeDir.glm}",
 		"../%{IncludeDir.stb_image}",
 		"../%{IncludeDir.entt}",
-		"../%{IncludeDir.yaml_cpp}"
+		"../%{IncludeDir.yaml_cpp}",
+		"../%{IncludeDir.ImGuizmo}"
 	}
 
 	links
@@ -47,6 +50,13 @@ project "Engine"
 	{
 		"_CRT_SECURE_NO_WARNINGS"
 	}
+
+	filter "files:vendor/ImGuizmo/**.cpp"
+		flags { "NoPCH" }
+	filter "files:vendor/stb_image/**.cpp"
+		flags { "NoPCH" }
+	filter "files:vendor/glm/**.cpp"
+		flags { "NoPCH" }
 
 
 	filter "system:windows"
