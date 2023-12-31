@@ -3,9 +3,8 @@
 #include <imgui.h>
 #include <Platform/OpenGL/OpenGLShader.h>
 
-#include <chrono>
-
-#include "Titan/Debug/Instrumentor.h"
+#include <Titan/Debug/Instrumentor.h>
+#include <Titan/Scene/SceneSerializer.h>
 
 
 namespace Titan {
@@ -25,7 +24,7 @@ namespace Titan {
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
 		m_ActiveScene = CreateRef<Scene>();
-
+#if 0
 		//Entity
 		auto squareGreen = m_ActiveScene->CreateEntity("Square (Green)");
 		squareGreen.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.3f, 1.0f, 0.2f, 1.0f });
@@ -77,7 +76,7 @@ namespace Titan {
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		m_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-		
+#endif
 		m_HierarchyPanel.SetContext(m_ActiveScene);
 	}
 
@@ -166,11 +165,19 @@ namespace Titan {
 		{
 			if (ImGui::BeginMenu("File"))
 			{
-				// Disabling fullscreen would allow the window to be moved to the front of other windows, 
-				// which we can't undo at the moment without finer window depth/z control.
-				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
+				if (ImGui::MenuItem("Save"))
+				{
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.Serialize("assets/scenes/Example.scene");
+				}
 
-				if (ImGui::MenuItem("Exit")) Application::Get().Close();
+				if (ImGui::MenuItem("Load"))
+				{
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.Deserialize("assets/scenes/Example.scene");
+				}
+
+				if (ImGui::MenuItem("Exit", "ALT+F4")) Application::Get().Close();
 				ImGui::EndMenu();
 			}
 

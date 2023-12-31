@@ -78,8 +78,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>TI_PLATFORM_WINDOWS;TI_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;TI_PLATFORM_WINDOWS;TI_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\TitanEngine\TitanEngine\src;..\TitanEngine\TitanEngine\vendor\spdlog\include;..\TitanEngine\TitanEngine\vendor\GLFW\include;..\TitanEngine\TitanEngine\vendor\Glad\include;..\TitanEngine\TitanEngine\vendor\imgui;..\TitanEngine\TitanEngine\vendor\glm;..\TitanEngine\TitanEngine\vendor\stb_image;..\TitanEngine\TitanEngine\vendor\entt\include;..\TitanEngine\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -99,8 +99,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>TI_PLATFORM_WINDOWS;TI_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;TI_PLATFORM_WINDOWS;TI_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\TitanEngine\TitanEngine\src;..\TitanEngine\TitanEngine\vendor\spdlog\include;..\TitanEngine\TitanEngine\vendor\GLFW\include;..\TitanEngine\TitanEngine\vendor\Glad\include;..\TitanEngine\TitanEngine\vendor\imgui;..\TitanEngine\TitanEngine\vendor\glm;..\TitanEngine\TitanEngine\vendor\stb_image;..\TitanEngine\TitanEngine\vendor\entt\include;..\TitanEngine\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -120,8 +120,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>TI_PLATFORM_WINDOWS;TI_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;TI_PLATFORM_WINDOWS;TI_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\TitanEngine\TitanEngine\src;..\TitanEngine\TitanEngine\vendor\spdlog\include;..\TitanEngine\TitanEngine\vendor\GLFW\include;..\TitanEngine\TitanEngine\vendor\Glad\include;..\TitanEngine\TitanEngine\vendor\imgui;..\TitanEngine\TitanEngine\vendor\glm;..\TitanEngine\TitanEngine\vendor\stb_image;..\TitanEngine\TitanEngine\vendor\entt\include;..\TitanEngine\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -158,6 +158,9 @@
     </ProjectReference>
     <ProjectReference Include="..\TitanEngine\vendor\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\TitanEngine\vendor\yaml-cpp\yaml-cpp.vcxproj">
+      <Project>{88F1A057-74BE-FB62-9DD7-E90A890331F1}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

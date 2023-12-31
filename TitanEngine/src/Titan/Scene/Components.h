@@ -63,7 +63,7 @@ namespace Titan {
 	{
 		SceneCamera Camera;
 		bool Primary = true; //TODO: think about moving to scene
-		bool FixedAspectRation = false; //if true it doesnt resize on window resize.
+		bool FixedAspectRatio = false; //if true it doesnt resize on window resize.
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
