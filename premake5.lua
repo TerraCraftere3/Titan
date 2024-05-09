@@ -1,11 +1,19 @@
-workspace "TitanEngine"
-	architecture 'x64'
-	startproject 'Neon-Editor'
+include "./vendor/premake/premake_customization/solution_items.lua"
 
-	configurations {
+workspace "Titan"
+	architecture "x86_64"
+	startproject "Neon"
+
+	configurations
+	{
 		"Debug",
 		"Release",
 		"Dist"
+	}
+
+	solution_items
+	{
+		".editorconfig"
 	}
 
 	flags
@@ -15,51 +23,25 @@ workspace "TitanEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "TitanEngine/vendor/GLFW/include"
-IncludeDir["Glad"] = "TitanEngine/vendor/Glad/include"
-IncludeDir["ImGui"] = "TitanEngine/vendor/imgui"
-IncludeDir["glm"] = "TitanEngine/vendor/glm"
-IncludeDir["stb_image"] = "TitanEngine/vendor/stb_image"
-IncludeDir["entt"] = "TitanEngine/vendor/entt/include"
-IncludeDir["yaml_cpp"] = "TitanEngine/vendor/yaml-cpp/include"
-IncludeDir["ImGuizmo"] = "TitanEngine/vendor/ImGuizmo"
-
-function includes()
-	includedirs
-	{
-		"%{prj.location}/src",
-		"TitanEngine/src",
-		"TitanEngine/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}",
-		"%{IncludeDir.yaml_cpp}"
-	}
-
-	links
-	{
-		"GLFW",
-		"Glad",
-		"ImGui",
-		"opengl32.lib",
-		"Engine",
-		"yaml-cpp"
-	}
-end
+IncludeDir["GLFW"] = "%{wks.location}/Titan/vendor/GLFW/include"
+IncludeDir["Glad"] = "%{wks.location}/Titan/vendor/Glad/include"
+IncludeDir["ImGui"] = "%{wks.location}/Titan/vendor/imgui"
+IncludeDir["glm"] = "%{wks.location}/Titan/vendor/glm"
+IncludeDir["stb_image"] = "%{wks.location}/Titan/vendor/stb_image"
+IncludeDir["entt"] = "%{wks.location}/Titan/vendor/entt/include"
+IncludeDir["yaml_cpp"] = "%{wks.location}/Titan/vendor/yaml-cpp/include"
+IncludeDir["ImGuizmo"] = "%{wks.location}/Titan/vendor/ImGuizmo"
 
 group "Dependencies"
+	include "vendor/premake"
+	include "Titan/vendor/GLFW"
+	include "Titan/vendor/Glad"
+	include "Titan/vendor/imgui"
+	include "Titan/vendor/yaml-cpp"
+group ""
 
-include "TitanEngine/vendor/GLFW/"
-include "TitanEngine/vendor/Glad/"
-include "TitanEngine/vendor/imgui/"
-include "TitanEngine/vendor/yaml-cpp/"
-
-group "Titan"
-
-include "TitanEngine/"
-include "Neon/"
-include "Sandbox/"
+include "Titan"
+include "Sandbox"
+include "Neon"

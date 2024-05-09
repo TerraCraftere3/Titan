@@ -30,13 +30,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -61,14 +61,14 @@
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Release-windows-x86_64\Neon\</OutDir>
     <IntDir>..\bin-int\Release-windows-x86_64\Neon\</IntDir>
     <TargetName>Neon</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Dist-windows-x86_64\Neon\</OutDir>
     <IntDir>..\bin-int\Dist-windows-x86_64\Neon\</IntDir>
     <TargetName>Neon</TargetName>
@@ -78,63 +78,60 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;TI_PLATFORM_WINDOWS;TI_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\TitanEngine\TitanEngine\src;..\TitanEngine\TitanEngine\vendor\spdlog\include;..\TitanEngine\TitanEngine\vendor\GLFW\include;..\TitanEngine\TitanEngine\vendor\Glad\include;..\TitanEngine\TitanEngine\vendor\imgui;..\TitanEngine\TitanEngine\vendor\glm;..\TitanEngine\TitanEngine\vendor\stb_image;..\TitanEngine\TitanEngine\vendor\entt\include;..\TitanEngine\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>TI_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Titan\vendor\spdlog\include;..\Titan\src;..\Titan\vendor;..\Titan\vendor\glm;..\Titan\vendor\entt\include;..\Titan\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;TI_PLATFORM_WINDOWS;TI_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\TitanEngine\TitanEngine\src;..\TitanEngine\TitanEngine\vendor\spdlog\include;..\TitanEngine\TitanEngine\vendor\GLFW\include;..\TitanEngine\TitanEngine\vendor\Glad\include;..\TitanEngine\TitanEngine\vendor\imgui;..\TitanEngine\TitanEngine\vendor\glm;..\TitanEngine\TitanEngine\vendor\stb_image;..\TitanEngine\TitanEngine\vendor\entt\include;..\TitanEngine\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>TI_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Titan\vendor\spdlog\include;..\Titan\src;..\Titan\vendor;..\Titan\vendor\glm;..\Titan\vendor\entt\include;..\Titan\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalOptions>/MD /MT %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;TI_PLATFORM_WINDOWS;TI_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\TitanEngine\TitanEngine\src;..\TitanEngine\TitanEngine\vendor\spdlog\include;..\TitanEngine\TitanEngine\vendor\GLFW\include;..\TitanEngine\TitanEngine\vendor\Glad\include;..\TitanEngine\TitanEngine\vendor\imgui;..\TitanEngine\TitanEngine\vendor\glm;..\TitanEngine\TitanEngine\vendor\stb_image;..\TitanEngine\TitanEngine\vendor\entt\include;..\TitanEngine\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\spdlog\include;..\TitanEngine\src;..\TitanEngine\vendor\GLFW\include;..\TitanEngine\vendor\Glad\include;..\TitanEngine\vendor\imgui;..\TitanEngine\vendor\glm;..\TitanEngine\vendor\stb_image;..\TitanEngine\vendor\entt\include;..\TitanEngine\vendor\yaml-cpp\include;..\TitanEngine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>TI_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Titan\vendor\spdlog\include;..\Titan\src;..\Titan\vendor;..\Titan\vendor\glm;..\Titan\vendor\entt\include;..\Titan\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -143,24 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorLayer.cpp" />
-    <ClCompile Include="src\NeonApp.cpp" />
+    <ClCompile Include="src\HazelnutApp.cpp" />
     <ClCompile Include="src\Panels\SceneHierarchyPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TitanEngine\Engine.vcxproj">
-      <Project>{DBC7D3B0-C769-FE86-B024-12DB9C6585D7}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\TitanEngine\vendor\GLFW\GLFW.vcxproj">
-      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\TitanEngine\vendor\Glad\Glad.vcxproj">
-      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\TitanEngine\vendor\imgui\ImGui.vcxproj">
-      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\TitanEngine\vendor\yaml-cpp\yaml-cpp.vcxproj">
-      <Project>{88F1A057-74BE-FB62-9DD7-E90A890331F1}</Project>
+    <ProjectReference Include="..\Titan\Titan.vcxproj">
+      <Project>{A5982A0E-11AD-52BF-DA2E-F61E46024FF0}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

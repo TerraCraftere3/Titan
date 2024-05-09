@@ -1,21 +1,22 @@
-[submodule "TitanEngine/vendor/spdlog"]
-	path = TitanEngine/vendor/spdlog
-	url = https://github.com/gabime/spdlog
+[submodule "Hazel/vendor/spdlog"]
+	path = Hazel/vendor/spdlog
+	url = ../../gabime/spdlog.git
 	branch = v1.x
-[submodule "TitanEngine/vendor/GLFW"]
-	path = TitanEngine/vendor/GLFW
-	url = https://github.com/TheCherno/glfw
+[submodule "Hazel/vendor/GLFW"]
+	path = Hazel/vendor/GLFW
+	url = ../../TheCherno/glfw.git
 	branch = master
-[submodule "TitanEngine/vendor/imgui"]
-	path = TitanEngine/vendor/imgui
-	url = https://github.com/TheCherno/imgui
-[submodule "TitanEngine/vendor/glm"]
-	path = TitanEngine/vendor/glm
-	url = https://github.com/g-truc/glm
+[submodule "Hazel/vendor/imgui"]
+	path = Hazel/vendor/imgui
+	url = ../../TheCherno/imgui.git
+	branch = docking
+[submodule "Hazel/vendor/glm"]
+	path = Hazel/vendor/glm
+	url = ../../g-truc/glm.git
 	branch = master
-[submodule "TitanEngine/vendor/yaml-cpp"]
-	path = TitanEngine/vendor/yaml-cpp
+[submodule "Hazel/vendor/yaml-cpp"]
+	path = Hazel/vendor/yaml-cpp
 	url = https://github.com/thecherno/yaml-cpp
-[submodule "TitanEngine/vendor/ImGuizmo"]
-	path = TitanEngine/vendor/ImGuizmo
+[submodule "Hazel/vendor/ImGuizmo"]
+	path = Hazel/vendor/ImGuizmo
 	url = https://github.com/thecherno/imguizmo

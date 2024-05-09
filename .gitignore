@@ -1,16 +1,14 @@
 # Binaries
-**/bin/**
-!vendor/bin/premake/
-**/bin-int/**
-**/Profile/*.json
+**/bin/
+!vendor/premake/bin/
+bin-int/
+
+# Hazel files
+*.log
 
 # Visual Studio files and folder
 .vs/
+**.sln
+**.vcxproj
 **.vcxproj.filters
-.TitanEngine/vendor/**.*vcxproj*
-
-# Dev and Todo Files
-dev-*
-todo-*
-
-.gitmodules
+**.vcxproj.user
